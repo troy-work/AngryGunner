@@ -8,7 +8,6 @@
 
 #import "GameAppDelegate.h"
 
-#import "GameScene.h"
 
 @interface GameAppDelegate (PrivateMethods)
 
@@ -51,10 +50,10 @@
 	
 	CCScene *game = [CCScene node];
 
-	GameScene *layer = [GameScene node];
+//	GameScene *layer = [GameScene node];
 
-	[game addChild:layer];
-	[director runWithScene:game];
+//	[game addChild:layer];
+//	[director runWithScene:game];
 }
 
 - (void)applicationWillTerminate:(UIApplication*)application
