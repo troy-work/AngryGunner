@@ -7,6 +7,7 @@
 //
 
 #import "GameAppDelegate.h"
+#import "Splash.h"
 
 
 @interface GameAppDelegate (PrivateMethods)
@@ -16,44 +17,61 @@
 @implementation GameAppDelegate
 
 #pragma mark GameDelegate Methods
+
+
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
-	[application setIdleTimerDisabled:YES];
+	[application setIdleTimerDisabled:YES];	
 	
+	// Init the window
 	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-	//if( ! [CCDirector setDirectorType:kCCDirectorTypeDisplayLink] )
-	//	[CCDirector setDirectorType:kCCDirectorTypeNSTimer];
-	[CCDirector setDirectorType:CCDirectorTypeThreadMainLoop];
+
+	if( ! [CCDirector setDirectorType:kCCDirectorTypeDisplayLink] )
+	[CCDirector setDirectorType:kCCDirectorTypeNSTimer];	
+	//[CCDirector setDirectorType:CCDirectorTypeThreadMainLoop];
 	
+	// before creating any layer, set the landscape mode
 	CCDirector *director = [CCDirector sharedDirector];
 	
-	[director setDeviceOrientation:kCCDeviceOrientationPortrait];
-	[director setDisplayFPS:NO];
+	// Default texture format for PNG/BMP/TIFF/JPEG/GIF images
+	// It can be RGBA8888, RGBA4444, RGB5_A1, RGB565
+	// You can change anytime.
+	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];	
+	
+	[director setDeviceOrientation:CCDeviceOrientationLandscapeLeft];
+	[director setDisplayFPS:YES];
 	[director setAnimationInterval:1.0/60];
+	
+	// Create an EAGLView with a RGB8 color buffer, and a depth buffer of 24-bits
 	EAGLView *glView = [EAGLView viewWithFrame:[window bounds]
-								   pixelFormat:kEAGLColorFormatRGB565
-								   depthFormat:0 /* GL_DEPTH_COMPONENT24_OES */
+								   pixelFormat:kEAGLColorFormatRGBA8                // RGBA8 color buffer
+								   depthFormat:GL_DEPTH_COMPONENT24_OES   // 24-bit depth buffer
 							preserveBackbuffer:NO
-									sharegroup:nil
-								 multiSampling:NO
-							   numberOfSamples:0
+									sharegroup:nil //for sharing OpenGL contexts between threads
+								 multiSampling:NO //YES to enable it
+							   numberOfSamples:0 //can be 1 - 4 if multiSampling=YES
 						];
+	
+	
+	// attach the openglView to the director
 	[director setOpenGLView:glView];
+
+	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
+	if( ! [director enableRetinaDisplay:YES] )
+		CCLOG(@"Retina Display Not supported");
+	
+	CCSprite *sprite = [CCSprite spriteWithFile:@"Default.png"];
+	[sprite visit];
+	
+		
 	[window addSubview:glView];																
 	[window makeKeyAndVisible];		
 	
 	//[window setUserInteractionEnabled:YES];
 	//[window setMultipleTouchEnabled:YES];
 	
-	[director setDeviceOrientation:CCDeviceOrientationLandscapeLeft];
-	[director setDisplayFPS:YES];
-	
-	CCScene *game = [CCScene node];
 
-//	GameScene *layer = [GameScene node];
-
-//	[game addChild:layer];
-//	[director runWithScene:game];
+	[[CCDirector sharedDirector] runWithScene: [Splash scene]];		
 }
 
 - (void)applicationWillTerminate:(UIApplication*)application
