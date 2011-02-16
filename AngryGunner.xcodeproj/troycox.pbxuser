@@ -15,9 +15,9 @@
 		};
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
-		activeBuildConfigurationName = Debug;
+		activeBuildConfigurationName = Release;
 		activeExecutable = FC3FE81012D92B12005742AC /* AngryGunner */;
-		activeSDKPreference = iphonesimulator4.2;
+		activeSDKPreference = iphoneos4.2;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* AngryGunner */;
 		addToTargets = (
 			1D6058900D05DD3D006BFB54 /* AngryGunner */,
@@ -198,6 +198,13 @@
 			FC7588E6130C56CA00E88681 /* PBXTextBookmark */ = FC7588E6130C56CA00E88681 /* PBXTextBookmark */;
 			FC7588E7130C56CA00E88681 /* PBXTextBookmark */ = FC7588E7130C56CA00E88681 /* PBXTextBookmark */;
 			FC7588E8130C56CA00E88681 /* PBXTextBookmark */ = FC7588E8130C56CA00E88681 /* PBXTextBookmark */;
+			FC7588EF130C58B900E88681 /* PBXTextBookmark */ = FC7588EF130C58B900E88681 /* PBXTextBookmark */;
+			FC7588F0130C58B900E88681 /* PBXTextBookmark */ = FC7588F0130C58B900E88681 /* PBXTextBookmark */;
+			FC7588F1130C58B900E88681 /* PBXTextBookmark */ = FC7588F1130C58B900E88681 /* PBXTextBookmark */;
+			FC7588F6130C58E100E88681 /* PBXTextBookmark */ = FC7588F6130C58E100E88681 /* PBXTextBookmark */;
+			FC7588F9130C594300E88681 /* PBXTextBookmark */ = FC7588F9130C594300E88681 /* PBXTextBookmark */;
+			FC7588FC130C596700E88681 /* PBXTextBookmark */ = FC7588FC130C596700E88681 /* PBXTextBookmark */;
+			FC7588FF130C59A000E88681 /* PBXTextBookmark */ = FC7588FF130C59A000E88681 /* PBXTextBookmark */;
 		};
 		sourceControlManager = FC3FE83212D92B24005742AC /* Source Control */;
 		userBuildSettings = {
@@ -353,9 +360,9 @@
 	};
 	FC48CFC7130A2BFA006B1C10 /* Game.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1195, 3129}}";
-			sepNavSelRange = "{1924, 0}";
-			sepNavVisRange = "{1609, 452}";
+			sepNavIntBoundsRect = "{{0, 0}, {1195, 2961}}";
+			sepNavSelRange = "{1832, 1}";
+			sepNavVisRange = "{1814, 549}";
 			sepNavWindowFrame = "{{38, 93}, {1488, 909}}";
 		};
 	};
@@ -368,9 +375,9 @@
 	};
 	FC48CFFE130A3B6C006B1C10 /* Waves.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1195, 1743}}";
-			sepNavSelRange = "{813, 0}";
-			sepNavVisRange = "{340, 695}";
+			sepNavIntBoundsRect = "{{0, 0}, {1195, 1806}}";
+			sepNavSelRange = "{1147, 0}";
+			sepNavVisRange = "{939, 404}";
 			sepNavWindowFrame = "{{84, 51}, {1488, 909}}";
 		};
 	};
@@ -749,7 +756,7 @@
 	};
 	FC666B2D130B7DA900358A37 /* Joystick.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1195, 4410}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1195, 4305}}";
 			sepNavSelRange = "{2993, 0}";
 			sepNavVisRange = "{2536, 1036}";
 			sepNavWindowFrame = "{{61, 72}, {1488, 909}}";
@@ -1086,5 +1093,75 @@
 		rType = 0;
 		vrLen = 452;
 		vrLoc = 1609;
+	};
+	FC7588EF130C58B900E88681 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC48CFC7130A2BFA006B1C10 /* Game.m */;
+		name = "Game.m: 88";
+		rLen = 1;
+		rLoc = 1832;
+		rType = 0;
+		vrLen = 549;
+		vrLoc = 1814;
+	};
+	FC7588F0130C58B900E88681 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC48CFFE130A3B6C006B1C10 /* Waves.m */;
+		name = "Waves.m: 43";
+		rLen = 0;
+		rLoc = 813;
+		rType = 0;
+		vrLen = 694;
+		vrLoc = 340;
+	};
+	FC7588F1130C58B900E88681 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC48CFFE130A3B6C006B1C10 /* Waves.m */;
+		name = "Waves.m: 70";
+		rLen = 0;
+		rLoc = 1230;
+		rType = 0;
+		vrLen = 403;
+		vrLoc = 939;
+	};
+	FC7588F6130C58E100E88681 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC48CFFE130A3B6C006B1C10 /* Waves.m */;
+		name = "Waves.m: 67";
+		rLen = 0;
+		rLoc = 1166;
+		rType = 0;
+		vrLen = 403;
+		vrLoc = 939;
+	};
+	FC7588F9130C594300E88681 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC48CFFE130A3B6C006B1C10 /* Waves.m */;
+		name = "Waves.m: 61";
+		rLen = 0;
+		rLoc = 1090;
+		rType = 0;
+		vrLen = 403;
+		vrLoc = 939;
+	};
+	FC7588FC130C596700E88681 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC48CFFE130A3B6C006B1C10 /* Waves.m */;
+		name = "Waves.m: 68";
+		rLen = 0;
+		rLoc = 1187;
+		rType = 0;
+		vrLen = 403;
+		vrLoc = 939;
+	};
+	FC7588FF130C59A000E88681 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = FC48CFFE130A3B6C006B1C10 /* Waves.m */;
+		name = "Waves.m: 66";
+		rLen = 0;
+		rLoc = 1147;
+		rType = 0;
+		vrLen = 403;
+		vrLoc = 939;
 	};
 }

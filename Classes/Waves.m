@@ -33,14 +33,14 @@ float count;
 		[wave1 setAnchorPoint:ccp(.5,0)];
 		[wave1 setOpacity:255];
 		[wave1 setScaleY:scaleFactor];
-		[wave1 setScaleX:3.5];
+		[wave1 setScaleX:3.6];
 	    wave1.position = ccp(480,0);
 		
 		wave2 = [CCSprite spriteWithFile:@"water2.png"];
 		[wave2 setAnchorPoint:ccp(.5,0)];
 		[wave2 setOpacity:125];
 		[wave2 setScaleY:scaleFactor];
-		[wave2 setScaleX:3.5];
+		[wave2 setScaleX:3.6];
 	    wave2.position = ccp(480,0);
 		
 		[self addChild:wave1];
@@ -58,14 +58,14 @@ float count;
 
 -(void)step:(ccTime) dt{
 	count += moveBy;
-	if (count>20) {
+	if (count>80) {
 		moveBy = -1;
 	}
-	if (count<-20) {
+	if (count<-80) {
 		moveBy = 1;
 	}
-	x1 += moveBy*dt*5;
-	x2 -= moveBy*dt*5;
+	x1 += moveBy*dt*40;
+	x2 -= moveBy*dt*40;
 	y_1 -= moveBy*dt*1;
 	y_2 += moveBy*dt*1;
 	[wave1 setPosition:ccp(x1,y_1)];

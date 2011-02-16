@@ -279,7 +279,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>20</integer>
+									<integer>22</integer>
 									<integer>18</integer>
 									<integer>17</integer>
 									<integer>0</integer>
@@ -323,7 +323,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>Game.m</string>
+								<string>Waves.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -331,11 +331,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>Game.m</string>
+										<string>Waves.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>FC7588E8130C56CA00E88681</string>
+										<string>FC7588FF130C59A000E88681</string>
 										<key>history</key>
 										<array>
 											<string>FC3FE8D312D94807005742AC</string>
@@ -440,8 +440,8 @@
 											<string>FC666C54130B9C6900358A37</string>
 											<string>FC7588BA130C50C500E88681</string>
 											<string>FC7588CE130C519C00E88681</string>
-											<string>FC7588E6130C56CA00E88681</string>
-											<string>FC7588E7130C56CA00E88681</string>
+											<string>FC7588EF130C58B900E88681</string>
+											<string>FC7588F0130C58B900E88681</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -639,6 +639,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>FC7588F2130C58B900E88681</string>
+		<string>FC7588F3130C58B900E88681</string>
 		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>FC3FE82912D92B24005742AC</string>
