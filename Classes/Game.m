@@ -8,8 +8,15 @@
 
 #import "Game.h"
 #import "Waves.h"
+#import "Joystick.h"
 
 @implementation Game
+
+Joystick *jstick;
+float x;
+float y;
+CCLayer *bgLayer;
+Waves *waves;
 
 +(id)scene{
 	// 'scene' is an autorelease object.
@@ -40,16 +47,86 @@
 		
 	    bg2.position = ccp(240,0);
 		
-		[self addChild:bg1];
-		[self addChild:bg2];
+		bgLayer = [CCLayer node]; 
 		
-		Waves *waves = [Waves node];
-		[self addChild:waves];
+		[bgLayer addChild:bg1];
+		[bgLayer addChild:bg2];
+		[bgLayer setAnchorPoint:ccp(.5,0)];
+		[self addChild:bgLayer];
 		
+		waves = [Waves node];
+		[waves setAnchorPoint:ccp(.5,0)];
+		[bgLayer addChild:waves];
+
+
+		CCLayer* control = [CCLayer node];
+		[control setAnchorPoint:ccp(0,0)];
+		[control setPosition:ccp(60,60)];
+		
+		CCScene* jsBack = [CCSprite spriteWithFile:@"dpad.png"];
+		[jsBack setAnchorPoint:ccp(.5,.5)];
+		[jsBack setPosition:ccp(0,0)];
+		[control addChild:jsBack];
+				
+		CCSprite* jsThumb = [CCSprite spriteWithFile:@"dpadburst.png"];
+		// jsThumb.scale = 0.80; // change thumb size if you like
+		[jsThumb setAnchorPoint:ccp(.5,.5)];
+		jstick = [Joystick joystickWithThumb: jsThumb
+												 andSize: CGSizeMake(150,150)];
+		[jstick setAnchorPoint:ccp(.5,.5)];
+		jstick.position = ccp(0, 0);
+		[control addChild: jstick];	
+		
+		[self addChild:control];
+		
+		[self schedule:@selector(step:)];
+		x = 0;
+		y = 0;
 	}
 	
 	return self;	
 }
+
+-(void)step:(ccTime)dt{
+	x = x - jstick.velocity.x*dt*200;
+	y = y - jstick.velocity.y*dt*200;
+	
+	if (y>0) {
+		y=0;
+	}
+	if (y<-1024+320) {
+		y=-1024+320;
+	}
+	if (x>1024-480) {
+		x=1024-480;
+	}
+	if (x<-1024+480) {
+		x=-1024+480;
+	}
+	
+	[waves setPosition:ccp(-x,0)];
+	
+	[bgLayer setPosition:ccp(x,y)];
+}
+
+-(void) onEnter
+{
+	[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:1 swallowsTouches:YES];
+	[jstick registerWithTouchDispatcher];
+	[[UIAccelerometer sharedAccelerometer] setUpdateInterval:(1.0 / 60)];
+	[super onEnter];
+}
+
+- (BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+{	
+}
+
+
+- (void) ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
+{
+}
+
+
 
 -(void)startScene:(id)sender
 {		

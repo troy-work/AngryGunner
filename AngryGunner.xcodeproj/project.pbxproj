@@ -327,6 +327,9 @@
 		FC3FE86312D92CBC005742AC /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC3FE86212D92CBC005742AC /* CoreAudio.framework */; };
 		FC48CFC8130A2BFA006B1C10 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = FC48CFC7130A2BFA006B1C10 /* Game.m */; };
 		FC48CFFF130A3B6C006B1C10 /* Waves.m in Sources */ = {isa = PBXBuildFile; fileRef = FC48CFFE130A3B6C006B1C10 /* Waves.m */; };
+		FC666B2E130B7DA900358A37 /* CCNodeAdornments.m in Sources */ = {isa = PBXBuildFile; fileRef = FC666B29130B7DA900358A37 /* CCNodeAdornments.m */; };
+		FC666B2F130B7DA900358A37 /* CCNodeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC666B2B130B7DA900358A37 /* CCNodeExtensions.m */; };
+		FC666B30130B7DA900358A37 /* Joystick.m in Sources */ = {isa = PBXBuildFile; fileRef = FC666B2D130B7DA900358A37 /* Joystick.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -663,6 +666,12 @@
 		FC48CFC7130A2BFA006B1C10 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		FC48CFFD130A3B6C006B1C10 /* Waves.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Waves.h; sourceTree = "<group>"; };
 		FC48CFFE130A3B6C006B1C10 /* Waves.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Waves.m; sourceTree = "<group>"; };
+		FC666B28130B7DA900358A37 /* CCNodeAdornments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCNodeAdornments.h; path = Controls/CCNodeAdornments.h; sourceTree = "<group>"; };
+		FC666B29130B7DA900358A37 /* CCNodeAdornments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCNodeAdornments.m; path = Controls/CCNodeAdornments.m; sourceTree = "<group>"; };
+		FC666B2A130B7DA900358A37 /* CCNodeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CCNodeExtensions.h; path = Controls/CCNodeExtensions.h; sourceTree = "<group>"; };
+		FC666B2B130B7DA900358A37 /* CCNodeExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCNodeExtensions.m; path = Controls/CCNodeExtensions.m; sourceTree = "<group>"; };
+		FC666B2C130B7DA900358A37 /* Joystick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Joystick.h; path = Controls/Joystick.h; sourceTree = "<group>"; };
+		FC666B2D130B7DA900358A37 /* Joystick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Joystick.m; path = Controls/Joystick.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -780,6 +789,7 @@
 		506EDAA3102F461B00A389B3 /* cocos2d Sources */ = {
 			isa = PBXGroup;
 			children = (
+				FC666B31130B7DBA00358A37 /* Controls */,
 				E02BBB19126CC2F5006E46A2 /* cocos2d */,
 				507ED67411C63903002ED3FC /* CocosDenshion */,
 				504DFC4110AF1557006D82FE /* cocoslive */,
@@ -868,6 +878,7 @@
 		50F4144210692EE7002A0D5E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FC666B24130B78B200358A37 /* Controls */,
 				FC48CFEA130A39B7006B1C10 /* Player */,
 				FC48CFDF130A3410006B1C10 /* Background */,
 				FC234B17130A153F00E0C48C /* Sound */,
@@ -888,14 +899,6 @@
 				FC234A7F130A134200E0C48C /* destroyer1.png */,
 				FC234A80130A134200E0C48C /* destroyer2-hd.png */,
 				FC234A81130A134200E0C48C /* destroyer2.png */,
-				FC234A82130A134200E0C48C /* dpad-hd.png */,
-				FC234A83130A134200E0C48C /* dpad.png */,
-				FC234A84130A134200E0C48C /* dpadburst-hd.png */,
-				FC234A85130A134200E0C48C /* dpadburst.png */,
-				FC234A86130A134200E0C48C /* firebutton-hd.png */,
-				FC234A87130A134200E0C48C /* firebutton.png */,
-				FC234A88130A134200E0C48C /* firebuttonburst-hd.png */,
-				FC234A89130A134200E0C48C /* firebuttonburst.png */,
 				FC234A8A130A134200E0C48C /* gameoverscreen-hd.png */,
 				FC234A8B130A134200E0C48C /* gameoverscreen.png */,
 				FC234A8E130A134200E0C48C /* health-hd.png */,
@@ -1228,6 +1231,34 @@
 			name = Player;
 			sourceTree = "<group>";
 		};
+		FC666B24130B78B200358A37 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				FC234A82130A134200E0C48C /* dpad-hd.png */,
+				FC234A83130A134200E0C48C /* dpad.png */,
+				FC234A84130A134200E0C48C /* dpadburst-hd.png */,
+				FC234A85130A134200E0C48C /* dpadburst.png */,
+				FC234A86130A134200E0C48C /* firebutton-hd.png */,
+				FC234A87130A134200E0C48C /* firebutton.png */,
+				FC234A88130A134200E0C48C /* firebuttonburst-hd.png */,
+				FC234A89130A134200E0C48C /* firebuttonburst.png */,
+			);
+			name = Controls;
+			sourceTree = "<group>";
+		};
+		FC666B31130B7DBA00358A37 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				FC666B28130B7DA900358A37 /* CCNodeAdornments.h */,
+				FC666B29130B7DA900358A37 /* CCNodeAdornments.m */,
+				FC666B2A130B7DA900358A37 /* CCNodeExtensions.h */,
+				FC666B2B130B7DA900358A37 /* CCNodeExtensions.m */,
+				FC666B2C130B7DA900358A37 /* Joystick.h */,
+				FC666B2D130B7DA900358A37 /* Joystick.m */,
+			);
+			name = Controls;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1521,6 +1552,9 @@
 				FC234A67130A0F0A00E0C48C /* Splash.m in Sources */,
 				FC48CFC8130A2BFA006B1C10 /* Game.m in Sources */,
 				FC48CFFF130A3B6C006B1C10 /* Waves.m in Sources */,
+				FC666B2E130B7DA900358A37 /* CCNodeAdornments.m in Sources */,
+				FC666B2F130B7DA900358A37 /* CCNodeExtensions.m in Sources */,
+				FC666B30130B7DA900358A37 /* Joystick.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

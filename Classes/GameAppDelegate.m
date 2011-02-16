@@ -26,7 +26,7 @@
 	// Init the window
 	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-	if( ! [CCDirector setDirectorType:kCCDirectorTypeDisplayLink] )
+	//if( ! [CCDirector setDirectorType:kCCDirectorTypeDisplayLink] )
 	[CCDirector setDirectorType:kCCDirectorTypeNSTimer];	
 	//[CCDirector setDirectorType:CCDirectorTypeThreadMainLoop];
 	

@@ -25,24 +25,28 @@ float count;
 
 	if( (self=[super init])) 
 	{
+		CGSize s = [[CCDirector sharedDirector] winSize];
+		
+		float scaleFactor = 410/s.height;
+		
 		wave1 = [CCSprite spriteWithFile:@"water1.png"];
 		[wave1 setAnchorPoint:ccp(0,0)];
-		[wave1 setOpacity:40];
-		[wave1 setScaleX:2];
-	    wave1.position = ccp(-120,0);
+		[wave1 setOpacity:255];
+		[wave1 setScaleY:scaleFactor];
+	    wave1.position = ccp(-80,0);
 		
 		wave2 = [CCSprite spriteWithFile:@"water2.png"];
 		[wave2 setAnchorPoint:ccp(0,0)];
-		[wave2 setOpacity:40];
-		[wave2 setScaleX:3];
-	    wave2.position = ccp(-80,0);
+		[wave2 setOpacity:125];
+		[wave2 setScaleY:scaleFactor];
+	    wave2.position = ccp(-120,0);
 		
 		[self addChild:wave1];
 		[self addChild:wave2];
 		[self schedule:@selector(step:)];
-		x1 = -180;
-		x2 = -280;
-		y_1 = 15;
+		x1 = -15;
+		x2 = -15;
+		y_1 = 0;
 		y_2 = 0;
 		count = 0;
 		moveBy = 1;
@@ -52,16 +56,16 @@ float count;
 
 -(void)step:(ccTime) dt{
 	count += moveBy;
-	if (count>100) {
+	if (count>20) {
 		moveBy = -1;
 	}
-	if (count<-100) {
+	if (count<-20) {
 		moveBy = 1;
 	}
-	x1 += moveBy*dt*20;
-	x2 -= moveBy*dt*20;
-	y_1 -= moveBy*dt*2;
-	y_2 += moveBy*dt*2;
+	x1 += moveBy*dt*5;
+	x2 -= moveBy*dt*5;
+	y_1 -= moveBy*dt*1;
+	y_2 += moveBy*dt*1;
 	[wave1 setPosition:ccp(x1,y_1)];
 	[wave2 setPosition:ccp(x2,y_2)];
 }
