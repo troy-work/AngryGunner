@@ -66,13 +66,13 @@ Waves *waves;
 		CCScene* jsBack = [CCSprite spriteWithFile:@"dpad.png"];
 		[jsBack setAnchorPoint:ccp(.5,.5)];
 		[jsBack setPosition:ccp(0,0)];
-		[control addChild:jsBack];
+		//[control addChild:jsBack];
 				
 		CCSprite* jsThumb = [CCSprite spriteWithFile:@"dpadburst.png"];
 		// jsThumb.scale = 0.80; // change thumb size if you like
 		[jsThumb setAnchorPoint:ccp(.5,.5)];
-		jstick = [Joystick joystickWithThumb: jsThumb
-												 andSize: CGSizeMake(150,150)];
+		jstick = [Joystick joystickWithThumb: jsThumb andBackdrop: jsBack
+												];
 		[jstick setAnchorPoint:ccp(.5,.5)];
 		jstick.position = ccp(0, 0);
 		[control addChild: jstick];	
@@ -88,8 +88,8 @@ Waves *waves;
 }
 
 -(void)step:(ccTime)dt{
-	x = x - jstick.velocity.x*dt*200;
-	y = y - jstick.velocity.y*dt*200;
+	x = x - jstick.velocity.x*dt*400;
+	y = y - jstick.velocity.y*dt*400;
 	
 	if (y>0) {
 		y=0;
@@ -104,7 +104,7 @@ Waves *waves;
 		x=-1024+480;
 	}
 	
-	[waves setPosition:ccp(-x,0)];
+	//[waves setPosition:ccp(-x,0)];
 	
 	[bgLayer setPosition:ccp(x,y)];
 }

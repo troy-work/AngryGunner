@@ -30,22 +30,24 @@ float count;
 		float scaleFactor = 410/s.height;
 		
 		wave1 = [CCSprite spriteWithFile:@"water1.png"];
-		[wave1 setAnchorPoint:ccp(0,0)];
+		[wave1 setAnchorPoint:ccp(.5,0)];
 		[wave1 setOpacity:255];
 		[wave1 setScaleY:scaleFactor];
-	    wave1.position = ccp(-80,0);
+		[wave1 setScaleX:3.5];
+	    wave1.position = ccp(480,0);
 		
 		wave2 = [CCSprite spriteWithFile:@"water2.png"];
-		[wave2 setAnchorPoint:ccp(0,0)];
+		[wave2 setAnchorPoint:ccp(.5,0)];
 		[wave2 setOpacity:125];
 		[wave2 setScaleY:scaleFactor];
-	    wave2.position = ccp(-120,0);
+		[wave2 setScaleX:3.5];
+	    wave2.position = ccp(480,0);
 		
 		[self addChild:wave1];
 		[self addChild:wave2];
 		[self schedule:@selector(step:)];
-		x1 = -15;
-		x2 = -15;
+		x1 = 240;
+		x2 = 240;
 		y_1 = 0;
 		y_2 = 0;
 		count = 0;

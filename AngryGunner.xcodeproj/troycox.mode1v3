@@ -279,9 +279,9 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>11</integer>
-									<integer>5</integer>
-									<integer>4</integer>
+									<integer>20</integer>
+									<integer>18</integer>
+									<integer>17</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -323,7 +323,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>Joystick.m</string>
+								<string>Game.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -331,11 +331,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>Joystick.m</string>
+										<string>Game.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>FC666CA8130BAB9800358A37</string>
+										<string>FC7588E8130C56CA00E88681</string>
 										<key>history</key>
 										<array>
 											<string>FC3FE8D312D94807005742AC</string>
@@ -436,12 +436,12 @@
 											<string>FC666BBE130B8CEF00358A37</string>
 											<string>FC666BBF130B8CEF00358A37</string>
 											<string>FC666C15130B959400358A37</string>
-											<string>FC666C52130B9C6900358A37</string>
 											<string>FC666C53130B9C6900358A37</string>
 											<string>FC666C54130B9C6900358A37</string>
-											<string>FC666C55130B9C6900358A37</string>
-											<string>FC666CA7130BAB9800358A37</string>
-											<string>FC666C56130B9C6900358A37</string>
+											<string>FC7588BA130C50C500E88681</string>
+											<string>FC7588CE130C519C00E88681</string>
+											<string>FC7588E6130C56CA00E88681</string>
+											<string>FC7588E7130C56CA00E88681</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -453,14 +453,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1256, 681}}</string>
+								<string>{{0, 0}, {1256, 676}}</string>
 								<key>RubberWindowFrame</key>
 								<string>103 69 1533 949 0 0 1680 1028 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>681pt</string>
+							<string>676pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -473,14 +473,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 686}, {1256, 222}}</string>
+								<string>{{0, 681}, {1256, 227}}</string>
 								<key>RubberWindowFrame</key>
 								<string>103 69 1533 949 0 0 1680 1028 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>222pt</string>
+							<string>227pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -499,9 +499,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>FC666A55130B57FC00358A37</string>
+				<string>FC7588AF130C4F9800E88681</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>FC666A56130B57FC00358A37</string>
+				<string>FC7588B0130C4F9800E88681</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -639,12 +639,9 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>FC666B21130B754400358A37</string>
-		<string>FC666B22130B754400358A37</string>
+		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>FC3FE82912D92B24005742AC</string>
-		<string>1C530D57069F1CE1000CFCEE</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/troycox/Documents/XCode Apps/Angry Gunner/AngryGunner.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -669,7 +666,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>Joystick.m</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -686,8 +683,6 @@
 							<string>218pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -727,7 +722,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>FC3FE82912D92B24005742AC</string>
-				<string>FC666A57130B57FC00358A37</string>
+				<string>FC7588B1130C4F9800E88681</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -849,13 +844,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>FC666A97130B5D2900358A37</string>
+				<string>FC7588BE130C50C500E88681</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>FC666A98130B5D2900358A37</string>
-				<string>FC666A99130B5D2900358A37</string>
-				<string>FC666A9A130B5D2900358A37</string>
-				<string>FC666A9B130B5D2900358A37</string>
-				<string>FC666A9C130B5D2900358A37</string>
+				<string>FC7588BF130C50C500E88681</string>
+				<string>FC7588C0130C50C500E88681</string>
+				<string>FC7588C1130C50C500E88681</string>
+				<string>FC7588C2130C50C500E88681</string>
+				<string>FC7588C3130C50C500E88681</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -974,8 +969,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -1011,7 +1004,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>FC666A9D130B5D2900358A37</string>
+				<string>FC7588C4130C50C500E88681</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
@@ -1021,7 +1014,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

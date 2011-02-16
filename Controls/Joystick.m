@@ -80,7 +80,7 @@
 	NSAssert(bgNode, @"Backdrop node must not be nil");
 	if( (self = [self initWithThumb: aNode andSize: bgNode.scaledSize]) ) {
 		// Position the background node at the center and behind the thumb node 
-		[bgNode setPosition: self.anchorPointInPixels];
+		[bgNode setPosition: self.anchorPoint];
 		[self addChild: bgNode z: 0];
 	}
 	return self;
