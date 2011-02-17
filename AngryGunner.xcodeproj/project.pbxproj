@@ -237,10 +237,6 @@
 		E02BBC68126CC2F6006E46A2 /* ZipUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = E02BBBC2126CC2F6006E46A2 /* ZipUtils.h */; };
 		E02BBC69126CC2F6006E46A2 /* ZipUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E02BBBC3126CC2F6006E46A2 /* ZipUtils.m */; };
 		FC234A67130A0F0A00E0C48C /* Splash.m in Sources */ = {isa = PBXBuildFile; fileRef = FC234A66130A0F0A00E0C48C /* Splash.m */; };
-		FC234ABF130A134300E0C48C /* backgroundleft-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FC234A6C130A134200E0C48C /* backgroundleft-hd.png */; };
-		FC234AC0130A134300E0C48C /* backgroundleft.png in Resources */ = {isa = PBXBuildFile; fileRef = FC234A6D130A134200E0C48C /* backgroundleft.png */; };
-		FC234AC1130A134300E0C48C /* backgroundright-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FC234A6E130A134200E0C48C /* backgroundright-hd.png */; };
-		FC234AC2130A134300E0C48C /* backgroundright.png in Resources */ = {isa = PBXBuildFile; fileRef = FC234A6F130A134200E0C48C /* backgroundright.png */; };
 		FC234AC3130A134300E0C48C /* brownplanebottom-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FC234A70130A134200E0C48C /* brownplanebottom-hd.png */; };
 		FC234AC4130A134300E0C48C /* brownplanebottom.png in Resources */ = {isa = PBXBuildFile; fileRef = FC234A71130A134200E0C48C /* brownplanebottom.png */; };
 		FC234AC5130A134300E0C48C /* brownplanefront-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FC234A72130A134200E0C48C /* brownplanefront-hd.png */; };
@@ -330,6 +326,10 @@
 		FC666B2E130B7DA900358A37 /* CCNodeAdornments.m in Sources */ = {isa = PBXBuildFile; fileRef = FC666B29130B7DA900358A37 /* CCNodeAdornments.m */; };
 		FC666B2F130B7DA900358A37 /* CCNodeExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FC666B2B130B7DA900358A37 /* CCNodeExtensions.m */; };
 		FC666B30130B7DA900358A37 /* Joystick.m in Sources */ = {isa = PBXBuildFile; fileRef = FC666B2D130B7DA900358A37 /* Joystick.m */; };
+		FC792278130CB40E000B60FB /* backgroundleft-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FC792274130CB40E000B60FB /* backgroundleft-hd.png */; };
+		FC792279130CB40E000B60FB /* backgroundleft.png in Resources */ = {isa = PBXBuildFile; fileRef = FC792275130CB40E000B60FB /* backgroundleft.png */; };
+		FC79227A130CB40E000B60FB /* backgroundright-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FC792276130CB40E000B60FB /* backgroundright-hd.png */; };
+		FC79227B130CB40E000B60FB /* backgroundright.png in Resources */ = {isa = PBXBuildFile; fileRef = FC792277130CB40E000B60FB /* backgroundright.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -574,10 +574,6 @@
 		E0C5505A11FA3A8000B9E4CB /* LICENSE.chipmunk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.chipmunk; sourceTree = "<group>"; };
 		FC234A65130A0F0A00E0C48C /* Splash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Splash.h; sourceTree = "<group>"; };
 		FC234A66130A0F0A00E0C48C /* Splash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Splash.m; sourceTree = "<group>"; };
-		FC234A6C130A134200E0C48C /* backgroundleft-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backgroundleft-hd.png"; sourceTree = "<group>"; };
-		FC234A6D130A134200E0C48C /* backgroundleft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundleft.png; sourceTree = "<group>"; };
-		FC234A6E130A134200E0C48C /* backgroundright-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backgroundright-hd.png"; sourceTree = "<group>"; };
-		FC234A6F130A134200E0C48C /* backgroundright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundright.png; sourceTree = "<group>"; };
 		FC234A70130A134200E0C48C /* brownplanebottom-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brownplanebottom-hd.png"; sourceTree = "<group>"; };
 		FC234A71130A134200E0C48C /* brownplanebottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = brownplanebottom.png; sourceTree = "<group>"; };
 		FC234A72130A134200E0C48C /* brownplanefront-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brownplanefront-hd.png"; sourceTree = "<group>"; };
@@ -672,6 +668,10 @@
 		FC666B2B130B7DA900358A37 /* CCNodeExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CCNodeExtensions.m; path = Controls/CCNodeExtensions.m; sourceTree = "<group>"; };
 		FC666B2C130B7DA900358A37 /* Joystick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Joystick.h; path = Controls/Joystick.h; sourceTree = "<group>"; };
 		FC666B2D130B7DA900358A37 /* Joystick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Joystick.m; path = Controls/Joystick.m; sourceTree = "<group>"; };
+		FC792274130CB40E000B60FB /* backgroundleft-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backgroundleft-hd.png"; sourceTree = "<group>"; };
+		FC792275130CB40E000B60FB /* backgroundleft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundleft.png; sourceTree = "<group>"; };
+		FC792276130CB40E000B60FB /* backgroundright-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backgroundright-hd.png"; sourceTree = "<group>"; };
+		FC792277130CB40E000B60FB /* backgroundright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundright.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -878,6 +878,7 @@
 		50F4144210692EE7002A0D5E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FCD8EFA8130CE41F00A55A50 /* Accessories */,
 				FC666B24130B78B200358A37 /* Controls */,
 				FC48CFEA130A39B7006B1C10 /* Player */,
 				FC48CFDF130A3410006B1C10 /* Background */,
@@ -895,10 +896,6 @@
 				FC234A79130A134200E0C48C /* bullethole.png */,
 				FC234A7A130A134200E0C48C /* crackedglass-hd.png */,
 				FC234A7B130A134200E0C48C /* crackedglass.png */,
-				FC234A7E130A134200E0C48C /* destroyer1-hd.png */,
-				FC234A7F130A134200E0C48C /* destroyer1.png */,
-				FC234A80130A134200E0C48C /* destroyer2-hd.png */,
-				FC234A81130A134200E0C48C /* destroyer2.png */,
 				FC234A8A130A134200E0C48C /* gameoverscreen-hd.png */,
 				FC234A8B130A134200E0C48C /* gameoverscreen.png */,
 				FC234A8E130A134200E0C48C /* health-hd.png */,
@@ -912,12 +909,8 @@
 				FC234A96130A134200E0C48C /* icon512.png */,
 				FC234A97130A134200E0C48C /* infoscreen-hd.png */,
 				FC234A98130A134200E0C48C /* infoscreen.png */,
-				FC234A99130A134300E0C48C /* largecarrier-hd.png */,
-				FC234A9A130A134300E0C48C /* largecarrier.png */,
 				FC234A9D130A134300E0C48C /* optionsscreen-hd.png */,
 				FC234A9E130A134300E0C48C /* optionsscreen.png */,
-				FC234A9F130A134300E0C48C /* orangebuoy-hd.png */,
-				FC234AA0130A134300E0C48C /* orangebuoy.png */,
 				FC234AA1130A134300E0C48C /* pausebutton-hd.png */,
 				FC234AA2130A134300E0C48C /* pausebutton.png */,
 				FC234AA3130A134300E0C48C /* redplanebottom-hd.png */,
@@ -930,8 +923,6 @@
 				FC234AAA130A134300E0C48C /* redplaneside.png */,
 				FC234AAB130A134300E0C48C /* redplaneturn-hd.png */,
 				FC234AAC130A134300E0C48C /* redplaneturn.png */,
-				FC234AB1130A134300E0C48C /* smallcarrier-hd.png */,
-				FC234AB2130A134300E0C48C /* smallcarrier.png */,
 				FC234AB3130A134300E0C48C /* smallcrosshair-hd.png */,
 				FC234AB4130A134300E0C48C /* smallcrosshair.png */,
 				FC234AB5130A134300E0C48C /* soundscreen-hd.png */,
@@ -940,8 +931,6 @@
 				FC234AB8130A134300E0C48C /* startscreen.png */,
 				FC234AB9130A134300E0C48C /* torpedo-hd.png */,
 				FC234ABA130A134300E0C48C /* torpedo.png */,
-				FC234B12130A135400E0C48C /* yellowbuoy-hd.png */,
-				FC234B13130A135400E0C48C /* yellowbuoy.png */,
 				E02BBA1F126CC2CC006E46A2 /* iTunesArtwork */,
 				50F4144510692EE7002A0D5E /* fps_images.png */,
 				50F4144710692EE7002A0D5E /* Info.plist */,
@@ -1204,14 +1193,14 @@
 		FC48CFDF130A3410006B1C10 /* Background */ = {
 			isa = PBXGroup;
 			children = (
+				FC792274130CB40E000B60FB /* backgroundleft-hd.png */,
+				FC792275130CB40E000B60FB /* backgroundleft.png */,
+				FC792276130CB40E000B60FB /* backgroundright-hd.png */,
+				FC792277130CB40E000B60FB /* backgroundright.png */,
 				FC234ABB130A134300E0C48C /* water1-hd.png */,
 				FC234ABC130A134300E0C48C /* water1.png */,
 				FC234ABD130A134300E0C48C /* water2-hd.png */,
 				FC234ABE130A134300E0C48C /* water2.png */,
-				FC234A6C130A134200E0C48C /* backgroundleft-hd.png */,
-				FC234A6D130A134200E0C48C /* backgroundleft.png */,
-				FC234A6E130A134200E0C48C /* backgroundright-hd.png */,
-				FC234A6F130A134200E0C48C /* backgroundright.png */,
 			);
 			name = Background;
 			sourceTree = "<group>";
@@ -1257,6 +1246,25 @@
 				FC666B2D130B7DA900358A37 /* Joystick.m */,
 			);
 			name = Controls;
+			sourceTree = "<group>";
+		};
+		FCD8EFA8130CE41F00A55A50 /* Accessories */ = {
+			isa = PBXGroup;
+			children = (
+				FC234A7E130A134200E0C48C /* destroyer1-hd.png */,
+				FC234A7F130A134200E0C48C /* destroyer1.png */,
+				FC234A80130A134200E0C48C /* destroyer2-hd.png */,
+				FC234A81130A134200E0C48C /* destroyer2.png */,
+				FC234A99130A134300E0C48C /* largecarrier-hd.png */,
+				FC234A9A130A134300E0C48C /* largecarrier.png */,
+				FC234AB1130A134300E0C48C /* smallcarrier-hd.png */,
+				FC234AB2130A134300E0C48C /* smallcarrier.png */,
+				FC234B12130A135400E0C48C /* yellowbuoy-hd.png */,
+				FC234B13130A135400E0C48C /* yellowbuoy.png */,
+				FC234A9F130A134300E0C48C /* orangebuoy-hd.png */,
+				FC234AA0130A134300E0C48C /* orangebuoy.png */,
+			);
+			name = Accessories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1450,10 +1458,6 @@
 			files = (
 				50F4144A10692EE7002A0D5E /* fps_images.png in Resources */,
 				E02BBA20126CC2CC006E46A2 /* iTunesArtwork in Resources */,
-				FC234ABF130A134300E0C48C /* backgroundleft-hd.png in Resources */,
-				FC234AC0130A134300E0C48C /* backgroundleft.png in Resources */,
-				FC234AC1130A134300E0C48C /* backgroundright-hd.png in Resources */,
-				FC234AC2130A134300E0C48C /* backgroundright.png in Resources */,
 				FC234AC3130A134300E0C48C /* brownplanebottom-hd.png in Resources */,
 				FC234AC4130A134300E0C48C /* brownplanebottom.png in Resources */,
 				FC234AC5130A134300E0C48C /* brownplanefront-hd.png in Resources */,
@@ -1537,6 +1541,10 @@
 				FC234B15130A135400E0C48C /* yellowbuoy.png in Resources */,
 				FC234B19130A156000E0C48C /* load.mp3 in Resources */,
 				FC234B87130A18AD00E0C48C /* Default.png in Resources */,
+				FC792278130CB40E000B60FB /* backgroundleft-hd.png in Resources */,
+				FC792279130CB40E000B60FB /* backgroundleft.png in Resources */,
+				FC79227A130CB40E000B60FB /* backgroundright-hd.png in Resources */,
+				FC79227B130CB40E000B60FB /* backgroundright.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
