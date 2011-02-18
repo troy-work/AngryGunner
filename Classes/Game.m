@@ -16,6 +16,7 @@ Joystick *jstick;
 float x;
 float y;
 CCLayer *bgLayer;
+CCLayer *friendsLayer;
 Waves *waves;
 CCSprite *gun;
 CCSprite *leftShield;
@@ -62,30 +63,35 @@ CCSprite *crossHair;
 		[waves setAnchorPoint:ccp(.5,0)];
 		[bgLayer addChild:waves];
 		
+		
+		friendsLayer = [CCLayer node];
+		[friendsLayer setAnchorPoint:ccp(.5,0)];
+		[self addChild:friendsLayer];
+		
 		CCSprite *destroyer2 = [CCSprite spriteWithFile:@"destroyer2.png"];
 		[destroyer2 setAnchorPoint:ccp(.5,0)];
-		[destroyer2 setPosition:ccp(-440,215)];
-		[bgLayer addChild:destroyer2];
+		[destroyer2 setPosition:ccp(-440,115)];
+		[friendsLayer addChild:destroyer2];
 
 		CCSprite *destroyer1 = [CCSprite spriteWithFile:@"destroyer1.png"];
 		[destroyer1 setAnchorPoint:ccp(.5,0)];
-		[destroyer1 setPosition:ccp(-240,220)];
-		[bgLayer addChild:destroyer1];
+		[destroyer1 setPosition:ccp(-240,150)];
+		[friendsLayer addChild:destroyer1];
 
 		CCSprite *smallcarrier = [CCSprite spriteWithFile:@"smallcarrier.png"];
 		[smallcarrier setAnchorPoint:ccp(.5,0)];
-		[smallcarrier setPosition:ccp(640,250)];
+		[smallcarrier setPosition:ccp(890,250)];
 		[bgLayer addChild:smallcarrier];		
 
 		CCSprite *largecarrier = [CCSprite spriteWithFile:@"largecarrier.png"];
 		[largecarrier setAnchorPoint:ccp(.5,0)];
-		[largecarrier setPosition:ccp(540,240)];
+		[largecarrier setPosition:ccp(820,200)];
 		[bgLayer addChild:largecarrier];
 		
 		CCSprite *destroyer3 = [CCSprite spriteWithFile:@"destroyer1.png"];
 		[destroyer3 setAnchorPoint:ccp(.5,0)];
-		[destroyer3 setPosition:ccp(840,225)];
-		[bgLayer addChild:destroyer3];
+		[destroyer3 setPosition:ccp(840,110)];
+		[friendsLayer addChild:destroyer3];
 
 		leftShield = [CCSprite spriteWithFile:@"shieldleft.png"];
 		[leftShield setAnchorPoint:ccp(0,0)];
@@ -101,7 +107,7 @@ CCSprite *crossHair;
 		
 		CCLayer* control = [CCLayer node];
 		[control setAnchorPoint:ccp(0,0)];
-		[control setPosition:ccp(65,65)];
+		[control setPosition:ccp(65,85)];
 		
 		CCScene* jsBack = [CCSprite spriteWithFile:@"dpad.png"];
 		[jsBack setAnchorPoint:ccp(.5,.5)];
@@ -138,8 +144,12 @@ CCSprite *crossHair;
 }
 
 -(void)step:(ccTime)dt{
-	x = x - jstick.velocity.x*dt*800;
-	y = y - jstick.velocity.y*dt*800;
+		
+	float xx = jstick.velocity.x*jstick.velocity.x*jstick.velocity.x;
+	float yy = jstick.velocity.y*jstick.velocity.y*jstick.velocity.y;
+	
+	x = x - xx*dt*800;
+	y = y - yy*dt*800;
 	
 	if (y>0) {
 		y=0;
@@ -155,7 +165,7 @@ CCSprite *crossHair;
 	}
 	
 	//[waves setPosition:ccp(-x,0)];
-	
+	[friendsLayer setPosition:ccp(x,y)];
 	[bgLayer setPosition:ccp(x,y)];
 }
 

@@ -764,6 +764,7 @@
 		2D500B1D0D5A766B00DBA0E3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				FC666B31130B7DBA00358A37 /* Controls */,
 				FC48CFC5130A2BC5006B1C10 /* Game */,
 				FC234A63130A0E3200E0C48C /* Menu */,
 				1F3B9A2C0EF2145700286867 /* GameAppDelegate.h */,
@@ -789,7 +790,6 @@
 		506EDAA3102F461B00A389B3 /* cocos2d Sources */ = {
 			isa = PBXGroup;
 			children = (
-				FC666B31130B7DBA00358A37 /* Controls */,
 				E02BBB19126CC2F5006E46A2 /* cocos2d */,
 				507ED67411C63903002ED3FC /* CocosDenshion */,
 				504DFC4110AF1557006D82FE /* cocoslive */,
@@ -1246,6 +1246,7 @@
 				FC666B2D130B7DA900358A37 /* Joystick.m */,
 			);
 			name = Controls;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		FCD8EFA8130CE41F00A55A50 /* Accessories */ = {
