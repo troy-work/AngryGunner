@@ -17,6 +17,7 @@ float x;
 float y;
 CCLayer *bgLayer;
 CCLayer *friendsLayer;
+CCLayer *gunner;
 Waves *waves;
 CCSprite *gun;
 CCSprite *leftShield;
@@ -81,29 +82,32 @@ CCSprite *crossHair;
 		CCSprite *smallcarrier = [CCSprite spriteWithFile:@"smallcarrier.png"];
 		[smallcarrier setAnchorPoint:ccp(.5,0)];
 		[smallcarrier setPosition:ccp(890,250)];
-		[bgLayer addChild:smallcarrier];		
+		[friendsLayer addChild:smallcarrier];		
 
 		CCSprite *largecarrier = [CCSprite spriteWithFile:@"largecarrier.png"];
 		[largecarrier setAnchorPoint:ccp(.5,0)];
 		[largecarrier setPosition:ccp(820,200)];
-		[bgLayer addChild:largecarrier];
+		[friendsLayer addChild:largecarrier];
 		
 		CCSprite *destroyer3 = [CCSprite spriteWithFile:@"destroyer1.png"];
 		[destroyer3 setAnchorPoint:ccp(.5,0)];
 		[destroyer3 setPosition:ccp(840,110)];
 		[friendsLayer addChild:destroyer3];
 
+		gunner = [CCLayer node];
+		[gunner setAnchorPoint:ccp(.5,0)];
+		
 		leftShield = [CCSprite spriteWithFile:@"shieldleft.png"];
 		[leftShield setAnchorPoint:ccp(0,0)];
 		[leftShield setPosition:ccp(10,0)];
 		[leftShield setOpacity:45];
-		[self addChild:leftShield];
+		[gunner addChild:leftShield];
 
 		rightShield = [CCSprite spriteWithFile:@"shieldleft.png"];
 		[rightShield setAnchorPoint:ccp(1,0)];
 		[rightShield setPosition:ccp(470,0)];
 		[rightShield setOpacity:45];
-		[self addChild:rightShield];
+		[gunner addChild:rightShield];
 		
 		CCLayer* control = [CCLayer node];
 		[control setAnchorPoint:ccp(0,0)];
@@ -123,17 +127,20 @@ CCSprite *crossHair;
 		
 		[self addChild:control];
 		
+		
+		gun = [CCSprite spriteWithFile:@"guns.png"];
+		//[gun setVertexZ:100];
+		[gun setAnchorPoint:ccp(.5, 0)];
+		[gun setPosition:ccp(240,0)];
+		[gunner addChild:gun];
+
 		crossHair = [CCSprite spriteWithFile:@"crosshair.png"];
 		[crossHair setAnchorPoint:ccp(.5,0)];
 		[crossHair setPosition:ccp(240,0)];
 		[crossHair setOpacity:45];
-		[self addChild:crossHair];
+		[gunner addChild:crossHair];
 		
-		gun = [CCSprite spriteWithFile:@"guns.png"];
-		[gun setVertexZ:100];
-		[gun setAnchorPoint:ccp(.5, 0)];
-		[gun setPosition:ccp(240,0)];
-		[self addChild:gun];
+		[self addChild:gunner];
 		
 		[self schedule:@selector(step:)];
 		x = 0;
@@ -150,6 +157,7 @@ CCSprite *crossHair;
 	
 	x = x - xx*dt*800;
 	y = y - yy*dt*800;
+	float staticX = 0;
 	
 	if (y>0) {
 		y=0;
@@ -158,15 +166,31 @@ CCSprite *crossHair;
 		y=-1024+320;
 	}
 	if (x>1024-480) {
-		x=1024-480;
+		staticX=1024-480;
 	}
 	if (x<-1024+480) {
-		x=-1024+480;
+		staticX=-1024+480;
 	}
-	
-	//[waves setPosition:ccp(-x,0)];
-	[friendsLayer setPosition:ccp(x,y)];
-	[bgLayer setPosition:ccp(x,y)];
+
+	if (staticX == 0) {
+		[gunner setPosition:ccp(0,0)];
+		//[waves setPosition:ccp(-x,0)];
+		[friendsLayer setPosition:ccp(x,y)];
+		[bgLayer setPosition:ccp(x,y)];		
+	}else {
+		if (x>1024-280) {
+			x=1024-280;
+		}
+		if (x<-1024+280) {
+			x=-1024+280;
+		}
+		
+		//[waves setPosition:ccp(-x,0)];
+		[friendsLayer setPosition:ccp(staticX,y)];
+		[bgLayer setPosition:ccp(staticX,y)];
+		[gunner setPosition:ccp(-x+staticX,0)];
+	}
+
 }
 
 -(void) onEnter
