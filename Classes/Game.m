@@ -26,6 +26,11 @@ CCSprite *leftShield;
 CCSprite *rightShield;
 CCSprite *crossHair;
 CCSprite *pushButton;
+float shootTimer;
+BOOL isShooting;
+CCSprite *flash;
+CCSprite *flash2;
+CCLayer *bullets;
 
 +(id)scene{
 	// 'scene' is an autorelease object.
@@ -98,6 +103,9 @@ CCSprite *pushButton;
 		[destroyer3 setPosition:ccp(840,110)];
 		[friendsLayer addChild:destroyer3];
 
+		bullets = [CCLayer node];
+		[self addChild:bullets];
+		
 		gunner = [CCLayer node];
 		[gunner setAnchorPoint:ccp(.5,0)];
 		
@@ -143,6 +151,8 @@ CCSprite *pushButton;
 		[crossHair setPosition:ccp(240,0)];
 		[crossHair setOpacity:45];
 		[gunner addChild:crossHair];
+		
+		shootTimer = 0;
 		
 		[self addChild:gunner];
 		
@@ -194,7 +204,61 @@ CCSprite *pushButton;
 		[bgLayer setPosition:ccp(staticX,y)];
 		[gunner setPosition:ccp(-x+staticX,0)];
 	}
+	
+	if (isShooting) {
+		shootTimer += 60*dt;
+		if (shootTimer>15) {
+			[self fireBullets];
+		}
+	}else {
+		shootTimer=0;
+	}
 
+
+}
+
+-(void)fireBullets
+{
+	[bullets setPosition:[gunner position]];
+	Bullet *bullet = [Bullet spriteWithFile:@"bullet.png"];
+	[bullet setAnchorPoint:ccp(.5,.5)];
+	[bullet startAtPosition:ccp(205,100) finishAtPosition:ccp(238,155)];
+	[bullets addChild:bullet];
+	
+	flash = [CCSprite spriteWithFile:@"flash.png"];
+	[flash setAnchorPoint:ccp(.5,0)];
+	[flash setRotation:29];
+	[flash setPosition:ccp(192,86)];
+	[flash runAction:[CCSequence actions:[CCFadeOut actionWithDuration:.02],
+					  [CCCallFunc actionWithTarget:self selector:@selector(killFlash:)],nil]];
+	[bullets addChild:flash];									  
+	
+	
+	Bullet *bullet2 = [Bullet spriteWithFile:@"bullet.png"];
+	[bullet2 setAnchorPoint:ccp(.5,.5)];
+	[bullet2 startAtPosition:ccp(275,100) finishAtPosition:ccp(242,155)];
+	[bullets addChild:bullet2];
+	shootTimer=0;
+	
+	flash2 = [CCSprite spriteWithFile:@"flash.png"];
+	[flash2 setAnchorPoint:ccp(.5,0)];
+	[flash2 setRotation:-29];
+	[flash2 setPosition:ccp(285,86)];
+	[flash2 runAction:[CCSequence actions:[CCFadeOut actionWithDuration:.02],
+					   [CCCallFunc actionWithTarget:self selector:@selector(killFlash:)],nil]];
+	[bullets addChild:flash2];									  
+	[gun setPosition:ccp(240,-20)];
+	[gun runAction:[CCMoveTo actionWithDuration:.1 position:ccp(240,0)]];
+	[crossHair setPosition:ccp(240,-10)];
+	[crossHair runAction:[CCMoveTo actionWithDuration:.1 position:ccp(240,0)]];
+	[flash setPosition:ccpAdd([flash position], ccp(0,-20))];
+	[flash2 setPosition:ccpAdd([flash2 position], ccp(0,-20))];
+}
+
+-(void)killFlash:(id)sprite
+{
+	[bullets removeChild:flash cleanup:TRUE];
+	[bullets removeChild:flash2 cleanup:TRUE];
 }
 
 -(void) onEnter
@@ -210,7 +274,6 @@ CCSprite *pushButton;
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	CCLOG(@"%d - touches",[touches count]);
 	CGSize cs = CGSizeMake(150, 150);
 	float tx = 400;
 	float ty = 80;
@@ -220,17 +283,28 @@ CCSprite *pushButton;
 		
 		if (nodeTouchPoint.x<tx+cs.width/2&&nodeTouchPoint.x>tx-cs.width/2) {
 			if (nodeTouchPoint.y<ty+cs.height/2&&nodeTouchPoint.y>ty-cs.height/2) {
-				Bullet *bullet = [Bullet spriteWithFile:@"orangebuoy.png"];
-				[bullet setAnchorPoint:ccp(.5,.5)];
-				[bullet startAtPosition:ccp(-x+205,-y+100) finishAtPosition:ccp(-x+238,-y+155)];
-				[bgLayer addChild:bullet];
-				Bullet *bullet2 = [Bullet spriteWithFile:@"orangebuoy.png"];
-				[bullet2 setAnchorPoint:ccp(.5,.5)];
-				[bullet2 startAtPosition:ccp(-x+275,-y+100) finishAtPosition:ccp(-x+242,-y+155)];
-				[bgLayer addChild:bullet2];
+				[self fireBullets];
+				isShooting=TRUE;
 			}
 		}
 	}
+}
+
+- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	CGSize cs = CGSizeMake(150, 150);
+	float tx = 400;
+	float ty = 80;
+	for( UITouch *touch in touches ) {		
+		CGPoint nodeTouchPoint = [self convertTouchToNodeSpace: touch];		
+		
+		if (nodeTouchPoint.x<tx+cs.width/2&&nodeTouchPoint.x>tx-cs.width/2) {
+			if (nodeTouchPoint.y<ty+cs.height/2&&nodeTouchPoint.y>ty-cs.height/2) {
+				isShooting=FALSE;
+			}
+		}
+	}
+	
 }
 
 -(void)startScene:(id)sender
