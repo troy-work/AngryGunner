@@ -28,7 +28,8 @@ CCAction *move;
 	fPos = finishPos;
 	CGPoint fall = ccpAdd(fPos, ccp(0,-15));
 	move = [CCSequence actions:[CCMoveTo actionWithDuration:.05 position:fPos],
-			[CCMoveTo actionWithDuration:1.5 position:fall],nil];
+			[CCFlipY actionWithFlipY:TRUE],
+			[CCMoveTo actionWithDuration:1 position:fall],nil];
 	[self runAction:move];
 	[self schedule:@selector(step:)];
 }
@@ -37,7 +38,7 @@ CCAction *move;
 {
 	indexZ += 200*dt;
 	zIndex = (int)indexZ;
-	[self setScale:(1-(zIndex*.005))*.7];
+	[self setScale:(1-(zIndex*.005))*1];
 	if (zIndex>=199) {
 		[[self parent] removeChild:self cleanup:TRUE];
 	}

@@ -123,7 +123,7 @@ CCLayer *bullets;
 		
 		CCLayer* control = [CCLayer node];
 		[control setAnchorPoint:ccp(0,0)];
-		[control setPosition:ccp(65,85)];
+		[control setPosition:ccp(65,65)];
 		
 		CCScene* jsBack = [CCSprite spriteWithFile:@"dpad.png"];
 		[jsBack setAnchorPoint:ccp(.5,.5)];
@@ -133,7 +133,7 @@ CCLayer *bullets;
 		[jsThumb setAnchorPoint:ccp(.5,.5)];
 		jstick = [Joystick joystickWithThumb: jsThumb andBackdrop: jsBack];
 		[jstick setAnchorPoint:ccp(.5,.5)];
-		[jstick setContentSize:CGSizeMake(150, 150)];
+		[jstick setContentSize:CGSizeMake(100, 100)];
 		jstick.position = ccp(0, 0);
 		[control addChild: jstick];	
 		
@@ -207,7 +207,7 @@ CCLayer *bullets;
 	
 	if (isShooting) {
 		shootTimer += 60*dt;
-		if (shootTimer>15) {
+		if (shootTimer>8) {
 			[self fireBullets];
 		}
 	}else {
@@ -222,8 +222,8 @@ CCLayer *bullets;
 	[bullets setPosition:[gunner position]];
 	Bullet *bullet = [Bullet spriteWithFile:@"bullet.png"];
 	[bullet setAnchorPoint:ccp(.5,.5)];
-	[bullet startAtPosition:ccp(205,100) finishAtPosition:ccp(238,155)];
-	[bullets addChild:bullet];
+	[bullet startAtPosition:ccp(-x+205,-y+100) finishAtPosition:ccp(-x+238,-y+155)];
+	[friendsLayer addChild:bullet];
 	
 	flash = [CCSprite spriteWithFile:@"flash.png"];
 	[flash setAnchorPoint:ccp(.5,0)];
@@ -236,8 +236,8 @@ CCLayer *bullets;
 	
 	Bullet *bullet2 = [Bullet spriteWithFile:@"bullet.png"];
 	[bullet2 setAnchorPoint:ccp(.5,.5)];
-	[bullet2 startAtPosition:ccp(275,100) finishAtPosition:ccp(242,155)];
-	[bullets addChild:bullet2];
+	[bullet2 startAtPosition:ccp(-x+275,-y+100) finishAtPosition:ccp(-x+242,-y+155)];
+	[friendsLayer addChild:bullet2];
 	shootTimer=0;
 	
 	flash2 = [CCSprite spriteWithFile:@"flash.png"];
@@ -303,9 +303,28 @@ CCLayer *bullets;
 				isShooting=FALSE;
 			}
 		}
-	}
-	
+	}	
 }
+
+- (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+	CGSize cs = CGSizeMake(150, 150);
+	float tx = 400;
+	float ty = 80;
+	BOOL testShooting = FALSE;
+
+	for( UITouch *touch in touches ) {		
+		CGPoint nodeTouchPoint = [self convertTouchToNodeSpace: touch];		
+				
+		if (nodeTouchPoint.x<tx+cs.width/2&&nodeTouchPoint.x>tx-cs.width/2) {
+			if (nodeTouchPoint.y<ty+cs.height/2&&nodeTouchPoint.y>ty-cs.height/2) {
+				testShooting=TRUE;
+			}
+		}		
+	}
+	isShooting = testShooting;
+}
+
 
 -(void)startScene:(id)sender
 {		
