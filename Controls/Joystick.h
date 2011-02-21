@@ -27,7 +27,6 @@ static const AngularPoint AngularPointZero = {0.0, 0.0};
 @interface Joystick : CCLayer {
 	CCNode *thumbNode;
 	BOOL isTracking;
-	BOOL isTouchEnabled;
 	CGPoint velocity;
 	AngularPoint angularVelocity;
 	CGPoint travelLimit;

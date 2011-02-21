@@ -23,7 +23,7 @@
 -(id) initWithThumb: (CCNode*) aNode andSize: (CGSize) size {
 	NSAssert(aNode, @"Thumb node must not be nil");
 	if( (self = [super init]) ) {
-		isTouchEnabled = YES;
+		//[self setIsTouchEnabled:YES];
 		isTracking = NO;
 		velocity = CGPointZero;
 		angularVelocity = AngularPointZero;
@@ -68,16 +68,21 @@
 
 // Handle touch events one at a time
 -(void) registerWithTouchDispatcher {
+	
 	[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate: self
-										  priority: INT_MIN+1
-										  swallowsTouches:YES];
+										  priority: INT_MIN+2
+										  swallowsTouches:TRUE];
 	// Start with fresh state each time we register.
 	// Certain transitions, such as dynamically overlaying the device camera
 	// can cause abrupt breaks in targeted event state.
+//	[self setIsTouchEnabled:YES];
+//	[[CCTouchDispatcher sharedDispatcher] setDispatchEvents:TRUE];
 	[self resetVelocity];
 }
 
+
 -(BOOL) ccTouchBegan: (UITouch *)touch withEvent: (UIEvent *)event {
+	CCLOG(@"%d - touches JoyStick");
 	if(!isTracking) {
 		CGSize cs = self.contentSize;
 		float x = [self anchorPoint].x;
@@ -92,15 +97,7 @@
 				return YES;
 			}
 		}
-		
-//		CGRect nodeBounds = CGRectMake(x-cs.width, -cs.height, cs.width, cs.height);
-//		if(CGRectContainsPoint(nodeBounds, nodeTouchPoint)) {
-//			isTracking = YES;
-//			[thumbNode stopAllActions];
-//			[self trackVelocity: nodeTouchPoint];
-//			return YES;
-//		}
-	}
+	}	
 	return NO;
 }
 

@@ -25,7 +25,9 @@
 	
 	// Init the window
 	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-
+//	[window setUserInteractionEnabled:YES];
+//	[window setMultipleTouchEnabled:YES];
+	
 	//if( ! [CCDirector setDirectorType:kCCDirectorTypeDisplayLink] )
 	[CCDirector setDirectorType:kCCDirectorTypeNSTimer];	
 	//[CCDirector setDirectorType:CCDirectorTypeThreadMainLoop];
@@ -41,6 +43,7 @@
 	[director setDeviceOrientation:CCDeviceOrientationLandscapeLeft];
 	[director setDisplayFPS:YES];
 	[director setAnimationInterval:1.0/60];
+
 	
 	// Create an EAGLView with a RGB8 color buffer, and a depth buffer of 24-bits
 	EAGLView *glView = [EAGLView viewWithFrame:[window bounds]
@@ -52,7 +55,7 @@
 							   numberOfSamples:0 //can be 1 - 4 if multiSampling=YES
 						];
 	
-	
+	[glView setMultipleTouchEnabled:YES];
 	// attach the openglView to the director
 	[director setOpenGLView:glView];
 
@@ -67,8 +70,6 @@
 	[window addSubview:glView];																
 	[window makeKeyAndVisible];		
 	
-	//[window setUserInteractionEnabled:YES];
-	//[window setMultipleTouchEnabled:YES];
 	
 
 	[[CCDirector sharedDirector] runWithScene: [Splash scene]];		

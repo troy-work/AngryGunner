@@ -53,7 +53,7 @@
 
 -(void)countToScene:(id)sender
 {
-	[self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:4.0],
+	[self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:1.0],
 					 [CCCallFunc actionWithTarget:self selector:@selector(startScene:)],nil]];
 }
 

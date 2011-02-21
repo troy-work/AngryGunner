@@ -9,6 +9,8 @@
 #import "Game.h"
 #import "Waves.h"
 #import "Joystick.h"
+#import "Bullet.h"
+#import "CCTouchDispatcher.h"
 
 @implementation Game
 
@@ -23,6 +25,7 @@ CCSprite *gun;
 CCSprite *leftShield;
 CCSprite *rightShield;
 CCSprite *crossHair;
+CCSprite *pushButton;
 
 +(id)scene{
 	// 'scene' is an autorelease object.
@@ -46,18 +49,19 @@ CCSprite *crossHair;
 		CCSprite *bg1 = [CCSprite spriteWithFile:@"backgroundleft.png"];
 		[bg1 setAnchorPoint:ccp(1,0)];
 		
-	    bg1.position = ccp(241,0);
+	    bg1.position = ccp(1,0);
 
 		CCSprite *bg2 = [CCSprite spriteWithFile:@"backgroundright.png"];
 		[bg2 setAnchorPoint:ccp(0,0)];
 		
-	    bg2.position = ccp(240,0);
+	    bg2.position = ccp(0,0);
 		
 		bgLayer = [CCLayer node]; 
-		
+				
 		[bgLayer addChild:bg1];
 		[bgLayer addChild:bg2];
 		[bgLayer setAnchorPoint:ccp(.5,0)];
+		[bgLayer setPosition:ccp(240,0)];
 		[self addChild:bgLayer];
 		
 		waves = [Waves node];
@@ -195,23 +199,39 @@ CCSprite *crossHair;
 
 -(void) onEnter
 {
-	[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:1 swallowsTouches:YES];
+	
+	//[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:INT_MIN+1 swallowsTouches:TRUE];
+	[self setIsTouchEnabled:TRUE];
+	//[[CCTouchDispatcher sharedDispatcher] setDispatchEvents:TRUE];
 	[jstick registerWithTouchDispatcher];
 	[[UIAccelerometer sharedAccelerometer] setUpdateInterval:(1.0 / 60)];
 	[super onEnter];
 }
 
-- (BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	return TRUE;
+	CCLOG(@"%d - touches",[touches count]);
+	CGSize cs = CGSizeMake(150, 150);
+	float tx = 400;
+	float ty = 80;
+	
+	for( UITouch *touch in touches ) {		
+		CGPoint nodeTouchPoint = [self convertTouchToNodeSpace: touch];		
+		
+		if (nodeTouchPoint.x<tx+cs.width/2&&nodeTouchPoint.x>tx-cs.width/2) {
+			if (nodeTouchPoint.y<ty+cs.height/2&&nodeTouchPoint.y>ty-cs.height/2) {
+				Bullet *bullet = [Bullet spriteWithFile:@"orangebuoy.png"];
+				[bullet setAnchorPoint:ccp(.5,.5)];
+				[bullet startAtPosition:ccp(-x+205,-y+100) finishAtPosition:ccp(-x+238,-y+155)];
+				[bgLayer addChild:bullet];
+				Bullet *bullet2 = [Bullet spriteWithFile:@"orangebuoy.png"];
+				[bullet2 setAnchorPoint:ccp(.5,.5)];
+				[bullet2 startAtPosition:ccp(-x+275,-y+100) finishAtPosition:ccp(-x+242,-y+155)];
+				[bgLayer addChild:bullet2];
+			}
+		}
+	}
 }
-
-
-- (void) ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
-{
-}
-
-
 
 -(void)startScene:(id)sender
 {		
