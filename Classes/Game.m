@@ -31,6 +31,7 @@ BOOL isShooting;
 CCSprite *flash;
 CCSprite *flash2;
 CCLayer *bullets;
+CCSprite* fireBurst;
 
 +(id)scene{
 	// 'scene' is an autorelease object.
@@ -137,6 +138,17 @@ CCLayer *bullets;
 		jstick.position = ccp(0, 0);
 		[control addChild: jstick];	
 		
+		CCSprite* fireButton = [CCSprite spriteWithFile:@"firebutton.png"];
+		[fireButton setAnchorPoint:ccp(.5,.5)];
+		[fireButton setPosition:ccp(415,65)];
+		[self addChild:fireButton];
+		
+		fireBurst = [CCSprite spriteWithFile:@"firebuttonburst.png"];
+		[fireBurst setAnchorPoint:ccp(.5,.5)];
+		[fireBurst setPosition:ccp(415,65)];
+		[fireBurst setOpacity:0];
+		[self addChild:fireBurst];
+		
 		[self addChild:control];
 		
 		
@@ -214,7 +226,7 @@ CCLayer *bullets;
 		shootTimer=0;
 	}
 
-
+	[fireBurst setOpacity:(isShooting)?255:0];
 }
 
 -(void)fireBullets
@@ -222,7 +234,7 @@ CCLayer *bullets;
 	[bullets setPosition:[gunner position]];
 	Bullet *bullet = [Bullet spriteWithFile:@"bullet.png"];
 	[bullet setAnchorPoint:ccp(.5,.5)];
-	[bullet startAtPosition:ccp(-x+205,-y+100) finishAtPosition:ccp(-x+238,-y+155)];
+	[bullet startAtPosition:ccp(-x+205,-y+100) finishAtPosition:ccp(-x+240,-y+155)];
 	[friendsLayer addChild:bullet];
 	
 	flash = [CCSprite spriteWithFile:@"flash.png"];
@@ -236,7 +248,7 @@ CCLayer *bullets;
 	
 	Bullet *bullet2 = [Bullet spriteWithFile:@"bullet.png"];
 	[bullet2 setAnchorPoint:ccp(.5,.5)];
-	[bullet2 startAtPosition:ccp(-x+275,-y+100) finishAtPosition:ccp(-x+242,-y+155)];
+	[bullet2 startAtPosition:ccp(-x+275,-y+100) finishAtPosition:ccp(-x+240,-y+155)];
 	[friendsLayer addChild:bullet2];
 	shootTimer=0;
 	
@@ -248,9 +260,9 @@ CCLayer *bullets;
 					   [CCCallFunc actionWithTarget:self selector:@selector(killFlash:)],nil]];
 	[bullets addChild:flash2];									  
 	[gun setPosition:ccp(240,-20)];
-	[gun runAction:[CCMoveTo actionWithDuration:.1 position:ccp(240,0)]];
+	[gun runAction:[CCMoveTo actionWithDuration:.04 position:ccp(240,0)]];
 	[crossHair setPosition:ccp(240,-10)];
-	[crossHair runAction:[CCMoveTo actionWithDuration:.1 position:ccp(240,0)]];
+	[crossHair runAction:[CCMoveTo actionWithDuration:.04 position:ccp(240,0)]];
 	[flash setPosition:ccpAdd([flash position], ccp(0,-20))];
 	[flash2 setPosition:ccpAdd([flash2 position], ccp(0,-20))];
 }

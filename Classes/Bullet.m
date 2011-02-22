@@ -38,7 +38,8 @@ CCAction *move;
 {
 	indexZ += 200*dt;
 	zIndex = (int)indexZ;
-	[self setScale:(1-(zIndex*.005))*1];
+	[self setRotation:[self rotation]+120];
+	[self setScale:(2-(zIndex*.01)*1)];
 	if (zIndex>=199) {
 		[[self parent] removeChild:self cleanup:TRUE];
 	}
