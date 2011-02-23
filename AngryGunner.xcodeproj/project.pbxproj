@@ -330,6 +330,7 @@
 		FC792279130CB40E000B60FB /* backgroundleft.png in Resources */ = {isa = PBXBuildFile; fileRef = FC792275130CB40E000B60FB /* backgroundleft.png */; };
 		FC79227A130CB40E000B60FB /* backgroundright-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FC792276130CB40E000B60FB /* backgroundright-hd.png */; };
 		FC79227B130CB40E000B60FB /* backgroundright.png in Resources */ = {isa = PBXBuildFile; fileRef = FC792277130CB40E000B60FB /* backgroundright.png */; };
+		FCBAF5801314AD43006EAD9C /* Plane.m in Sources */ = {isa = PBXBuildFile; fileRef = FCBAF57F1314AD43006EAD9C /* Plane.m */; };
 		FCD8F0CD1310A7D700A55A50 /* CCSpriteExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD8F0CC1310A7D700A55A50 /* CCSpriteExtensions.m */; };
 		FCD8F0F81310AD4000A55A50 /* Bullet.m in Sources */ = {isa = PBXBuildFile; fileRef = FCD8F0F71310AD4000A55A50 /* Bullet.m */; };
 		FCE01A8C131243FF000A603A /* flash-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FCE01A8A131243FF000A603A /* flash-hd.png */; };
@@ -678,6 +679,8 @@
 		FC792275130CB40E000B60FB /* backgroundleft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundleft.png; sourceTree = "<group>"; };
 		FC792276130CB40E000B60FB /* backgroundright-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backgroundright-hd.png"; sourceTree = "<group>"; };
 		FC792277130CB40E000B60FB /* backgroundright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundright.png; sourceTree = "<group>"; };
+		FCBAF57E1314AD43006EAD9C /* Plane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plane.h; sourceTree = "<group>"; };
+		FCBAF57F1314AD43006EAD9C /* Plane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plane.m; sourceTree = "<group>"; };
 		FCD8F0CB1310A7D700A55A50 /* CCSpriteExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSpriteExtensions.h; sourceTree = "<group>"; };
 		FCD8F0CC1310A7D700A55A50 /* CCSpriteExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSpriteExtensions.m; sourceTree = "<group>"; };
 		FCD8F0F61310AD4000A55A50 /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bullet.h; sourceTree = "<group>"; };
@@ -893,6 +896,7 @@
 		50F4144210692EE7002A0D5E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FCBAF57D1314ABA5006EAD9C /* Planes */,
 				FCE01ADA13124D2E000A603A /* bullet-hd.png */,
 				FCE01ADB13124D2E000A603A /* bullet.png */,
 				FCE01A8A131243FF000A603A /* flash-hd.png */,
@@ -903,14 +907,6 @@
 				FC48CFDF130A3410006B1C10 /* Background */,
 				FC234B17130A153F00E0C48C /* Sound */,
 				FC234B16130A139000E0C48C /* Menu */,
-				FC234A70130A134200E0C48C /* brownplanebottom-hd.png */,
-				FC234A71130A134200E0C48C /* brownplanebottom.png */,
-				FC234A72130A134200E0C48C /* brownplanefront-hd.png */,
-				FC234A73130A134200E0C48C /* brownplanefront.png */,
-				FC234A74130A134200E0C48C /* brownplanesideangle-hd.png */,
-				FC234A75130A134200E0C48C /* brownplanesideangle.png */,
-				FC234A76130A134200E0C48C /* brownplaneturn-hd.png */,
-				FC234A77130A134200E0C48C /* brownplaneturn.png */,
 				FC234A78130A134200E0C48C /* bullethole-hd.png */,
 				FC234A79130A134200E0C48C /* bullethole.png */,
 				FC234A7A130A134200E0C48C /* crackedglass-hd.png */,
@@ -1207,6 +1203,8 @@
 				FC48CFFE130A3B6C006B1C10 /* Waves.m */,
 				FCD8F0F61310AD4000A55A50 /* Bullet.h */,
 				FCD8F0F71310AD4000A55A50 /* Bullet.m */,
+				FCBAF57E1314AD43006EAD9C /* Plane.h */,
+				FCBAF57F1314AD43006EAD9C /* Plane.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -1268,6 +1266,21 @@
 			);
 			name = Controls;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		FCBAF57D1314ABA5006EAD9C /* Planes */ = {
+			isa = PBXGroup;
+			children = (
+				FC234A70130A134200E0C48C /* brownplanebottom-hd.png */,
+				FC234A71130A134200E0C48C /* brownplanebottom.png */,
+				FC234A72130A134200E0C48C /* brownplanefront-hd.png */,
+				FC234A73130A134200E0C48C /* brownplanefront.png */,
+				FC234A74130A134200E0C48C /* brownplanesideangle-hd.png */,
+				FC234A75130A134200E0C48C /* brownplanesideangle.png */,
+				FC234A76130A134200E0C48C /* brownplaneturn-hd.png */,
+				FC234A77130A134200E0C48C /* brownplaneturn.png */,
+			);
+			name = Planes;
 			sourceTree = "<group>";
 		};
 		FCD8EFA8130CE41F00A55A50 /* Accessories */ = {
@@ -1600,6 +1613,7 @@
 				FC666B30130B7DA900358A37 /* Joystick.m in Sources */,
 				FCD8F0CD1310A7D700A55A50 /* CCSpriteExtensions.m in Sources */,
 				FCD8F0F81310AD4000A55A50 /* Bullet.m in Sources */,
+				FCBAF5801314AD43006EAD9C /* Plane.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

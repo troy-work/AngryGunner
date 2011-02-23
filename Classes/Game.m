@@ -11,6 +11,7 @@
 #import "Joystick.h"
 #import "Bullet.h"
 #import "CCTouchDispatcher.h"
+#import "Plane.h"
 
 @implementation Game
 
@@ -32,6 +33,8 @@ CCSprite *flash;
 CCSprite *flash2;
 CCLayer *bullets;
 CCSprite* fireBurst;
+float planeCountDown;
+CCLayer *planes;
 
 +(id)scene{
 	// 'scene' is an autorelease object.
@@ -103,6 +106,10 @@ CCSprite* fireBurst;
 		[destroyer3 setAnchorPoint:ccp(.5,0)];
 		[destroyer3 setPosition:ccp(840,110)];
 		[friendsLayer addChild:destroyer3];
+			
+		planes = [CCLayer node];
+		[planes setAnchorPoint:ccp(.5,0)];
+		[self addChild:planes];		
 
 		bullets = [CCLayer node];
 		[self addChild:bullets];
@@ -168,6 +175,8 @@ CCSprite* fireBurst;
 		
 		[self addChild:gunner];
 		
+		planeCountDown = 1000;
+		
 		[self schedule:@selector(step:)];
 		x = 0;
 		y = 0;
@@ -181,8 +190,18 @@ CCSprite* fireBurst;
 	float xx = jstick.velocity.x*jstick.velocity.x*jstick.velocity.x;
 	float yy = jstick.velocity.y*jstick.velocity.y*jstick.velocity.y;
 	
-	x = x - xx*dt*800;
-	y = y - yy*dt*800;
+	
+	planeCountDown -=100*dt;
+	if (planeCountDown<1) {
+		planeCountDown = 1000;
+		Plane *plane = [Plane brownSprite];
+		[plane start];
+		[planes addChild:plane];
+	}
+	
+	
+	x = x - xx*dt*400;
+	y = y - yy*dt*400;
 	float staticX = 0;
 	
 	if (y>0) {
@@ -227,6 +246,7 @@ CCSprite* fireBurst;
 	}
 
 	[fireBurst setOpacity:(isShooting)?255:0];
+	[planes setPosition:[friendsLayer position]];
 }
 
 -(void)fireBullets
