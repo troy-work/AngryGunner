@@ -18,12 +18,14 @@ CCTexture2D *bottomSprite;
 CCTexture2D *frontSprite;
 CCTexture2D *turnSprite;
 
+@synthesize zIndex;
+@synthesize hitCount;
+
 -(id)init 
 {
 	if ((self = [super init])) {
 		zIndex = 200;
 		indexZ = 200;
-		zOrder_=-2;
 		bottomSprite = [[CCTextureCache sharedTextureCache] addImage:@"brownplanebottom.png"];
 		frontSprite = [[CCTextureCache sharedTextureCache] addImage:@"brownplanefront.png"];
 		turnSprite = [[CCTextureCache sharedTextureCache] addImage:@"brownplaneturn.png"];
@@ -58,8 +60,7 @@ CCTexture2D *turnSprite;
 			[CCCallFunc actionWithTarget:self selector:@selector(kill)]
 			,nil];
 	[self runAction:move];
-//	[self schedule:@selector(step:)];
-//	[self schedule:@selector(step:)];
+	[self schedule:@selector(step:)];
 
 }
 
@@ -97,9 +98,7 @@ CCTexture2D *turnSprite;
 -(void)step:(ccTime) dt
 {
 //	CCLOG(@"%d",zIndex);
-//	indexZ -= dt*(201-indexZ);
-//	zIndex = (int)indexZ;
-//	[self setScale:(3-(indexZ*.015)*1)];
+	[self setZIndex:200-(50*[self scaleY])];
 //	if (zIndex<=1) {
 //		[[self parent] removeChild:self cleanup:TRUE];
 //	}

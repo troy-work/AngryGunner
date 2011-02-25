@@ -176,7 +176,7 @@ float planeCountDown;
 		
 		[self addChild:gunner];
 		
-		planeCountDown = 1000;
+		planeCountDown = 0;
 		
 		[self schedule:@selector(step:)];
 		x = 0;
@@ -194,7 +194,7 @@ float planeCountDown;
 	
 	planeCountDown -=100*dt;
 	if (planeCountDown<1) {
-		planeCountDown = 1000;
+		planeCountDown = 500;
 		Plane *plane = [Plane brownSprite];
 		[plane start];
 		[planes addChild:plane];

@@ -8,11 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-#import "CCSpriteExtensions.h"
 @interface Plane : CCSprite {
 
 }
 
+@property (assign,nonatomic) int zIndex;
+@property (assign,nonatomic) int hitCount;
+
+-(void)kill;
 +(id)brownSprite;
+-(void)start;
 
 @end

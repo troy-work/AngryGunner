@@ -82,7 +82,7 @@
 
 
 -(BOOL) ccTouchBegan: (UITouch *)touch withEvent: (UIEvent *)event {
-	CCLOG(@"%d - touches JoyStick");
+//	CCLOG(@"%d - touches JoyStick");
 	if(!isTracking) {
 		CGSize cs = self.contentSize;
 		float x = [self anchorPoint].x;

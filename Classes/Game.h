@@ -14,6 +14,7 @@
 }
 
 +(id)scene;
+-(void)fireBullets;
 @property (assign,nonatomic) CCLayer *planes;
 
 @end
