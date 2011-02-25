@@ -7,6 +7,7 @@
 //
 
 #import "Bullet.h"
+#import "Plane.h"
 
 @implementation Bullet
 
@@ -42,6 +43,18 @@ CCAction *move;
 	[self setScale:(2-(zIndex*.01)*1)];
 	if (zIndex>=199) {
 		[[self parent] removeChild:self cleanup:TRUE];
+	}
+	
+	for (Plane *p in [[[[self parent]parent]planes]children]){
+		float lx = p.position.x - p.contentSize.width/3;
+		float rx = p.position.y + p.contentSize.width/3;
+		if (self.position.x>lx&&self.position.x<rx) {
+			float ty = p.position.y + p.contentSize.height/3;
+			float by = p.position.y - p.contentSize.height/3;
+			if (self.position.y>by&&self.position.y<ty) {
+				[p kill];
+			}
+		}
 	}
 }
 

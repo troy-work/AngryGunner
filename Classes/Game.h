@@ -14,6 +14,6 @@
 }
 
 +(id)scene;
-
+@property (assign,nonatomic) CCLayer *planes;
 
 @end

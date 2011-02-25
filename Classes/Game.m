@@ -34,7 +34,8 @@ CCSprite *flash2;
 CCLayer *bullets;
 CCSprite* fireBurst;
 float planeCountDown;
-CCLayer *planes;
+
+@synthesize planes;
 
 +(id)scene{
 	// 'scene' is an autorelease object.
