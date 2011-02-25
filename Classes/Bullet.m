@@ -37,7 +37,7 @@ CCAction *move;
 
 -(void)step:(ccTime) dt
 {
-	indexZ += 100*dt;
+	indexZ += 200*dt;
 	zIndex = (int)indexZ;
 	[self setRotation:[self rotation]+120];
 	[self setScale:(2-(zIndex*.01)*1)];

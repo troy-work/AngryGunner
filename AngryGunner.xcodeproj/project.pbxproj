@@ -1823,7 +1823,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Troy Cox";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Troy Cox (33W4RU65WL)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DEBUG,
@@ -1839,7 +1839,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "07E9B56C-6B4F-4018-97B0-2A4256EF2EC1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8C6A92F8-54E6-4B30-9ED7-E80E51E4DE01";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1850,7 +1850,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Troy Cox";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Troy Cox (33W4RU65WL)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = NO;
 				"GCC_THUMB_SUPPORT[arch=armv7]" = YES;
@@ -1860,7 +1860,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1;
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "07E9B56C-6B4F-4018-97B0-2A4256EF2EC1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8C6A92F8-54E6-4B30-9ED7-E80E51E4DE01";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
