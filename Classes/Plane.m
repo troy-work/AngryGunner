@@ -17,6 +17,8 @@ CCAction *move;
 CCTexture2D *bottomSprite;
 CCTexture2D *frontSprite;
 CCTexture2D *turnSprite;
+float randomX;
+CCTexture2D *smoke;
 
 @synthesize zIndex;
 @synthesize hitCount;
@@ -26,9 +28,13 @@ CCTexture2D *turnSprite;
 	if ((self = [super init])) {
 		zIndex = 200;
 		indexZ = 200;
+		randomX = CCRANDOM_0_1()*300;
+		randomX += 660;
 		bottomSprite = [[CCTextureCache sharedTextureCache] addImage:@"brownplanebottom.png"];
 		frontSprite = [[CCTextureCache sharedTextureCache] addImage:@"brownplanefront.png"];
 		turnSprite = [[CCTextureCache sharedTextureCache] addImage:@"brownplaneturn.png"];
+		smoke = [[CCTextureCache sharedTextureCache] addImage:@"dpadburst.png"];
+
 	}
 	return self;
 }
@@ -40,7 +46,7 @@ CCTexture2D *turnSprite;
 
 -(void)start
 {
-	[self setPosition:ccp(840,1000)];
+	[self setPosition:ccp(randomX,1000)];
 //	fPos = finishPos;
 //	CGPoint fall = ccpAdd(fPos, ccp(0,-15));
 	[self setTexture:turnSprite];
@@ -48,7 +54,7 @@ CCTexture2D *turnSprite;
 	[self setScaleY:.015];
 	[self runAction:[CCScaleBy actionWithDuration:8 scale:30]];
 	move = [CCSequence actions:
-			[CCMoveTo	actionWithDuration:8 position:ccp(240,300)],
+			[CCMoveTo	actionWithDuration:8 position:ccp(-640+randomX,300)],
 			[CCCallFunc actionWithTarget:self selector:@selector(front)],			
 			[CCScaleTo actionWithDuration:5 scale:1],
 			[CCCallFunc actionWithTarget:self selector:@selector(turnLeft)],
@@ -90,18 +96,67 @@ CCTexture2D *turnSprite;
 	[self runAction:[CCMoveBy actionWithDuration:.4 position:ccp(0,1500)]];
 }
 
+-(void)die
+{
+	CCParticleSun *s = [CCParticleSun node];
+	[s setTexture:smoke];
+	[s setScale:[self scaleY]];
+	[s setPosition:[self position]];
+	[s setLife:2];
+	[s setDuration:2];
+	ccColor4F startColor;
+	startColor.r = 0.1f;
+	startColor.g = 0.1f;
+	startColor.b = 0.1f;
+	startColor.a = 1.0f;
+	[s setStartColor:startColor];
+	ccColor4F endColor;
+	endColor.r = 0.8f;
+	endColor.g = 0.8f;
+	endColor.b = 0.8f;
+	endColor.a = 0.8f;
+	[s setEndColor:endColor];
+	[s setPositionType:kCCPositionTypeGrouped];
+	[[[[self parent]parent]friendsLayer] addChild:s];
+
+	[self kill];
+}
+
 -(void)kill
 {
+	
 	[[self parent] removeChild:self cleanup:TRUE];
 }
 
+
 -(void)step:(ccTime) dt
 {
-//	CCLOG(@"%d",zIndex);
 	[self setZIndex:200-(50*[self scaleY])];
-//	if (zIndex<=1) {
-//		[[self parent] removeChild:self cleanup:TRUE];
-//	}
+	
+	if (hitCount>0) {
+		CCParticleSmoke *s = [CCParticleSmoke node];
+		[s setTexture:smoke];
+		[s setScale:[self scaleY]*2];
+		[s setPosition:[self position]];
+		[s setLife:1];
+		[s setDuration:.1];
+		ccColor4F startColor;
+		startColor.r = 1.0f;
+		startColor.g = 0.4f;
+		startColor.b = 0.1f;
+		startColor.a = .8f;
+		[s setStartColor:startColor];
+		ccColor4F endColor;
+		endColor.r = 0.8f;
+		endColor.g = 0.8f;
+		endColor.b = 0.8f;
+		endColor.a = 0.8f;
+		[s setEndColor:endColor];
+		[s setPositionType:kCCPositionTypeGrouped];
+		[[[[self parent]parent]friendsLayer] addChild:s];
+		
+	}
+	
 }
 
 

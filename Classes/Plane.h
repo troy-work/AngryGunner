@@ -15,6 +15,7 @@
 @property (assign,nonatomic) int zIndex;
 @property (assign,nonatomic) int hitCount;
 
+-(void)die;
 -(void)kill;
 +(id)brownSprite;
 -(void)start;

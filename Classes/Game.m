@@ -19,7 +19,7 @@ Joystick *jstick;
 float x;
 float y;
 CCLayer *bgLayer;
-CCLayer *friendsLayer;
+
 CCLayer *gunner;
 Waves *waves;
 CCSprite *gun;
@@ -31,11 +31,13 @@ float shootTimer;
 BOOL isShooting;
 CCSprite *flash;
 CCSprite *flash2;
-CCLayer *bullets;
+
 CCSprite* fireBurst;
 float planeCountDown;
 
 @synthesize planes;
+@synthesize bullets;
+@synthesize friendsLayer;
 
 +(id)scene{
 	// 'scene' is an autorelease object.
@@ -108,27 +110,6 @@ float planeCountDown;
 		[destroyer3 setPosition:ccp(840,110)];
 		[friendsLayer addChild:destroyer3];
 			
-		planes = [CCLayer node];
-		[planes setAnchorPoint:ccp(.5,0)];
-		[self addChild:planes];		
-
-		bullets = [CCLayer node];
-		[self addChild:bullets];
-		
-		gunner = [CCLayer node];
-		[gunner setAnchorPoint:ccp(.5,0)];
-		
-		leftShield = [CCSprite spriteWithFile:@"shieldleft.png"];
-		[leftShield setAnchorPoint:ccp(0,0)];
-		[leftShield setPosition:ccp(10,0)];
-		[leftShield setOpacity:45];
-		[gunner addChild:leftShield];
-
-		rightShield = [CCSprite spriteWithFile:@"shieldleft.png"];
-		[rightShield setAnchorPoint:ccp(1,0)];
-		[rightShield setPosition:ccp(470,0)];
-		[rightShield setOpacity:45];
-		[gunner addChild:rightShield];
 		
 		CCLayer* control = [CCLayer node];
 		[control setAnchorPoint:ccp(0,0)];
@@ -150,6 +131,28 @@ float planeCountDown;
 		[fireButton setAnchorPoint:ccp(.5,.5)];
 		[fireButton setPosition:ccp(415,65)];
 		[self addChild:fireButton];
+
+		planes = [CCLayer node];
+		[planes setAnchorPoint:ccp(.5,0)];
+		[self addChild:planes];		
+		
+		bullets = [CCLayer node];
+		[self addChild:bullets];
+		
+		gunner = [CCLayer node];
+		[gunner setAnchorPoint:ccp(.5,0)];
+		
+		leftShield = [CCSprite spriteWithFile:@"shieldleft.png"];
+		[leftShield setAnchorPoint:ccp(0,0)];
+		[leftShield setPosition:ccp(10,0)];
+		[leftShield setOpacity:45];
+		[gunner addChild:leftShield];
+		
+		rightShield = [CCSprite spriteWithFile:@"shieldleft.png"];
+		[rightShield setAnchorPoint:ccp(1,0)];
+		[rightShield setPosition:ccp(470,0)];
+		[rightShield setOpacity:45];
+		[gunner addChild:rightShield];
 		
 		fireBurst = [CCSprite spriteWithFile:@"firebuttonburst.png"];
 		[fireBurst setAnchorPoint:ccp(.5,.5)];

@@ -37,7 +37,7 @@ CCAction *move;
 
 -(void)step:(ccTime) dt
 {
-	indexZ += 200*dt;
+	indexZ += 100*dt;
 	zIndex = (int)indexZ;
 	[self setRotation:[self rotation]+120];
 	[self setScale:(2-(zIndex*.01)*1)];
@@ -46,7 +46,8 @@ CCAction *move;
 	}
 	
 	for (Plane *p in [[[[self parent]parent]planes]children]){
-		if (p.zIndex<zIndex+5&&p.zIndex>zIndex-5) {
+		if (p.zIndex<zIndex+8&&p.zIndex>zIndex-8) {
+			
 			float lx = p.position.x - p.contentSize.width/3;
 			float rx = p.position.y + p.contentSize.width/3;
 			if (self.position.x>lx&&self.position.x<rx) {
@@ -54,8 +55,8 @@ CCAction *move;
 				float by = p.position.y - p.contentSize.height/3;
 				if (self.position.y>by&&self.position.y<ty) {
 					p.hitCount += 1;
-					if (p.hitCount>4) {
-						[p kill];
+					if (p.hitCount>2) {
+						[p die];
 					}
 					[[self parent] removeChild:self cleanup:TRUE];
 				}

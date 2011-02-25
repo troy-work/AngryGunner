@@ -16,5 +16,6 @@
 +(id)scene;
 -(void)fireBullets;
 @property (assign,nonatomic) CCLayer *planes;
-
+@property (assign,nonatomic) CCLayer *bullets;
+@property (assign,nonatomic) CCLayer *friendsLayer;
 @end
