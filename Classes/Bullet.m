@@ -37,7 +37,7 @@ CCAction *move;
 
 -(void)step:(ccTime) dt
 {
-	indexZ += 100*dt;
+	indexZ += 200*dt;
 	zIndex = (int)indexZ;
 	[self setRotation:[self rotation]+120];
 	[self setScale:(2-(zIndex*.01)*1)];
@@ -46,23 +46,27 @@ CCAction *move;
 	}
 	
 	for (Plane *p in [[[[self parent]parent]planes]children]){
-//		CCLOG(@"Content width: %d",p.scaledSize.width);
-//		CCLOG(@"Content height: %d",p.scaledSize.height);
-		if (p.zIndex<zIndex+8&&p.zIndex>zIndex-8) {
+		if (p.zIndex<zIndex+8&&p.zIndex>zIndex-8) 
+		{
 			float lx = p.position.x - p.scaledSize.width/3;
-			float rx = p.position.y + p.scaledSize.width/3;
-			if (self.position.x>lx&&self.position.x<rx) {
-				float ty = p.position.y + p.scaledSize.height/3;
-				float by = p.position.y - p.scaledSize.height/3;
-				if (self.position.y>by&&self.position.y<ty) {
+			float ty = p.position.y + p.scaledSize.height/3;
+			float by = p.position.y - p.scaledSize.height/3;
+			if ((self.position.x>lx&&self.position.x<lx+p.scaledSize.width*.6)&&(self.position.y>by&&self.position.y<ty)) 
+			{
+//					CCLOG(@"Self x: %d",self.position.x);
+//					CCLOG(@"lx: %d",lx);
+//					CCLOG(@"rx: %d",rx);
+//					CCLOG(@"Self y: %d",self.position.y);
+//					CCLOG(@"ty: %d",ty);
+//					CCLOG(@"by: %d",by);
 					p.hitCount += 1;
 					if (p.hitCount>2) {
 						[p die];
-					}
 					[[self parent] removeChild:self cleanup:TRUE];
-				}
+					}
 			}
 		}
+				
 	}
 }
 

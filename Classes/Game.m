@@ -58,7 +58,8 @@ float planeCountDown;
 	if( (self=[super init])) 
 	{
 		
-		CCSprite *bg1 = [CCSprite spriteWithFile:@"backgroundleft.png"];
+		CCSprite *bg1 = [CCSprite spriteWithFile:@"backgroundright.png"];
+		[bg1 flipY];
 		[bg1 setAnchorPoint:ccp(1,0)];
 		
 	    bg1.position = ccp(1,0);

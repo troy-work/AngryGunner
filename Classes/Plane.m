@@ -16,9 +16,12 @@ CGPoint fPos;
 CCAction *move;
 CCTexture2D *bottomSprite;
 CCTexture2D *frontSprite;
+CCTexture2D *frontSpriteShoot;
 CCTexture2D *turnSprite;
 float randomX;
 CCTexture2D *smoke;
+float shootTime;
+BOOL isDying;
 
 @synthesize zIndex;
 @synthesize hitCount;
@@ -30,8 +33,11 @@ CCTexture2D *smoke;
 		indexZ = 200;
 		randomX = CCRANDOM_0_1()*300;
 		randomX += 660;
+		shootTime = 100;
+		isDying=FALSE;
 		bottomSprite = [[CCTextureCache sharedTextureCache] addImage:@"brownplanebottom.png"];
 		frontSprite = [[CCTextureCache sharedTextureCache] addImage:@"brownplanefront.png"];
+		frontSpriteShoot = [[CCTextureCache sharedTextureCache] addImage:@"brownplanefrontshoot.png"];
 		turnSprite = [[CCTextureCache sharedTextureCache] addImage:@"brownplaneturn.png"];
 		smoke = [[CCTextureCache sharedTextureCache] addImage:@"dpadburst.png"];
 
@@ -48,8 +54,10 @@ CCTexture2D *smoke;
 {
 	[self setPosition:ccp(randomX,1000)];
 	[self setAnchorPoint:ccp(.5,.5)];
+	isDying=FALSE;
 //	fPos = finishPos;
 //	CGPoint fall = ccpAdd(fPos, ccp(0,-15));
+
 	[self setTexture:turnSprite];
 	[self setScaleX:.01];
 	[self setScaleY:.015];
@@ -73,10 +81,12 @@ CCTexture2D *smoke;
 
 -(void)front
 {
+	if (!isDying){
 	[self setScaleX:[self scaleY]];
 	[self setTexture:frontSprite];
 	[self setRotation:45];
 	[self runAction:[CCRotateTo actionWithDuration:.6 angle:0]];
+	}
 }
 
 -(void)turnLeft
@@ -99,6 +109,7 @@ CCTexture2D *smoke;
 
 -(void)die
 {
+	isDying=TRUE;
 	CCParticleSun *s = [CCParticleSun node];
 	[s setTexture:smoke];
 	[s setScale:[self scaleY]];
@@ -126,14 +137,38 @@ CCTexture2D *smoke;
 
 -(void)kill
 {
+	isDying=TRUE;
 	
 	[[self parent] removeChild:self cleanup:TRUE];
 }
 
+-(void)shoot
+{
+	if (!isDying){
+	[self setTexture:frontSpriteShoot];
+	[self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.1],
+	 [CCCallFunc actionWithTarget:self selector:@selector(stopShooting)],nil]];
+	}
+}
+
+-(void)stopShooting
+{
+	if(!isDying){
+	[self setTexture:frontSprite];
+	}
+}
 
 -(void)step:(ccTime) dt
 {
 	[self setZIndex:200-(50*[self scaleY])];
+	
+	
+	shootTime -= dt*CCRANDOM_0_1()*300;
+	if (shootTime<=0) {
+		shootTime = 100;
+		if(self.texture == frontSprite)
+		[self shoot];
+	}
 	
 	if (hitCount>0) {
 		CCParticleSmoke *s = [CCParticleSmoke node];
