@@ -47,6 +47,7 @@ CCTexture2D *smoke;
 -(void)start
 {
 	[self setPosition:ccp(randomX,1000)];
+	[self setAnchorPoint:ccp(.5,.5)];
 //	fPos = finishPos;
 //	CGPoint fall = ccpAdd(fPos, ccp(0,-15));
 	[self setTexture:turnSprite];

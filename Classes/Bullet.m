@@ -46,13 +46,14 @@ CCAction *move;
 	}
 	
 	for (Plane *p in [[[[self parent]parent]planes]children]){
+//		CCLOG(@"Content width: %d",p.scaledSize.width);
+//		CCLOG(@"Content height: %d",p.scaledSize.height);
 		if (p.zIndex<zIndex+8&&p.zIndex>zIndex-8) {
-			
-			float lx = p.position.x - p.contentSize.width/3;
-			float rx = p.position.y + p.contentSize.width/3;
+			float lx = p.position.x - p.scaledSize.width/3;
+			float rx = p.position.y + p.scaledSize.width/3;
 			if (self.position.x>lx&&self.position.x<rx) {
-				float ty = p.position.y + p.contentSize.height/3;
-				float by = p.position.y - p.contentSize.height/3;
+				float ty = p.position.y + p.scaledSize.height/3;
+				float by = p.position.y - p.scaledSize.height/3;
 				if (self.position.y>by&&self.position.y<ty) {
 					p.hitCount += 1;
 					if (p.hitCount>2) {

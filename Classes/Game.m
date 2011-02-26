@@ -258,6 +258,7 @@ float planeCountDown;
 	[bullets setPosition:[gunner position]];
 	Bullet *bullet = [Bullet spriteWithFile:@"bullet.png"];
 	[bullet setAnchorPoint:ccp(.5,.5)];
+	[bullet setRotation:29];
 	[bullet startAtPosition:ccp(-x+205,-y+100) finishAtPosition:ccp(-x+240,-y+155)];
 	[friendsLayer addChild:bullet];
 	
@@ -271,6 +272,7 @@ float planeCountDown;
 	
 	
 	Bullet *bullet2 = [Bullet spriteWithFile:@"bullet.png"];
+	[bullet2 setRotation:-29];
 	[bullet2 setAnchorPoint:ccp(.5,.5)];
 	[bullet2 startAtPosition:ccp(-x+275,-y+100) finishAtPosition:ccp(-x+240,-y+155)];
 	[friendsLayer addChild:bullet2];
