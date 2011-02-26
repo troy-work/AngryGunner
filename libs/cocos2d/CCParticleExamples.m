@@ -621,8 +621,8 @@
 		self.gravity = ccp(0,0);
 		
 		// Gravity Mode: speed of particles
-		self.speed = 70;
-		self.speedVar = 40;
+		self.speed = 30;
+		self.speedVar = 20;
 		
 		// Gravity Mode: radial
 		self.radialAccel = 0;
@@ -642,34 +642,34 @@
 		posVar = CGPointZero;
 		
 		// life of particles
-		life = 5.0f;
+		life = 1.0f;
 		lifeVar = 2;
 		
 		// size, in pixels
-		startSize = 15.0f;
-		startSizeVar = 10.0f;
+		startSize = 2.0f;
+		startSizeVar = 3.0f;
 		endSize = kCCParticleStartSizeEqualToEndSize;
 
 		// emits per second
 		emissionRate = totalParticles/duration;
 		
 		// color of particles
-		startColor.r = 0.7f;
-		startColor.g = 0.1f;
-		startColor.b = 0.2f;
+		startColor.r = 0.01f;
+		startColor.g = 0.01f;
+		startColor.b = 0.01f;
 		startColor.a = 1.0f;
-		startColorVar.r = 0.5f;
-		startColorVar.g = 0.5f;
-		startColorVar.b = 0.5f;
-		startColorVar.a = 0.0f;
-		endColor.r = 0.5f;
-		endColor.g = 0.5f;
-		endColor.b = 0.5f;
-		endColor.a = 0.0f;
-		endColorVar.r = 0.5f;
-		endColorVar.g = 0.5f;
-		endColorVar.b = 0.5f;
-		endColorVar.a = 0.0f;
+		startColorVar.r = 0.02f;
+		startColorVar.g = 0.02f;
+		startColorVar.b = 0.02f;
+		startColorVar.a = 1.0f;
+		endColor.r = 0.03f;
+		endColor.g = 0.03f;
+		endColor.b = 0.03f;
+		endColor.a = 1.0f;
+		endColorVar.r = 0.4f;
+		endColorVar.g = 0.4f;
+		endColorVar.b = 0.4f;
+		endColorVar.a = 1.0f;
 		
 		self.texture = [[CCTextureCache sharedTextureCache] addImage: @"fire.png"];
 

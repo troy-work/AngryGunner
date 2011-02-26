@@ -51,7 +51,8 @@ CCAction *move;
 			float lx = p.position.x - p.scaledSize.width/3;
 			float ty = p.position.y + p.scaledSize.height/3;
 			float by = p.position.y - p.scaledSize.height/3;
-			if ((self.position.x>lx&&self.position.x<lx+p.scaledSize.width*.6)&&(self.position.y>by&&self.position.y<ty)) 
+			if ((self.position.x>lx&&self.position.x<lx+p.scaledSize.width*.6)
+				&&(self.position.y>by&&self.position.y<ty)) 
 			{
 //					CCLOG(@"Self x: %d",self.position.x);
 //					CCLOG(@"lx: %d",lx);

@@ -202,6 +202,7 @@ float planeCountDown;
 		Plane *plane = [Plane brownSprite];
 		[plane start];
 		[planes addChild:plane];
+		[plane release];
 	}
 	
 	

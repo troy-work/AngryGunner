@@ -54,10 +54,6 @@ BOOL isDying;
 {
 	[self setPosition:ccp(randomX,1000)];
 	[self setAnchorPoint:ccp(.5,.5)];
-	isDying=FALSE;
-//	fPos = finishPos;
-//	CGPoint fall = ccpAdd(fPos, ccp(0,-15));
-
 	[self setTexture:turnSprite];
 	[self setScaleX:.01];
 	[self setScaleY:.015];
@@ -81,12 +77,10 @@ BOOL isDying;
 
 -(void)front
 {
-	if (!isDying){
 	[self setScaleX:[self scaleY]];
 	[self setTexture:frontSprite];
 	[self setRotation:45];
 	[self runAction:[CCRotateTo actionWithDuration:.6 angle:0]];
-	}
 }
 
 -(void)turnLeft
@@ -110,36 +104,59 @@ BOOL isDying;
 -(void)die
 {
 	isDying=TRUE;
+	[self unschedule:@selector(step:)];
+
+	ccColor4F startColor;
+	startColor.r = 0.1f;
+	startColor.g = 0.1f;
+	startColor.b = 0.1f;
+	startColor.a = 1.0f;
+	
+	ccColor4F endColor;
+	endColor.r = 0.1f;
+	endColor.g = 0.1f;
+	endColor.b = 0.1f;
+	endColor.a = 0.2f;
+	
+	
+	
 	CCParticleSun *s = [CCParticleSun node];
 	[s setTexture:smoke];
 	[s setScale:[self scaleY]];
 	[s setPosition:[self position]];
 	[s setLife:2];
 	[s setDuration:2];
-	ccColor4F startColor;
-	startColor.r = 0.1f;
-	startColor.g = 0.1f;
-	startColor.b = 0.1f;
-	startColor.a = 1.0f;
 	[s setStartColor:startColor];
-	ccColor4F endColor;
-	endColor.r = 0.8f;
-	endColor.g = 0.8f;
-	endColor.b = 0.8f;
-	endColor.a = 0.8f;
 	[s setEndColor:endColor];
 	[s setPositionType:kCCPositionTypeGrouped];
 	[[[[self parent]parent]friendsLayer] addChild:s];
 	[s release];
+
+	CCParticleExplosion *e =[CCParticleExplosion node];
+	[e setScale:[self scaleY]];
+	[e setPosition:[self position]];
+	[e setLife:.05];
+	[e setDuration:.05];
+	float scl = [self scaleY]*60;
+	if (scl>64) {
+		scl=60;
+	}
+	[e setStartSize:scl];
+	[e setEndSize:[self scaleY]];
+	[e setEmissionRate:1000];
+	[e setPositionType:kCCPositionTypeGrouped];
+	[e setEndColor:endColor];
+	[[[[self parent]parent]friendsLayer] addChild:e];
+	[e release];
+	
 	
 	[self kill];
 }
 
 -(void)kill
 {
-	isDying=TRUE;
 	
-	[[self parent] removeChild:self cleanup:TRUE];
+	[[self parent] removeChild:self cleanup:FALSE];
 }
 
 -(void)shoot
@@ -147,13 +164,13 @@ BOOL isDying;
 	if (!isDying){
 	[self setTexture:frontSpriteShoot];
 	[self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.1],
-	 [CCCallFunc actionWithTarget:self selector:@selector(stopShooting)],nil]];
+					 [CCCallFunc actionWithTarget:self selector:@selector(stopShooting)],nil]];
 	}
 }
 
 -(void)stopShooting
 {
-	if(!isDying){
+	if (!isDying){
 	[self setTexture:frontSprite];
 	}
 }
