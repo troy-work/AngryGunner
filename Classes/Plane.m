@@ -118,7 +118,8 @@ CCTexture2D *smoke;
 	[s setEndColor:endColor];
 	[s setPositionType:kCCPositionTypeGrouped];
 	[[[[self parent]parent]friendsLayer] addChild:s];
-
+	[s release];
+	
 	[self kill];
 }
 
@@ -154,6 +155,7 @@ CCTexture2D *smoke;
 		[s setEndColor:endColor];
 		[s setPositionType:kCCPositionTypeGrouped];
 		[[[[self parent]parent]friendsLayer] addChild:s];
+		[s release];
 		
 	}
 	
