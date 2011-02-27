@@ -30,6 +30,8 @@ float shootTimer;
 BOOL isShooting;
 CCSprite *flash;
 CCSprite *flash2;
+CCSprite *healthBar;
+CCSprite *healthFrame;
 
 CCSprite* fireBurst;
 float planeCountDown;
@@ -38,6 +40,7 @@ float planeCountDown;
 @synthesize bullets;
 @synthesize friendsLayer;
 @synthesize gunner;
+@synthesize health;
 
 +(id)scene{
 	// 'scene' is an autorelease object.
@@ -57,6 +60,7 @@ float planeCountDown;
 {
 	if( (self=[super init])) 
 	{
+		health = 100;
 		
 		CCSprite *bg1 = [CCSprite spriteWithFile:@"backgroundright.png"];
 		[bg1 flipY];
@@ -140,6 +144,18 @@ float planeCountDown;
 		bullets = [CCLayer node];
 		[self addChild:bullets];
 		
+		CGPoint healthPosition = ccp(5,315);
+		
+		healthBar = [CCSprite spriteWithFile:@"health.png"];
+		[healthBar setPosition:ccpAdd(healthPosition,ccp(18,-3.5))];
+		[healthBar setAnchorPoint:ccp(0,1)];
+		[self addChild:healthBar];
+		
+		healthFrame = [CCSprite spriteWithFile:@"healthbar.png"];
+		[healthFrame setAnchorPoint:ccp(0,1)];
+		[healthFrame setPosition:healthPosition];
+		[self addChild:healthFrame];
+		
 		gunner = [CCLayer node];
 		[gunner setAnchorPoint:ccp(.5,0)];
 		
@@ -191,6 +207,8 @@ float planeCountDown;
 }
 
 -(void)step:(ccTime)dt{
+	
+	[healthBar setScaleX:health/100];
 		
 	float xx = jstick.velocity.x*jstick.velocity.x*jstick.velocity.x;
 	float yy = jstick.velocity.y*jstick.velocity.y*jstick.velocity.y;
@@ -338,6 +356,7 @@ float planeCountDown;
 			[bulletHole runAction:[CCSequence actions:[CCDelayTime actionWithDuration:1],
 									[CCCallFuncN actionWithTarget:self 
 														 selector:@selector(killBulletHole:)],nil]];
+			health -= 2;
 		}
 	}
 }
