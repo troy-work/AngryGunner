@@ -307,14 +307,14 @@ float planeCountDown;
 								andBulletScale:(float)bscale
 {
 	
-	CCSprite *bl = [CCSprite spriteWithFile:@"enemyBullet.png"];
-	[bl setOpacity: 50];
-	[bl setScaleY: bscale];
-	[bl setAnchorPoint:ccp(.5,0)];
-	[bl setRotation:brot];
-	[bl setPosition:bpos];
-	[[self friendsLayer]addChild:bl];
-	[bl runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.1],
+	CCSprite *enemyBullet = [CCSprite spriteWithFile:@"enemyBullet.png"];
+	[enemyBullet setOpacity: 20];
+	[enemyBullet setScaleY: bscale];
+	[enemyBullet setAnchorPoint:ccp(.5,0)];
+	[enemyBullet setRotation:brot];
+	[enemyBullet setPosition:bpos];
+	[[self friendsLayer]addChild:enemyBullet];
+	[enemyBullet runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.1],
 				   [CCCallFuncN actionWithTarget:self 
 										selector:@selector(killEnemyBullet:)],nil]];
 	

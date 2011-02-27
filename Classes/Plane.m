@@ -174,8 +174,8 @@ CCTexture2D *enemyBullet;
 		float rrot = -1*lrot;
 		float bscale = (CCRANDOM_0_1()*2);
 		if ([self rotation]<0) {
-			lrot = lrot - [self rotation] - [self rotation];
-			rrot = rrot - [self rotation];
+			lrot = lrot + [self rotation];
+			rrot = rrot + [self rotation];
 		}
 		if ([self rotation]>0) {
 			lrot = lrot - [self rotation];
