@@ -22,6 +22,7 @@ float randomX;
 CCTexture2D *smoke;
 float shootTime;
 BOOL isDying;
+CCTexture2D *enemyBullet;
 
 @synthesize zIndex;
 @synthesize hitCount;
@@ -159,17 +160,49 @@ BOOL isDying;
 	[[self parent] removeChild:self cleanup:FALSE];
 }
 
+-(CGPoint)getRotatedPoints:(int)radius startPoint:(CGPoint)start Angle:(float)angle {
+	float x = start.x+radius*sin(angle*3.14159265/180);
+	float y = start.y+radius*cos(angle*3.14159265/180);
+	CGPoint newPoint = ccp(x,y);
+	return newPoint;
+}
+
 -(void)shoot
 {
 	if (!isDying){
-	[self setTexture:frontSpriteShoot];
-	[self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.1],
-					 [CCCallFunc actionWithTarget:self selector:@selector(stopShooting)],nil]];
+		float lrot = (CCRANDOM_0_1()*-180);
+		float rrot = -1*lrot;
+		float bscale = (CCRANDOM_0_1()*2);
+		if ([self rotation]<0) {
+			lrot = lrot - [self rotation] - [self rotation];
+			rrot = rrot - [self rotation];
+		}
+		if ([self rotation]>0) {
+			lrot = lrot - [self rotation];
+			rrot = rrot + [self rotation];
+		}
+		
+		[[[self parent]parent]enemyPlaneBulletWithPosition:
+		 [self getRotatedPoints:35 startPoint:ccpAdd([self position],ccp(0,-9)) Angle:[self rotation]-90]
+											   withBulletRotation: (int)lrot								  
+												  withScale:self.scaleX
+														andBulletScale:bscale];
+		[[[self parent]parent]enemyPlaneBulletWithPosition:
+		 [self getRotatedPoints:35 startPoint:ccpAdd([self position],ccp(0,-9)) Angle:[self rotation]-270]
+										withBulletRotation: (int)rrot								  
+												  withScale:self.scaleX
+														andBulletScale:bscale];
+		
+		[self setTexture:frontSpriteShoot];
+		[self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.1],
+						 [CCCallFunc actionWithTarget:self selector:@selector(stopShooting)],nil]];
+		
 	}
 }
 
 -(void)stopShooting
 {
+
 	if (!isDying){
 	[self setTexture:frontSprite];
 	}
@@ -182,7 +215,7 @@ BOOL isDying;
 	
 	shootTime -= dt*CCRANDOM_0_1()*300;
 	if (shootTime<=0) {
-		shootTime = 100;
+		shootTime = 50;
 		if(self.texture == frontSprite)
 		[self shoot];
 	}

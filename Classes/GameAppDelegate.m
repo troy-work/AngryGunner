@@ -8,6 +8,7 @@
 
 #import "GameAppDelegate.h"
 #import "Splash.h"
+#import "Game.h"
 
 
 @interface GameAppDelegate (PrivateMethods)
@@ -72,7 +73,7 @@
 	
 	
 
-	[[CCDirector sharedDirector] runWithScene: [Splash scene]];		
+	[[CCDirector sharedDirector] runWithScene: [Game scene]];		
 }
 
 - (void)applicationWillTerminate:(UIApplication*)application

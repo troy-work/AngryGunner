@@ -301,6 +301,30 @@ float planeCountDown;
 	[bullets removeChild:flash2 cleanup:TRUE];
 }
 
+-(void)enemyPlaneBulletWithPosition:(CGPoint)bpos 
+				 withBulletRotation:(int)brot 
+						   withScale:(float)planeScale 
+								andBulletScale:(float)bscale
+{
+	
+	CCSprite *bl = [CCSprite spriteWithFile:@"enemyBullet.png"];
+	[bl setOpacity: 50];
+	[bl setScaleY: bscale];
+	[bl setAnchorPoint:ccp(.5,0)];
+	[bl setRotation:brot];
+	[bl setPosition:bpos];
+	[[self friendsLayer]addChild:bl];
+	[bl runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.1],
+				   [CCCallFuncN actionWithTarget:self 
+										selector:@selector(killEnemyBullet:)],nil]];
+	
+}
+
+-(void)killEnemyBullet:(CCSprite *)sender
+{
+	[[self friendsLayer] removeChild:sender cleanup:TRUE];
+}
+
 -(void) onEnter
 {
 	
