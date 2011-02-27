@@ -18,4 +18,6 @@
 @property (assign,nonatomic) CCLayer *planes;
 @property (assign,nonatomic) CCLayer *bullets;
 @property (assign,nonatomic) CCLayer *friendsLayer;
+@property (assign,nonatomic) CCLayer *gunner;
+
 @end

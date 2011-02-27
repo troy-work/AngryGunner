@@ -183,12 +183,12 @@ CCTexture2D *enemyBullet;
 		}
 		
 		[[[self parent]parent]enemyPlaneBulletWithPosition:
-		 [self getRotatedPoints:35 startPoint:ccpAdd([self position],ccp(0,-9)) Angle:[self rotation]-90]
+		 [self getRotatedPoints:32 startPoint:ccpAdd([self position],ccp(0,-6)) Angle:[self rotation]-90]
 											   withBulletRotation: (int)lrot								  
 												  withScale:self.scaleX
 														andBulletScale:bscale];
 		[[[self parent]parent]enemyPlaneBulletWithPosition:
-		 [self getRotatedPoints:35 startPoint:ccpAdd([self position],ccp(0,-9)) Angle:[self rotation]-270]
+		 [self getRotatedPoints:32 startPoint:ccpAdd([self position],ccp(0,-6)) Angle:[self rotation]-270]
 										withBulletRotation: (int)rrot								  
 												  withScale:self.scaleX
 														andBulletScale:bscale];

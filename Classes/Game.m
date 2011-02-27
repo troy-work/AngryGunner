@@ -20,7 +20,6 @@ float x;
 float y;
 CCLayer *bgLayer;
 
-CCLayer *gunner;
 Waves *waves;
 CCSprite *gun;
 CCSprite *leftShield;
@@ -38,6 +37,7 @@ float planeCountDown;
 @synthesize planes;
 @synthesize bullets;
 @synthesize friendsLayer;
+@synthesize gunner;
 
 +(id)scene{
 	// 'scene' is an autorelease object.
@@ -301,6 +301,14 @@ float planeCountDown;
 	[bullets removeChild:flash2 cleanup:TRUE];
 }
 
+-(CGPoint)getRotatedPoints:(int)radius startPoint:(CGPoint)start Angle:(float)angle {
+	float x = start.x+radius*sin(angle*3.14159265/180);
+	float y = start.y+radius*cos(angle*3.14159265/180);
+	CGPoint newPoint = ccp(x,y);
+	return newPoint;
+}
+
+
 -(void)enemyPlaneBulletWithPosition:(CGPoint)bpos 
 				 withBulletRotation:(int)brot 
 						   withScale:(float)planeScale 
@@ -308,7 +316,7 @@ float planeCountDown;
 {
 	
 	CCSprite *enemyBullet = [CCSprite spriteWithFile:@"enemyBullet.png"];
-	[enemyBullet setOpacity: 20];
+	[enemyBullet setOpacity: 60];
 	[enemyBullet setScaleY: bscale];
 	[enemyBullet setAnchorPoint:ccp(.5,0)];
 	[enemyBullet setRotation:brot];
@@ -318,7 +326,27 @@ float planeCountDown;
 				   [CCCallFuncN actionWithTarget:self 
 										selector:@selector(killEnemyBullet:)],nil]];
 	
+	CGPoint p = [self getRotatedPoints:enemyBullet.contentSize.height*bscale startPoint:bpos Angle: brot];
+		
+	if (x+p.x>100&&x+p.x<380) {
+		if (y+p.y>60&&y+p.y<260){
+			CCSprite *bulletHole = [CCSprite spriteWithFile:@"bullethole.png"];
+			[bulletHole setOpacity:150];
+			[bulletHole setAnchorPoint:ccp(.5,.5)];
+			[bulletHole setPosition:ccp(x+p.x,y+p.y)];
+			[[self gunner] addChild:bulletHole];
+			[bulletHole runAction:[CCSequence actions:[CCDelayTime actionWithDuration:1],
+									[CCCallFuncN actionWithTarget:self 
+														 selector:@selector(killBulletHole:)],nil]];
+		}
+	}
 }
+
+-(void)killBulletHole:(CCSprite *)sender
+{
+	[[self gunner] removeChild:sender cleanup:TRUE];
+}
+
 
 -(void)killEnemyBullet:(CCSprite *)sender
 {
