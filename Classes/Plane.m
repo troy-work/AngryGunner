@@ -21,11 +21,11 @@ CCTexture2D *turnSprite;
 float randomX;
 CCTexture2D *smoke;
 float shootTime;
-BOOL isDying;
 CCTexture2D *enemyBullet;
 
 @synthesize zIndex;
 @synthesize hitCount;
+@synthesize isDying;
 
 -(id)init 
 {
@@ -118,9 +118,7 @@ CCTexture2D *enemyBullet;
 	endColor.g = 0.1f;
 	endColor.b = 0.1f;
 	endColor.a = 0.2f;
-	
-	
-	
+			
 	CCParticleSun *s = [CCParticleSun node];
 	[s setTexture:smoke];
 	[s setScale:[self scaleY]];
@@ -131,9 +129,8 @@ CCTexture2D *enemyBullet;
 	[s setEndColor:endColor];
 	[s setPositionType:kCCPositionTypeGrouped];
 	[[[[self parent]parent]friendsLayer] addChild:s];
-	[s release];
 
-	CCParticleExplosion *e =[CCParticleExplosion node];
+	CCParticleExplosion *e = [CCParticleExplosion node];
 	[e setScale:[self scaleY]];
 	[e setPosition:[self position]];
 	[e setLife:.05];
@@ -148,9 +145,7 @@ CCTexture2D *enemyBullet;
 	[e setPositionType:kCCPositionTypeGrouped];
 	[e setEndColor:endColor];
 	[[[[self parent]parent]friendsLayer] addChild:e];
-	[e release];
-	
-	
+		
 	[self kill];
 }
 
@@ -170,7 +165,7 @@ CCTexture2D *enemyBullet;
 -(void)shoot
 {
 	if (!isDying){
-		float lrot = (CCRANDOM_0_1()*-180);
+		float lrot = (CCRANDOM_0_1()*-120)-40;
 		float rrot = -1*lrot;
 		float bscale = (CCRANDOM_0_1()*2);
 		if ([self rotation]<0) {
@@ -240,9 +235,7 @@ CCTexture2D *enemyBullet;
 		endColor.a = 0.8f;
 		[s setEndColor:endColor];
 		[s setPositionType:kCCPositionTypeGrouped];
-		[[[[self parent]parent]friendsLayer] addChild:s];
-		[s release];
-		
+		[[[[self parent]parent]friendsLayer] addChild:s];		
 	}
 	
 }

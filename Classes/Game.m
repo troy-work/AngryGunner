@@ -12,6 +12,7 @@
 #import "Bullet.h"
 #import "CCTouchDispatcher.h"
 #import "Plane.h"
+#import "Splash.h"
 
 @implementation Game
 
@@ -32,6 +33,8 @@ CCSprite *flash;
 CCSprite *flash2;
 CCSprite *healthBar;
 CCSprite *healthFrame;
+CCSprite *brokenGlass;
+
 
 CCSprite* fireBurst;
 float planeCountDown;
@@ -147,7 +150,7 @@ float planeCountDown;
 		CGPoint healthPosition = ccp(5,315);
 		
 		healthBar = [CCSprite spriteWithFile:@"health.png"];
-		[healthBar setPosition:ccpAdd(healthPosition,ccp(18,-3.5))];
+		[healthBar setPosition:ccpAdd(healthPosition,ccp(18,-4))];
 		[healthBar setAnchorPoint:ccp(0,1)];
 		[self addChild:healthBar];
 		
@@ -196,20 +199,49 @@ float planeCountDown;
 		
 		[self addChild:gunner];
 		
+		brokenGlass = [CCSprite spriteWithFile:@"crackedglass.png"];
+		[brokenGlass setAnchorPoint:ccp(.5,.5)];
+		[brokenGlass setPosition:ccp(240,160)];
+		[brokenGlass setOpacity:0];
+		[self addChild:brokenGlass];
+		
 		planeCountDown = 0;
 		
 		[self schedule:@selector(step:)];
 		x = 0;
 		y = 0;
+		
+		
 	}
 	
 	return self;	
 }
 
+-(void)kill
+{
+	[self unschedule:@selector(step:)];
+	for (Plane *p in [[self planes] children]){
+		[p setIsDying:TRUE];
+		[p unschedule:@selector(step:)];
+		[[self planes] removeAllChildrenWithCleanup:FALSE];
+	}
+	
+	[[CCDirector sharedDirector] replaceScene:[Splash node]];
+	
+}
+
+
 -(void)step:(ccTime)dt{
 	
 	[healthBar setScaleX:health/100];
-		
+	
+	if (health<=0) {
+		[self kill];
+	}
+
+	if (health<30){
+		[brokenGlass setOpacity:(int)(255-(health*8.5))];
+	}
 	float xx = jstick.velocity.x*jstick.velocity.x*jstick.velocity.x;
 	float yy = jstick.velocity.y*jstick.velocity.y*jstick.velocity.y;
 	
@@ -272,6 +304,7 @@ float planeCountDown;
 	[fireBurst setOpacity:(isShooting)?255:0];
 	[planes setPosition:[friendsLayer position]];
 }
+
 
 -(void)fireBullets
 {

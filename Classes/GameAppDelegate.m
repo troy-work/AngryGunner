@@ -73,7 +73,7 @@
 	
 	
 
-	[[CCDirector sharedDirector] runWithScene: [Game scene]];		
+	[[CCDirector sharedDirector] runWithScene: [Splash scene]];		
 }
 
 - (void)applicationWillTerminate:(UIApplication*)application
