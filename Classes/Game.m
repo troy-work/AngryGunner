@@ -246,7 +246,12 @@ float planeCountDown;
 	float xx = jstick.velocity.x*jstick.velocity.x*jstick.velocity.x;
 	float yy = jstick.velocity.y*jstick.velocity.y*jstick.velocity.y;
 	
-	
+	if (xx==0){
+		if (x<-1024+480)
+			x += 400*dt;
+		if (x>1024-480)
+			x-=400*dt;
+	}
 	planeCountDown -=100*dt;
 	if (planeCountDown<1) {
 		planeCountDown = 500;
@@ -448,7 +453,7 @@ float planeCountDown;
 				isShooting=FALSE;
 			}
 		}
-	}	
+	}
 }
 
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
