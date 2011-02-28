@@ -326,6 +326,10 @@
 		FC666B30130B7DA900358A37 /* Joystick.m in Sources */ = {isa = PBXBuildFile; fileRef = FC666B2D130B7DA900358A37 /* Joystick.m */; };
 		FC6CF0EE1319B1F300EE91E4 /* enemyBullet-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FC6CF0EC1319B1F300EE91E4 /* enemyBullet-hd.png */; };
 		FC6CF0EF1319B1F300EE91E4 /* enemyBullet.png in Resources */ = {isa = PBXBuildFile; fileRef = FC6CF0ED1319B1F300EE91E4 /* enemyBullet.png */; };
+		FC6CF6F1131B420A00EE91E4 /* 321impact.fnt in Resources */ = {isa = PBXBuildFile; fileRef = FC6CF6EF131B420A00EE91E4 /* 321impact.fnt */; };
+		FC6CF6F2131B420A00EE91E4 /* 321impact.png in Resources */ = {isa = PBXBuildFile; fileRef = FC6CF6F0131B420A00EE91E4 /* 321impact.png */; };
+		FC6CF729131B54BC00EE91E4 /* 321impact-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = FC6CF727131B54BC00EE91E4 /* 321impact-hd.fnt */; };
+		FC6CF72A131B54BC00EE91E4 /* 321impact-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FC6CF728131B54BC00EE91E4 /* 321impact-hd.png */; };
 		FC79227A130CB40E000B60FB /* backgroundright-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FC792276130CB40E000B60FB /* backgroundright-hd.png */; };
 		FC79227B130CB40E000B60FB /* backgroundright.png in Resources */ = {isa = PBXBuildFile; fileRef = FC792277130CB40E000B60FB /* backgroundright.png */; };
 		FC911F131318B5B0009C37A9 /* fire-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FC911F111318B5B0009C37A9 /* fire-hd.png */; };
@@ -677,6 +681,10 @@
 		FC666B2D130B7DA900358A37 /* Joystick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Joystick.m; path = Controls/Joystick.m; sourceTree = "<group>"; };
 		FC6CF0EC1319B1F300EE91E4 /* enemyBullet-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enemyBullet-hd.png"; sourceTree = "<group>"; };
 		FC6CF0ED1319B1F300EE91E4 /* enemyBullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemyBullet.png; sourceTree = "<group>"; };
+		FC6CF6EF131B420A00EE91E4 /* 321impact.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 321impact.fnt; sourceTree = "<group>"; };
+		FC6CF6F0131B420A00EE91E4 /* 321impact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 321impact.png; sourceTree = "<group>"; };
+		FC6CF727131B54BC00EE91E4 /* 321impact-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "321impact-hd.fnt"; sourceTree = "<group>"; };
+		FC6CF728131B54BC00EE91E4 /* 321impact-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "321impact-hd.png"; sourceTree = "<group>"; };
 		FC792276130CB40E000B60FB /* backgroundright-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backgroundright-hd.png"; sourceTree = "<group>"; };
 		FC792277130CB40E000B60FB /* backgroundright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundright.png; sourceTree = "<group>"; };
 		FC911F111318B5B0009C37A9 /* fire-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fire-hd.png"; sourceTree = "<group>"; };
@@ -900,6 +908,7 @@
 		50F4144210692EE7002A0D5E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FC6CF6ED131B41B400EE91E4 /* Font */,
 				FC6CF0EC1319B1F300EE91E4 /* enemyBullet-hd.png */,
 				FC6CF0ED1319B1F300EE91E4 /* enemyBullet.png */,
 				FCBAF57D1314ABA5006EAD9C /* Planes */,
@@ -1270,6 +1279,17 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		FC6CF6ED131B41B400EE91E4 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				FC6CF727131B54BC00EE91E4 /* 321impact-hd.fnt */,
+				FC6CF728131B54BC00EE91E4 /* 321impact-hd.png */,
+				FC6CF6EF131B420A00EE91E4 /* 321impact.fnt */,
+				FC6CF6F0131B420A00EE91E4 /* 321impact.png */,
+			);
+			name = Font;
+			sourceTree = "<group>";
+		};
 		FCBAF57D1314ABA5006EAD9C /* Planes */ = {
 			isa = PBXGroup;
 			children = (
@@ -1601,6 +1621,10 @@
 				FC911F421318CAA9009C37A9 /* brownplanefrontshoot.png in Resources */,
 				FC6CF0EE1319B1F300EE91E4 /* enemyBullet-hd.png in Resources */,
 				FC6CF0EF1319B1F300EE91E4 /* enemyBullet.png in Resources */,
+				FC6CF6F1131B420A00EE91E4 /* 321impact.fnt in Resources */,
+				FC6CF6F2131B420A00EE91E4 /* 321impact.png in Resources */,
+				FC6CF729131B54BC00EE91E4 /* 321impact-hd.fnt in Resources */,
+				FC6CF72A131B54BC00EE91E4 /* 321impact-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

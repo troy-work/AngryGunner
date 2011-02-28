@@ -22,20 +22,24 @@ float randomX;
 CCTexture2D *smoke;
 float shootTime;
 CCTexture2D *enemyBullet;
+float lastRotate;
 
 @synthesize zIndex;
 @synthesize hitCount;
 @synthesize isDying;
+@synthesize points;
 
 -(id)init 
 {
 	if ((self = [super init])) {
 		zIndex = 200;
 		indexZ = 200;
-		randomX = CCRANDOM_0_1()*300;
-		randomX += 660;
+		randomX = CCRANDOM_0_1()*1280;
+		randomX = -440 + randomX + 660;
 		shootTime = 100;
 		isDying=FALSE;
+		points = 500;
+		lastRotate = (CCRANDOM_0_1()*-120)-40;
 		bottomSprite = [[CCTextureCache sharedTextureCache] addImage:@"brownplanebottom.png"];
 		frontSprite = [[CCTextureCache sharedTextureCache] addImage:@"brownplanefront.png"];
 		frontSpriteShoot = [[CCTextureCache sharedTextureCache] addImage:@"brownplanefrontshoot.png"];
@@ -78,6 +82,7 @@ CCTexture2D *enemyBullet;
 
 -(void)front
 {
+	self.points = 300;
 	[self setScaleX:[self scaleY]];
 	[self setTexture:frontSprite];
 	[self setRotation:45];
@@ -166,6 +171,21 @@ CCTexture2D *enemyBullet;
 {
 	if (!isDying){
 		float lrot = (CCRANDOM_0_1()*-120)-40;
+		float diff = abs((int)(lrot-lastRotate));
+		if (diff>5) {
+			if (lrot>lastRotate) {
+				lrot+=lastRotate+5;
+			} else {
+				lrot-=lastRotate-5;
+			}
+			if (lrot<-120) {
+				lrot=-120;
+			}
+			if (lrot>-40) {
+				lrot=-40;
+			}
+		}		
+		lastRotate = lrot;
 		float rrot = -1*lrot;
 		float bscale = (CCRANDOM_0_1()*2);
 		if ([self rotation]<0) {
@@ -207,6 +227,9 @@ CCTexture2D *enemyBullet;
 {
 	[self setZIndex:200-(50*[self scaleY])];
 	
+	if (zIndex<100) {
+		self.points = 100;
+	}
 	
 	shootTime -= dt*CCRANDOM_0_1()*300;
 	if (shootTime<=0) {

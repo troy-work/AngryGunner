@@ -8,6 +8,7 @@
 
 #import "Bullet.h"
 #import "Plane.h"
+#import "Game.h"
 
 @implementation Bullet
 
@@ -60,11 +61,38 @@ CCAction *move;
 //					CCLOG(@"Self y: %d",self.position.y);
 //					CCLOG(@"ty: %d",ty);
 //					CCLOG(@"by: %d",by);
-					p.hitCount += 1;
-					if (p.hitCount>2) {
-						[p die];
-					[[self parent] removeChild:self cleanup:TRUE];
-					}
+				
+				int score = p.points;
+				
+				if (score==500) {
+					score = 1000;
+				}
+
+				CCLabelBMFont *bonus = [CCLabelBMFont labelWithString:
+						[NSString stringWithFormat:@"%i",score]									   
+								fntFile:@"321impact.fnt"];
+				
+				// testing anchors
+				float xx = [(Game *)[[self parent]parent] x];
+				float yy = [(Game *)[[self parent]parent] y];
+				
+				CGPoint bp = ccpAdd(p.position, ccp(xx,yy));
+				
+				bonus.anchorPoint = ccp(.5,0);
+				[bonus setPosition:bp];
+				[bonus setScale:.5];
+				[bonus runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.5],
+								  [CCCallFuncN actionWithTarget:[[self parent] parent] 
+													   selector:@selector(killSprite:)],nil]];
+				[[[self parent] parent] addChild:bonus z:0];
+				
+				
+				
+				p.hitCount += 1;
+				if (p.hitCount>2) {
+					[p die];
+				[[self parent] removeChild:self cleanup:TRUE];
+				}
 			}
 		}
 				

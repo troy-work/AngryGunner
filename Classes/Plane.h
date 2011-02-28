@@ -16,6 +16,7 @@
 @property (assign,nonatomic) int zIndex;
 @property (assign,nonatomic) int hitCount;
 @property (assign,nonatomic) BOOL isDying;
+@property (assign,nonatomic) int points;
 
 -(void)die;
 -(void)kill;

@@ -20,5 +20,7 @@
 @property (assign,nonatomic) CCLayer *friendsLayer;
 @property (assign,nonatomic) CCLayer *gunner;
 @property (assign,nonatomic) float health;
+@property (assign,nonatomic) float x;
+@property (assign,nonatomic) float y;
 
 @end

@@ -14,11 +14,10 @@
 #import "Plane.h"
 #import "Splash.h"
 
+
 @implementation Game
 
 Joystick *jstick;
-float x;
-float y;
 CCLayer *bgLayer;
 
 Waves *waves;
@@ -44,6 +43,8 @@ float planeCountDown;
 @synthesize friendsLayer;
 @synthesize gunner;
 @synthesize health;
+@synthesize x;
+@synthesize y;
 
 +(id)scene{
 	// 'scene' is an autorelease object.
@@ -204,7 +205,7 @@ float planeCountDown;
 		[brokenGlass setPosition:ccp(240,160)];
 		[brokenGlass setOpacity:0];
 		[self addChild:brokenGlass];
-		
+				
 		planeCountDown = 0;
 		
 		[self schedule:@selector(step:)];
@@ -225,7 +226,7 @@ float planeCountDown;
 		[p unschedule:@selector(step:)];
 		[[self planes] removeAllChildrenWithCleanup:FALSE];
 	}
-	
+	isShooting=FALSE;
 	[[CCDirector sharedDirector] replaceScene:[Splash node]];
 	
 }
@@ -367,13 +368,13 @@ float planeCountDown;
 {
 	
 	CCSprite *enemyBullet = [CCSprite spriteWithFile:@"enemyBullet.png"];
-	[enemyBullet setOpacity: 60];
+	[enemyBullet setOpacity: 25];
 	[enemyBullet setScaleY: bscale];
 	[enemyBullet setAnchorPoint:ccp(.5,0)];
 	[enemyBullet setRotation:brot];
 	[enemyBullet setPosition:bpos];
 	[[self friendsLayer]addChild:enemyBullet];
-	[enemyBullet runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.1],
+	[enemyBullet runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.05],
 				   [CCCallFuncN actionWithTarget:self 
 										selector:@selector(killEnemyBullet:)],nil]];
 	
@@ -469,6 +470,10 @@ float planeCountDown;
 	isShooting = testShooting;
 }
 
+-(void)killSprite:(id)sender
+{
+	[self removeChild:sender cleanup:FALSE];
+}
 
 -(void)startScene:(id)sender
 {		
