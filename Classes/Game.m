@@ -341,6 +341,7 @@ float planeCountDown;
 		CGPoint sbp = [self getRotatedPoints:(int)sby startPoint:ccp(240,10) Angle:sbx];
 		[sb setAnchorPoint:ccp(.5,.5)];
 		[sb setPosition:sbp];
+		[sb setScale:1-p.position.y/1300];
 		[blips addChild:sb];
 	}
 }
