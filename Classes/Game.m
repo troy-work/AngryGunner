@@ -33,7 +33,7 @@ CCSprite *flash2;
 CCSprite *healthBar;
 CCSprite *healthFrame;
 CCSprite *brokenGlass;
-
+CCLayer *blips;
 
 CCSprite* fireBurst;
 float planeCountDown;
@@ -45,6 +45,7 @@ float planeCountDown;
 @synthesize health;
 @synthesize x;
 @synthesize y;
+@synthesize radar;
 
 +(id)scene{
 	// 'scene' is an autorelease object.
@@ -208,6 +209,15 @@ float planeCountDown;
 				
 		planeCountDown = 0;
 		
+		radar = [CCSprite spriteWithFile:@"radar.png"];
+		[radar setOpacity:100];
+		[radar setAnchorPoint:ccp(.5,.5)];
+		[radar setPosition:ccp(240,10)];
+		[self addChild:radar];
+		
+		blips = [CCLayer node];
+		[self addChild:blips];
+		
 		[self schedule:@selector(step:)];
 		x = 0;
 		y = 0;
@@ -321,6 +331,18 @@ float planeCountDown;
 
 	[fireBurst setOpacity:(isShooting)?255:0];
 	[planes setPosition:[friendsLayer position]];
+	
+	[blips removeAllChildrenWithCleanup:TRUE];
+	
+	for (Plane *p in [planes children]){
+		CCSprite *sb = [CCSprite spriteWithFile:@"radarblip.png"];
+		float sbx = (90*(p.position.x+x) /2048)-10;
+		float sby = p.zIndex*.25;
+		CGPoint sbp = [self getRotatedPoints:(int)sby startPoint:ccp(240,10) Angle:sbx];
+		[sb setAnchorPoint:ccp(.5,.5)];
+		[sb setPosition:sbp];
+		[blips addChild:sb];
+	}
 }
 
 
@@ -371,9 +393,9 @@ float planeCountDown;
 }
 
 -(CGPoint)getRotatedPoints:(int)radius startPoint:(CGPoint)start Angle:(float)angle {
-	float x = start.x+radius*sin(angle*3.14159265/180);
-	float y = start.y+radius*cos(angle*3.14159265/180);
-	CGPoint newPoint = ccp(x,y);
+	float xx = start.x+radius*sin(angle*3.14159265/180);
+	float yy = start.y+radius*cos(angle*3.14159265/180);
+	CGPoint newPoint = ccp(xx,yy);
 	return newPoint;
 }
 

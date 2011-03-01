@@ -15,6 +15,8 @@
 
 +(id)scene;
 -(void)fireBullets;
+-(CGPoint)getRotatedPoints:(int)radius startPoint:(CGPoint)start Angle:(float)angle;
+
 @property (assign,nonatomic) CCLayer *planes;
 @property (assign,nonatomic) CCLayer *bullets;
 @property (assign,nonatomic) CCLayer *friendsLayer;
@@ -22,5 +24,6 @@
 @property (assign,nonatomic) float health;
 @property (assign,nonatomic) float x;
 @property (assign,nonatomic) float y;
+@property (assign,nonatomic) CCSprite *radar;
 
 @end
