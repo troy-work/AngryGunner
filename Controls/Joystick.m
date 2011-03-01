@@ -132,7 +132,7 @@
 
 	// If necessary, normalize the velocity vector relative to the travel limits
 	CGFloat rawVelLen = ccpLength(rawVelocity);
-	velocity = (rawVelLen <= 1.0) ? rawVelocity : ccpMult(rawVelocity, 1.0f/rawVelLen);
+	velocity = (rawVelLen <= 3.0) ? rawVelocity : ccpMult(rawVelocity, 3.0f/rawVelLen);
 		
 	
 	// Calculate the vector in angular coordinates

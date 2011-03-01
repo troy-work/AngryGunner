@@ -243,8 +243,21 @@ float planeCountDown;
 	if (health<30){
 		[brokenGlass setOpacity:(int)(255-(health*8.5))];
 	}
-	float xx = jstick.velocity.x*jstick.velocity.x*jstick.velocity.x;
-	float yy = jstick.velocity.y*jstick.velocity.y*jstick.velocity.y;
+	float xx = (jstick.velocity.x);
+	float yy = (jstick.velocity.y);
+	
+	if (xx>.7||xx<.7) {
+		xx = xx* 1.5;
+		if (xx>1.5||xx<-1.5) {
+			xx= xx*10;
+		}
+	}
+	if (yy>.7||yy<-.7) {
+		yy = yy* 1.5;
+		if (yy>1.5||yy<-1.5) {
+			yy= yy*10;
+		}
+	}
 	
 	if (xx==0){
 		if (x<-1024+480)
@@ -261,9 +274,8 @@ float planeCountDown;
 		[plane release];
 	}
 	
-	
-	x = x - xx*dt*400;
-	y = y - yy*dt*400;
+	x = x - xx*dt*10;
+	y = y - yy*dt*10;
 	float staticX = 0;
 	
 	if (y>0) {
@@ -373,7 +385,7 @@ float planeCountDown;
 {
 	
 	CCSprite *enemyBullet = [CCSprite spriteWithFile:@"enemyBullet.png"];
-	[enemyBullet setOpacity: 25];
+	[enemyBullet setOpacity: 50];
 	[enemyBullet setScaleY: bscale];
 	[enemyBullet setAnchorPoint:ccp(.5,0)];
 	[enemyBullet setRotation:brot];
