@@ -8,7 +8,7 @@
 
 #import "Splash.h"
 #import "SimpleAudioEngine.h"
-#import "Game.h"
+#import "Start.h"
 
 @implementation Splash
 
@@ -59,7 +59,7 @@
 
 -(void)startScene:(id)sender
 {		
-	[[CCDirector sharedDirector] replaceScene:[Game node]];	
+	[[CCDirector sharedDirector] replaceScene:[Start scene]];	
 }
 
 

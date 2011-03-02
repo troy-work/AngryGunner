@@ -237,7 +237,7 @@ float planeCountDown;
 		[[self planes] removeAllChildrenWithCleanup:FALSE];
 	}
 	isShooting=FALSE;
-	[[CCDirector sharedDirector] replaceScene:[Splash node]];
+	[[CCDirector sharedDirector] replaceScene:[Splash scene]];
 	
 }
 
