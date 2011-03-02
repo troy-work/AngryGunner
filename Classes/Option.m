@@ -15,7 +15,8 @@
 CCSprite *difficulty;
 CCSprite *redCheck;
 CCSprite *torpedo;
-
+CGPoint diffPosition;
+CGPoint torpPosition;
 +(id)scene{
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
@@ -37,6 +38,11 @@ CCSprite *torpedo;
 		[LevelData loadState];
 		[LevelData sharedLevelData];
 		
+		
+		diffPosition = ccp(210,210);
+		torpPosition = ccp(210,132);
+
+		
 		CCSprite *bg = [CCSprite spriteWithFile:@"optionsscreen.png"];
 		[bg setAnchorPoint:ccp(0,0)];
 		
@@ -54,25 +60,30 @@ CCSprite *torpedo;
 		[self addChild:torpedo];
 		
 		CCMenuItem *home = [CCMenuItemFont itemFromString:@"HOME" target:self selector:@selector(goHome:)];
-		CCMenuItem *difficult = [CCMenuItemFont itemFromString:@"DESERT" target:self selector:@selector(goDifficulty:)];
-		CCMenuItem *torp = [CCMenuItemFont itemFromString:@"MOUNTA" target:self selector:@selector(goTorpedo:)];
-		CCMenuItem *difficult2 = [CCMenuItemFont itemFromString:@"DESERT" target:self selector:@selector(goDifficulty:)];
-		CCMenuItem *torp2 = [CCMenuItemFont itemFromString:@"MOUNTA" target:self selector:@selector(goTorpedo:)];
-//		CCMenuItem *playerBlue = [CCMenuItemFont itemFromString:@"BLUEPLANE" target:self selector:@selector(bluePlane)];
-//		CCMenuItem *playerGreen = [CCMenuItemFont itemFromString:@"BROWNPLANE" target:self selector:@selector(greenPlane)];
-//		CCMenuItem *playerWhite = [CCMenuItemFont itemFromString:@"PINKPLANE" target:self selector:@selector(whitePlane)];
+		CCMenuItem *difficult = [CCMenuItemFont itemFromString:@"DIFFICULTY" target:self selector:@selector(goDifficulty:)];
+		CCMenuItem *difficult2 = [CCMenuItemFont itemFromString:@"DIFFICULTY" target:self selector:@selector(goDifficulty:)];
+		CCMenuItem *difficultOff = [CCMenuItemFont itemFromString:@"DIFFICULTY" target:self selector:@selector(goDifficultyOff:)];
+		CCMenuItem *difficult2Off = [CCMenuItemFont itemFromString:@"DIFFICULTY" target:self selector:@selector(goDifficultyOff:)];
+		CCMenuItem *torp = [CCMenuItemFont itemFromString:@"TORPEDOS" target:self selector:@selector(goTorpedo:)];
+		CCMenuItem *torp2 = [CCMenuItemFont itemFromString:@"TORPEDOS" target:self selector:@selector(goTorpedo:)];
+		CCMenuItem *torpOff = [CCMenuItemFont itemFromString:@"TORPEDOS" target:self selector:@selector(goTorpedoOff:)];
+		CCMenuItem *torp2Off = [CCMenuItemFont itemFromString:@"TORPEDOS" target:self selector:@selector(goTorpedoOff:)];
 		
 		
-		home.position = ccp(0,0);
-		difficult.position = ccp(280,-180);
-		torp.position = ccp(390,-180);
-		difficult2.position = ccp(280,-210);
-		torp2.position = ccp(390,-210);
+		home.position = ccp(10,295);
+		difficult.position = ccp(160,189);
+		difficult2.position = ccp(160,213);
+		difficultOff.position = ccp(320,189);
+		difficult2Off.position = ccp(320,213);
+		torp.position = ccp(160,107);
+		torp2.position = ccp(160,132);
+		torpOff.position = ccp(320,107);
+		torp2Off.position = ccp(320,132);
 		
 		
-		CCMenu *menu = [CCMenu menuWithItems: home,difficult,difficult2,torp,torp2,nil];
+		CCMenu *menu = [CCMenu menuWithItems: home,difficult,difficult2,torp,torp2,difficultOff,difficult2Off,torpOff,torp2Off,nil];
 		
-		menu.position = ccp(10,295);
+		menu.position = ccp(0,0);
 		menu.opacity=0;
 		[self addChild:menu];
 		[self placeDifficulty]; 
@@ -87,15 +98,14 @@ CCSprite *torpedo;
 {
 	
 	difficulty.opacity = 0;
-		difficulty.position = ccp(120,115);
+	[difficulty setPosition:diffPosition];
 		difficulty.opacity = 255;
 }
 
 -(void)placeTorpedo
 {
 	[torpedo setOpacity:0];
-	
-		torpedo.position = ccp(120,210);
+	[torpedo setPosition:torpPosition];
 		[torpedo setOpacity:255];
 	
 }
@@ -110,12 +120,28 @@ CCSprite *torpedo;
 -(void)goDifficulty:(id)sender
 {
 //	[[LevelData sharedLevelData] setBackGround:@"DesertSky.jpg"];
+	diffPosition = ccp(210,210);
+	[self placeDifficulty]; 
+	[LevelData saveState];
+}
+-(void)goDifficultyOff:(id)sender
+{
+	//	[[LevelData sharedLevelData] setBackGround:@"DesertSky.jpg"];
+	diffPosition = ccp(360,210);
 	[self placeDifficulty]; 
 	[LevelData saveState];
 }
 -(void)goTorpedo:(id)sender
 {
 //	[[LevelData sharedLevelData] setBackGround:@"MountainSky.jpg"];
+	torpPosition = ccp(210,132);
+	[self placeTorpedo]; 
+	[LevelData saveState];
+}
+-(void)goTorpedoOff:(id)sender
+{
+	//	[[LevelData sharedLevelData] setBackGround:@"MountainSky.jpg"];
+	torpPosition = ccp(360,132);
 	[self placeTorpedo]; 
 	[LevelData saveState];
 }
