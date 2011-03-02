@@ -8,6 +8,7 @@
 
 #import "Start.h"
 #import "Game.h"
+#import "Option.h"
 
 
 @implementation Start
@@ -68,7 +69,7 @@
 
 -(void)viewOptions:(id)sender
 {	
-//	[[CCDirector sharedDirector] replaceScene:[OptionsScene scene]];	
+	[[CCDirector sharedDirector] replaceScene:[Option scene]];	
 }
 
 -(void)startGame:(id)sender

@@ -354,6 +354,11 @@
 		FCFFECF5131DD5610090F6E5 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCFFECF4131DD5610090F6E5 /* MediaPlayer.framework */; };
 		FCFFECF7131DD5B40090F6E5 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCFFECF6131DD5B40090F6E5 /* GameKit.framework */; };
 		FCFFED18131DE0760090F6E5 /* Start.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFFED17131DE0760090F6E5 /* Start.m */; };
+		FCFFEED4131DE8540090F6E5 /* Option.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFFEED3131DE8540090F6E5 /* Option.m */; };
+		FCFFEED6131DEA500090F6E5 /* GreenCheck-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FCFFEED5131DEA500090F6E5 /* GreenCheck-hd.png */; };
+		FCFFEED8131DEA810090F6E5 /* RedCheck-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FCFFEED7131DEA810090F6E5 /* RedCheck-hd.png */; };
+		FCFFEF0F131DF1370090F6E5 /* GreenCheck.png in Resources */ = {isa = PBXBuildFile; fileRef = FCFFEF0E131DF1370090F6E5 /* GreenCheck.png */; };
+		FCFFEF12131DF1500090F6E5 /* RedCheck.png in Resources */ = {isa = PBXBuildFile; fileRef = FCFFEF11131DF1500090F6E5 /* RedCheck.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -727,6 +732,14 @@
 		FCFFECF6131DD5B40090F6E5 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		FCFFED16131DE0760090F6E5 /* Start.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Start.h; sourceTree = "<group>"; };
 		FCFFED17131DE0760090F6E5 /* Start.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Start.m; sourceTree = "<group>"; };
+		FCFFED3A131DE4A80090F6E5 /* GameCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterManager.h; sourceTree = "<group>"; };
+		FCFFED3B131DE4A80090F6E5 /* GameCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterManager.m; sourceTree = "<group>"; };
+		FCFFEED2131DE8540090F6E5 /* Option.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Option.h; sourceTree = "<group>"; };
+		FCFFEED3131DE8540090F6E5 /* Option.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Option.m; sourceTree = "<group>"; };
+		FCFFEED5131DEA500090F6E5 /* GreenCheck-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GreenCheck-hd.png"; sourceTree = "<group>"; };
+		FCFFEED7131DEA810090F6E5 /* RedCheck-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RedCheck-hd.png"; sourceTree = "<group>"; };
+		FCFFEF0E131DF1370090F6E5 /* GreenCheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GreenCheck.png; sourceTree = "<group>"; };
+		FCFFEF11131DF1500090F6E5 /* RedCheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedCheck.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -838,6 +851,8 @@
 				FCFFECCF131DD17B0090F6E5 /* Appirater.m */,
 				FCFFECD1131DD1A70090F6E5 /* LevelData.h */,
 				FCFFECD2131DD1A70090F6E5 /* LevelData.m */,
+				FCFFED3A131DE4A80090F6E5 /* GameCenterManager.h */,
+				FCFFED3B131DE4A80090F6E5 /* GameCenterManager.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -947,16 +962,11 @@
 		50F4144210692EE7002A0D5E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FCFFEECF131DE7AE0090F6E5 /* Bullets */,
 				FCFFECFD131DD6AE0090F6E5 /* HUD */,
 				FCFFECFC131DD64E0090F6E5 /* Decals */,
 				FC6CF6ED131B41B400EE91E4 /* Font */,
-				FC6CF0EC1319B1F300EE91E4 /* enemyBullet-hd.png */,
-				FC6CF0ED1319B1F300EE91E4 /* enemyBullet.png */,
 				FCBAF57D1314ABA5006EAD9C /* Planes */,
-				FCE01ADA13124D2E000A603A /* bullet-hd.png */,
-				FCE01ADB13124D2E000A603A /* bullet.png */,
-				FCE01A8A131243FF000A603A /* flash-hd.png */,
-				FCE01A8B131243FF000A603A /* flash.png */,
 				FCD8EFA8130CE41F00A55A50 /* Accessories */,
 				FC666B24130B78B200358A37 /* Controls */,
 				FC48CFEA130A39B7006B1C10 /* Player */,
@@ -972,8 +982,6 @@
 				FC234A96130A134200E0C48C /* icon512.png */,
 				FC234A97130A134200E0C48C /* infoscreen-hd.png */,
 				FC234A98130A134200E0C48C /* infoscreen.png */,
-				FC234A9D130A134300E0C48C /* optionsscreen-hd.png */,
-				FC234A9E130A134300E0C48C /* optionsscreen.png */,
 				FC234AA1130A134300E0C48C /* pausebutton-hd.png */,
 				FC234AA2130A134300E0C48C /* pausebutton.png */,
 				FC234AA3130A134300E0C48C /* redplanebottom-hd.png */,
@@ -1208,6 +1216,7 @@
 		FC234A63130A0E3200E0C48C /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				FCFFEED1131DE8370090F6E5 /* Option */,
 				FCFFECFE131DDB6A0090F6E5 /* Start */,
 				FC234A64130A0E5B00E0C48C /* Splash */,
 			);
@@ -1226,6 +1235,11 @@
 		FC234B16130A139000E0C48C /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				FCFFEED7131DEA810090F6E5 /* RedCheck-hd.png */,
+				FCFFEF0E131DF1370090F6E5 /* GreenCheck.png */,
+				FCFFEF11131DF1500090F6E5 /* RedCheck.png */,
+				FCFFEED5131DEA500090F6E5 /* GreenCheck-hd.png */,
+				FCFFEED0131DE8270090F6E5 /* Option */,
 				FCFFED2B131DE2C40090F6E5 /* Start */,
 				FC234B86130A18AD00E0C48C /* Default.png */,
 				FC234A9B130A134300E0C48C /* loadscreen-hd.png */,
@@ -1412,6 +1426,37 @@
 				FC234AB8130A134300E0C48C /* startscreen.png */,
 			);
 			name = Start;
+			sourceTree = "<group>";
+		};
+		FCFFEECF131DE7AE0090F6E5 /* Bullets */ = {
+			isa = PBXGroup;
+			children = (
+				FC6CF0EC1319B1F300EE91E4 /* enemyBullet-hd.png */,
+				FC6CF0ED1319B1F300EE91E4 /* enemyBullet.png */,
+				FCE01ADA13124D2E000A603A /* bullet-hd.png */,
+				FCE01ADB13124D2E000A603A /* bullet.png */,
+				FCE01A8A131243FF000A603A /* flash-hd.png */,
+				FCE01A8B131243FF000A603A /* flash.png */,
+			);
+			name = Bullets;
+			sourceTree = "<group>";
+		};
+		FCFFEED0131DE8270090F6E5 /* Option */ = {
+			isa = PBXGroup;
+			children = (
+				FC234A9D130A134300E0C48C /* optionsscreen-hd.png */,
+				FC234A9E130A134300E0C48C /* optionsscreen.png */,
+			);
+			name = Option;
+			sourceTree = "<group>";
+		};
+		FCFFEED1131DE8370090F6E5 /* Option */ = {
+			isa = PBXGroup;
+			children = (
+				FCFFEED2131DE8540090F6E5 /* Option.h */,
+				FCFFEED3131DE8540090F6E5 /* Option.m */,
+			);
+			name = Option;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1706,6 +1751,10 @@
 				FC9DF867131C8AF8008619FF /* radar.png in Resources */,
 				FC9DF88B131C95F3008619FF /* radarblip-hd.png in Resources */,
 				FC9DF88C131C95F3008619FF /* radarblip.png in Resources */,
+				FCFFEED6131DEA500090F6E5 /* GreenCheck-hd.png in Resources */,
+				FCFFEED8131DEA810090F6E5 /* RedCheck-hd.png in Resources */,
+				FCFFEF0F131DF1370090F6E5 /* GreenCheck.png in Resources */,
+				FCFFEF12131DF1500090F6E5 /* RedCheck.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1730,6 +1779,7 @@
 				FCFFECD0131DD17B0090F6E5 /* Appirater.m in Sources */,
 				FCFFECD3131DD1A70090F6E5 /* LevelData.m in Sources */,
 				FCFFED18131DE0760090F6E5 /* Start.m in Sources */,
+				FCFFEED4131DE8540090F6E5 /* Option.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
