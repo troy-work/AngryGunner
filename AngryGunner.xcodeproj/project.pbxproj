@@ -236,6 +236,8 @@
 		E02BBC67126CC2F6006E46A2 /* utlist.h in Headers */ = {isa = PBXBuildFile; fileRef = E02BBBC1126CC2F6006E46A2 /* utlist.h */; };
 		E02BBC68126CC2F6006E46A2 /* ZipUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = E02BBBC2126CC2F6006E46A2 /* ZipUtils.h */; };
 		E02BBC69126CC2F6006E46A2 /* ZipUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E02BBBC3126CC2F6006E46A2 /* ZipUtils.m */; };
+		FC20B6EC131F331B006877D4 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC20B6EB131F331B006877D4 /* GameKit.framework */; };
+		FC20B739131F348A006877D4 /* GameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FC20B738131F348A006877D4 /* GameCenterManager.m */; };
 		FC234A67130A0F0A00E0C48C /* Splash.m in Sources */ = {isa = PBXBuildFile; fileRef = FC234A66130A0F0A00E0C48C /* Splash.m */; };
 		FC234AC3130A134300E0C48C /* brownplanebottom-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FC234A70130A134200E0C48C /* brownplanebottom-hd.png */; };
 		FC234AC4130A134300E0C48C /* brownplanebottom.png in Resources */ = {isa = PBXBuildFile; fileRef = FC234A71130A134200E0C48C /* brownplanebottom.png */; };
@@ -318,6 +320,7 @@
 		FC234B15130A135400E0C48C /* yellowbuoy.png in Resources */ = {isa = PBXBuildFile; fileRef = FC234B13130A135400E0C48C /* yellowbuoy.png */; };
 		FC234B19130A156000E0C48C /* load.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FC234B18130A156000E0C48C /* load.mp3 */; };
 		FC234B87130A18AD00E0C48C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = FC234B86130A18AD00E0C48C /* Default.png */; };
+		FC334CB5131F2AE70029CD17 /* LevelData.m in Sources */ = {isa = PBXBuildFile; fileRef = FC334CB4131F2AE70029CD17 /* LevelData.m */; };
 		FC3FE86312D92CBC005742AC /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC3FE86212D92CBC005742AC /* CoreAudio.framework */; };
 		FC48CFC8130A2BFA006B1C10 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = FC48CFC7130A2BFA006B1C10 /* Game.m */; };
 		FC48CFFF130A3B6C006B1C10 /* Waves.m in Sources */ = {isa = PBXBuildFile; fileRef = FC48CFFE130A3B6C006B1C10 /* Waves.m */; };
@@ -348,11 +351,9 @@
 		FCE01ADC13124D2E000A603A /* bullet-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FCE01ADA13124D2E000A603A /* bullet-hd.png */; };
 		FCE01ADD13124D2E000A603A /* bullet.png in Resources */ = {isa = PBXBuildFile; fileRef = FCE01ADB13124D2E000A603A /* bullet.png */; };
 		FCFFECD0131DD17B0090F6E5 /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFFECCF131DD17B0090F6E5 /* Appirater.m */; };
-		FCFFECD3131DD1A70090F6E5 /* LevelData.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFFECD2131DD1A70090F6E5 /* LevelData.m */; };
 		FCFFECEB131DD41E0090F6E5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCFFECEA131DD41E0090F6E5 /* SystemConfiguration.framework */; };
 		FCFFECEF131DD42E0090F6E5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCFFECEE131DD42E0090F6E5 /* CFNetwork.framework */; };
 		FCFFECF5131DD5610090F6E5 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCFFECF4131DD5610090F6E5 /* MediaPlayer.framework */; };
-		FCFFECF7131DD5B40090F6E5 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCFFECF6131DD5B40090F6E5 /* GameKit.framework */; };
 		FCFFED18131DE0760090F6E5 /* Start.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFFED17131DE0760090F6E5 /* Start.m */; };
 		FCFFEED4131DE8540090F6E5 /* Option.m in Sources */ = {isa = PBXBuildFile; fileRef = FCFFEED3131DE8540090F6E5 /* Option.m */; };
 		FCFFEED6131DEA500090F6E5 /* GreenCheck-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FCFFEED5131DEA500090F6E5 /* GreenCheck-hd.png */; };
@@ -601,6 +602,9 @@
 		E02BBBC2126CC2F6006E46A2 /* ZipUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipUtils.h; sourceTree = "<group>"; };
 		E02BBBC3126CC2F6006E46A2 /* ZipUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipUtils.m; sourceTree = "<group>"; };
 		E0C5505A11FA3A8000B9E4CB /* LICENSE.chipmunk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.chipmunk; sourceTree = "<group>"; };
+		FC20B6EB131F331B006877D4 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		FC20B737131F348A006877D4 /* GameCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterManager.h; sourceTree = "<group>"; };
+		FC20B738131F348A006877D4 /* GameCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterManager.m; sourceTree = "<group>"; };
 		FC234A65130A0F0A00E0C48C /* Splash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Splash.h; sourceTree = "<group>"; };
 		FC234A66130A0F0A00E0C48C /* Splash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Splash.m; sourceTree = "<group>"; };
 		FC234A70130A134200E0C48C /* brownplanebottom-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brownplanebottom-hd.png"; sourceTree = "<group>"; };
@@ -684,6 +688,8 @@
 		FC234B13130A135400E0C48C /* yellowbuoy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowbuoy.png; sourceTree = "<group>"; };
 		FC234B18130A156000E0C48C /* load.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = load.mp3; sourceTree = "<group>"; };
 		FC234B86130A18AD00E0C48C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		FC334CB3131F2AE70029CD17 /* LevelData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelData.h; sourceTree = "<group>"; };
+		FC334CB4131F2AE70029CD17 /* LevelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelData.m; sourceTree = "<group>"; };
 		FC3FE86212D92CBC005742AC /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		FC48CFC6130A2BFA006B1C10 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		FC48CFC7130A2BFA006B1C10 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
@@ -724,16 +730,11 @@
 		FCFFECCD131DD1020090F6E5 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		FCFFECCE131DD17B0090F6E5 /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
 		FCFFECCF131DD17B0090F6E5 /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
-		FCFFECD1131DD1A70090F6E5 /* LevelData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelData.h; path = "../The Drop/Classes/LevelData.h"; sourceTree = SOURCE_ROOT; };
-		FCFFECD2131DD1A70090F6E5 /* LevelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LevelData.m; path = "../The Drop/Classes/LevelData.m"; sourceTree = SOURCE_ROOT; };
 		FCFFECEA131DD41E0090F6E5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		FCFFECEE131DD42E0090F6E5 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		FCFFECF4131DD5610090F6E5 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		FCFFECF6131DD5B40090F6E5 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		FCFFED16131DE0760090F6E5 /* Start.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Start.h; sourceTree = "<group>"; };
 		FCFFED17131DE0760090F6E5 /* Start.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Start.m; sourceTree = "<group>"; };
-		FCFFED3A131DE4A80090F6E5 /* GameCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterManager.h; sourceTree = "<group>"; };
-		FCFFED3B131DE4A80090F6E5 /* GameCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterManager.m; sourceTree = "<group>"; };
 		FCFFEED2131DE8540090F6E5 /* Option.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Option.h; sourceTree = "<group>"; };
 		FCFFEED3131DE8540090F6E5 /* Option.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Option.m; sourceTree = "<group>"; };
 		FCFFEED5131DEA500090F6E5 /* GreenCheck-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GreenCheck-hd.png"; sourceTree = "<group>"; };
@@ -761,7 +762,7 @@
 				FCFFECEB131DD41E0090F6E5 /* SystemConfiguration.framework in Frameworks */,
 				FCFFECEF131DD42E0090F6E5 /* CFNetwork.framework in Frameworks */,
 				FCFFECF5131DD5610090F6E5 /* MediaPlayer.framework in Frameworks */,
-				FCFFECF7131DD5B40090F6E5 /* GameKit.framework in Frameworks */,
+				FC20B6EC131F331B006877D4 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -803,7 +804,6 @@
 				50F4144210692EE7002A0D5E /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				FCFFECF4131DD5610090F6E5 /* MediaPlayer.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -820,6 +820,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FCFFECF4131DD5610090F6E5 /* MediaPlayer.framework */,
 				DCCBF1B60F6022AE0040855A /* CoreGraphics.framework */,
 				DCCBF1B80F6022AE0040855A /* Foundation.framework */,
 				DCCBF1BA0F6022AE0040855A /* OpenGLES.framework */,
@@ -832,7 +833,7 @@
 				FC3FE86212D92CBC005742AC /* CoreAudio.framework */,
 				FCFFECEA131DD41E0090F6E5 /* SystemConfiguration.framework */,
 				FCFFECEE131DD42E0090F6E5 /* CFNetwork.framework */,
-				FCFFECF6131DD5B40090F6E5 /* GameKit.framework */,
+				FC20B6EB131F331B006877D4 /* GameKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -849,10 +850,10 @@
 				507022A2107672FA00393637 /* GameAppDelegate.m */,
 				FCFFECCE131DD17B0090F6E5 /* Appirater.h */,
 				FCFFECCF131DD17B0090F6E5 /* Appirater.m */,
-				FCFFECD1131DD1A70090F6E5 /* LevelData.h */,
-				FCFFECD2131DD1A70090F6E5 /* LevelData.m */,
-				FCFFED3A131DE4A80090F6E5 /* GameCenterManager.h */,
-				FCFFED3B131DE4A80090F6E5 /* GameCenterManager.m */,
+				FC334CB3131F2AE70029CD17 /* LevelData.h */,
+				FC334CB4131F2AE70029CD17 /* LevelData.m */,
+				FC20B737131F348A006877D4 /* GameCenterManager.h */,
+				FC20B738131F348A006877D4 /* GameCenterManager.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1777,9 +1778,10 @@
 				FCD8F0F81310AD4000A55A50 /* Bullet.m in Sources */,
 				FCBAF5801314AD43006EAD9C /* Plane.m in Sources */,
 				FCFFECD0131DD17B0090F6E5 /* Appirater.m in Sources */,
-				FCFFECD3131DD1A70090F6E5 /* LevelData.m in Sources */,
 				FCFFED18131DE0760090F6E5 /* Start.m in Sources */,
 				FCFFEED4131DE8540090F6E5 /* Option.m in Sources */,
+				FC334CB5131F2AE70029CD17 /* LevelData.m in Sources */,
+				FC20B739131F348A006877D4 /* GameCenterManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

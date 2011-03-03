@@ -9,7 +9,10 @@
 #import "GameAppDelegate.h"
 #import "Splash.h"
 #import "Game.h"
-
+#import "Appirater.h"
+#import <GameKit/GameKit.h>
+#import "LevelData.h"
+#import "GameCenterManager.h"
 
 @interface GameAppDelegate (PrivateMethods)
 
@@ -71,10 +74,36 @@
 	[window addSubview:glView];																
 	[window makeKeyAndVisible];		
 	
+	[LevelData loadState];
+	
+	[Appirater appLaunched:YES]; 
+	
+	if ([[LevelData sharedLevelData] useGameCenter]){
+		if ([GameCenterManager isGameCenterAvailable]) {
+			[self authenticateLocalPlayer];
+		}
+	}
 	
 
 	[[CCDirector sharedDirector] runWithScene: [Splash scene]];		
 }
+
+- (void) authenticateLocalPlayer
+{
+    [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:^(NSError *error) {
+		if (error == nil)
+		{
+			// Insert code here to handle a successful authentication.
+			NSLog(@"Game Center: Player Authenticated!");
+		}
+		else
+		{
+			// Your application can process the error parameter to report the error to the player.
+			NSLog(@"Game Center: Authentication Failed!");
+		}
+	}];
+}
+
 
 - (void)applicationWillTerminate:(UIApplication*)application
 {
