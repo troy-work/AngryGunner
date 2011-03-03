@@ -14,6 +14,8 @@
 @synthesize score;
 @synthesize highScore;
 @synthesize useGameCenter;
+@synthesize difficultOn;
+@synthesize torpedoesOn;
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(LevelData);
 
@@ -28,6 +30,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LevelData);
 			[self setScore:0];
 			[self setHighScore:0];
 			[self setUseGameCenter:FALSE];
+			[self setDifficultOn:FALSE];
+			[self setTorpedoesOn:FALSE];
 			[LevelData saveState];
 		}
 		
@@ -47,6 +51,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LevelData);
 		sharedLevelData.score = [prefs integerForKey:@"score"];
 		sharedLevelData.highScore = [prefs integerForKey:@"highScore"];
 		sharedLevelData.useGameCenter = [prefs boolForKey:@"useGameCenter"];
+		sharedLevelData.difficultOn = [prefs boolForKey:@"difficultOn"];
+		sharedLevelData.torpedoesOn = [prefs boolForKey:@"torpedoesOn"];
 		[prefs synchronize];
 						
 	}
@@ -64,6 +70,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LevelData);
 		[prefs setInteger: sharedLevelData.score forKey:@"score"];
 		[prefs setInteger: sharedLevelData.highScore forKey:@"highScore"];
 		[prefs setBool: sharedLevelData.useGameCenter forKey:@"useGameCenter"];
+		[prefs setBool: sharedLevelData.difficultOn forKey:@"difficultOn"];
+		[prefs setBool: sharedLevelData.torpedoesOn forKey:@"torpedoesOn"];
 		
 		// This is suggested to synch prefs, but is not needed (I didn't put it in my tut)
 		[prefs synchronize];

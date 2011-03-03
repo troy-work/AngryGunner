@@ -238,6 +238,9 @@
 		E02BBC69126CC2F6006E46A2 /* ZipUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E02BBBC3126CC2F6006E46A2 /* ZipUtils.m */; };
 		FC20B6EC131F331B006877D4 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC20B6EB131F331B006877D4 /* GameKit.framework */; };
 		FC20B739131F348A006877D4 /* GameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FC20B738131F348A006877D4 /* GameCenterManager.m */; };
+		FC20B74E131F3AA5006877D4 /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = FC20B74D131F3AA5006877D4 /* Score.m */; };
+		FC20B759131F3D34006877D4 /* gamecenter-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FC20B757131F3D34006877D4 /* gamecenter-hd.png */; };
+		FC20B75A131F3D34006877D4 /* gamecenter.png in Resources */ = {isa = PBXBuildFile; fileRef = FC20B758131F3D34006877D4 /* gamecenter.png */; };
 		FC234A67130A0F0A00E0C48C /* Splash.m in Sources */ = {isa = PBXBuildFile; fileRef = FC234A66130A0F0A00E0C48C /* Splash.m */; };
 		FC234AC3130A134300E0C48C /* brownplanebottom-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FC234A70130A134200E0C48C /* brownplanebottom-hd.png */; };
 		FC234AC4130A134300E0C48C /* brownplanebottom.png in Resources */ = {isa = PBXBuildFile; fileRef = FC234A71130A134200E0C48C /* brownplanebottom.png */; };
@@ -605,6 +608,10 @@
 		FC20B6EB131F331B006877D4 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		FC20B737131F348A006877D4 /* GameCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterManager.h; sourceTree = "<group>"; };
 		FC20B738131F348A006877D4 /* GameCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterManager.m; sourceTree = "<group>"; };
+		FC20B74C131F3AA5006877D4 /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
+		FC20B74D131F3AA5006877D4 /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Score.m; sourceTree = "<group>"; };
+		FC20B757131F3D34006877D4 /* gamecenter-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gamecenter-hd.png"; sourceTree = "<group>"; };
+		FC20B758131F3D34006877D4 /* gamecenter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamecenter.png; sourceTree = "<group>"; };
 		FC234A65130A0F0A00E0C48C /* Splash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Splash.h; sourceTree = "<group>"; };
 		FC234A66130A0F0A00E0C48C /* Splash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Splash.m; sourceTree = "<group>"; };
 		FC234A70130A134200E0C48C /* brownplanebottom-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brownplanebottom-hd.png"; sourceTree = "<group>"; };
@@ -974,8 +981,6 @@
 				FC48CFDF130A3410006B1C10 /* Background */,
 				FC234B17130A153F00E0C48C /* Sound */,
 				FC234B16130A139000E0C48C /* Menu */,
-				FC234A8A130A134200E0C48C /* gameoverscreen-hd.png */,
-				FC234A8B130A134200E0C48C /* gameoverscreen.png */,
 				FC234A92130A134200E0C48C /* helpscreen-hd.png */,
 				FC234A93130A134200E0C48C /* helpscreen.png */,
 				FC234A94130A134200E0C48C /* icon.png */,
@@ -1214,9 +1219,28 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
+		FC20B74B131F3A90006877D4 /* Score */ = {
+			isa = PBXGroup;
+			children = (
+				FC20B74C131F3AA5006877D4 /* Score.h */,
+				FC20B74D131F3AA5006877D4 /* Score.m */,
+			);
+			name = Score;
+			sourceTree = "<group>";
+		};
+		FC20B755131F3BF7006877D4 /* GameOver */ = {
+			isa = PBXGroup;
+			children = (
+				FC234A8A130A134200E0C48C /* gameoverscreen-hd.png */,
+				FC234A8B130A134200E0C48C /* gameoverscreen.png */,
+			);
+			name = GameOver;
+			sourceTree = "<group>";
+		};
 		FC234A63130A0E3200E0C48C /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				FC20B74B131F3A90006877D4 /* Score */,
 				FCFFEED1131DE8370090F6E5 /* Option */,
 				FCFFECFE131DDB6A0090F6E5 /* Start */,
 				FC234A64130A0E5B00E0C48C /* Splash */,
@@ -1236,10 +1260,13 @@
 		FC234B16130A139000E0C48C /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				FC20B755131F3BF7006877D4 /* GameOver */,
 				FCFFEED7131DEA810090F6E5 /* RedCheck-hd.png */,
 				FCFFEF0E131DF1370090F6E5 /* GreenCheck.png */,
 				FCFFEF11131DF1500090F6E5 /* RedCheck.png */,
 				FCFFEED5131DEA500090F6E5 /* GreenCheck-hd.png */,
+				FC20B757131F3D34006877D4 /* gamecenter-hd.png */,
+				FC20B758131F3D34006877D4 /* gamecenter.png */,
 				FCFFEED0131DE8270090F6E5 /* Option */,
 				FCFFED2B131DE2C40090F6E5 /* Start */,
 				FC234B86130A18AD00E0C48C /* Default.png */,
@@ -1756,6 +1783,8 @@
 				FCFFEED8131DEA810090F6E5 /* RedCheck-hd.png in Resources */,
 				FCFFEF0F131DF1370090F6E5 /* GreenCheck.png in Resources */,
 				FCFFEF12131DF1500090F6E5 /* RedCheck.png in Resources */,
+				FC20B759131F3D34006877D4 /* gamecenter-hd.png in Resources */,
+				FC20B75A131F3D34006877D4 /* gamecenter.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1782,6 +1811,7 @@
 				FCFFEED4131DE8540090F6E5 /* Option.m in Sources */,
 				FC334CB5131F2AE70029CD17 /* LevelData.m in Sources */,
 				FC20B739131F348A006877D4 /* GameCenterManager.m in Sources */,
+				FC20B74E131F3AA5006877D4 /* Score.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

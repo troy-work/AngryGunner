@@ -25,5 +25,6 @@
 @property (assign,nonatomic) float x;
 @property (assign,nonatomic) float y;
 @property (assign,nonatomic) CCSprite *radar;
+@property (assign,nonatomic) int score;
 
 @end

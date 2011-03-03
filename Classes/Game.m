@@ -13,7 +13,8 @@
 #import "CCTouchDispatcher.h"
 #import "Plane.h"
 #import "Splash.h"
-
+#import "Score.h"
+#import "LevelData.h"
 
 @implementation Game
 
@@ -46,6 +47,7 @@ float planeCountDown;
 @synthesize x;
 @synthesize y;
 @synthesize radar;
+@synthesize score;
 
 +(id)scene{
 	// 'scene' is an autorelease object.
@@ -66,6 +68,8 @@ float planeCountDown;
 	if( (self=[super init])) 
 	{
 		health = 100;
+		
+		score = [[LevelData sharedLevelData] score];
 		
 		CCSprite *bg1 = [CCSprite spriteWithFile:@"backgroundright.png"];
 		[bg1 flipY];
@@ -230,6 +234,8 @@ float planeCountDown;
 
 -(void)kill
 {
+	[[LevelData sharedLevelData] setScore:score];
+
 	[self unschedule:@selector(step:)];
 	for (Plane *p in [[self planes] children]){
 		[p setIsDying:TRUE];
@@ -237,7 +243,7 @@ float planeCountDown;
 		[[self planes] removeAllChildrenWithCleanup:FALSE];
 	}
 	isShooting=FALSE;
-	[[CCDirector sharedDirector] replaceScene:[Splash scene]];
+	[[CCDirector sharedDirector] replaceScene:[Score scene]];
 	
 }
 
@@ -353,7 +359,7 @@ float planeCountDown;
 	Bullet *bullet = [Bullet spriteWithFile:@"bullet.png"];
 	[bullet setAnchorPoint:ccp(.5,.5)];
 	[bullet setRotation:29];
-	[bullet startAtPosition:ccp(-x+205,-y+100) finishAtPosition:ccp(-x+240,-y+155)];
+	[bullet startAtPosition:ccp(-x+205,-y+100) finishAtPosition:ccp(-x+238,-y+155)];
 	[friendsLayer addChild:bullet];
 	
 	flash = [CCSprite spriteWithFile:@"flash.png"];
@@ -368,7 +374,7 @@ float planeCountDown;
 	Bullet *bullet2 = [Bullet spriteWithFile:@"bullet.png"];
 	[bullet2 setRotation:-29];
 	[bullet2 setAnchorPoint:ccp(.5,.5)];
-	[bullet2 startAtPosition:ccp(-x+275,-y+100) finishAtPosition:ccp(-x+240,-y+155)];
+	[bullet2 startAtPosition:ccp(-x+275,-y+100) finishAtPosition:ccp(-x+242,-y+155)];
 	[friendsLayer addChild:bullet2];
 	shootTimer=0;
 	

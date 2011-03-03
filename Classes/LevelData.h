@@ -17,6 +17,8 @@
 @property (assign,nonatomic) int score;
 @property (assign,nonatomic) int highScore;
 @property (assign,nonatomic) bool useGameCenter;
+@property (assign,nonatomic) bool difficultOn;
+@property (assign,nonatomic) bool torpedoesOn;
 
 
 + (LevelData *)sharedLevelData;

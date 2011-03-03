@@ -40,7 +40,7 @@ CCAction *move;
 {
 	indexZ += 200*dt;
 	zIndex = (int)indexZ;
-	[self setRotation:[self rotation]+120];
+//	[self setRotation:[self rotation]+120];
 	[self setScale:(2-(zIndex*.01)*1)];
 	if (zIndex>=199) {
 		[[self parent] removeChild:self cleanup:TRUE];
@@ -86,7 +86,7 @@ CCAction *move;
 													   selector:@selector(killSprite:)],nil]];
 				[[[self parent] parent] addChild:bonus z:0];
 				
-				
+				[[[self parent]parent] setScore:[[[self parent]parent] score] + score];
 				
 				p.hitCount += 1;
 				if (p.hitCount>2) {
