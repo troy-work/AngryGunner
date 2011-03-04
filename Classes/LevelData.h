@@ -19,7 +19,7 @@
 @property (assign,nonatomic) bool useGameCenter;
 @property (assign,nonatomic) bool difficultOn;
 @property (assign,nonatomic) bool torpedoesOn;
-
+@property (assign,nonatomic) bool shouldPlaySfx;
 
 + (LevelData *)sharedLevelData;
 +(void)loadState;

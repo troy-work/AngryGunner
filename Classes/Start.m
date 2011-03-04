@@ -9,6 +9,7 @@
 #import "Start.h"
 #import "Game.h"
 #import "Option.h"
+#import "Sound.h"
 
 
 @implementation Start
@@ -80,17 +81,17 @@
 
 -(void)viewHelp:(id)sender
 {	
-//	[[CCDirector sharedDirector] replaceScene:[HelpScene scene]];	
+//	[[CCDirector sharedDirector] replaceScene:[Help scene]];	
 }
 
 -(void)viewInfo:(id)sender
 {	
-//	[[CCDirector sharedDirector] replaceScene:[InfoScene scene]];	
+//	[[CCDirector sharedDirector] replaceScene:[Info scene]];	
 }
 
 -(void)toggleSpeaker:(id)sender
 {	
-//	[[CCDirector sharedDirector] replaceScene:[SoundScene scene]];	
+	[[CCDirector sharedDirector] replaceScene:[Sound scene]];	
 }
 
 
