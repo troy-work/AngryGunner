@@ -343,6 +343,7 @@
 		FC6CF72A131B54BC00EE91E4 /* 321impact-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FC6CF728131B54BC00EE91E4 /* 321impact-hd.png */; };
 		FC79227A130CB40E000B60FB /* backgroundright-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FC792276130CB40E000B60FB /* backgroundright-hd.png */; };
 		FC79227B130CB40E000B60FB /* backgroundright.png in Resources */ = {isa = PBXBuildFile; fileRef = FC792277130CB40E000B60FB /* backgroundright.png */; };
+		FC8575251321864200141103 /* TorpedoPlane.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8575241321864200141103 /* TorpedoPlane.m */; };
 		FC911F131318B5B0009C37A9 /* fire-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FC911F111318B5B0009C37A9 /* fire-hd.png */; };
 		FC911F141318B5B0009C37A9 /* fire.png in Resources */ = {isa = PBXBuildFile; fileRef = FC911F121318B5B0009C37A9 /* fire.png */; };
 		FC911F411318CAA9009C37A9 /* brownplanefrontshoot-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FC911F3F1318CAA9009C37A9 /* brownplanefrontshoot-hd.png */; };
@@ -728,6 +729,8 @@
 		FC6CF728131B54BC00EE91E4 /* 321impact-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "321impact-hd.png"; sourceTree = "<group>"; };
 		FC792276130CB40E000B60FB /* backgroundright-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backgroundright-hd.png"; sourceTree = "<group>"; };
 		FC792277130CB40E000B60FB /* backgroundright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundright.png; sourceTree = "<group>"; };
+		FC8575231321864200141103 /* TorpedoPlane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TorpedoPlane.h; sourceTree = "<group>"; };
+		FC8575241321864200141103 /* TorpedoPlane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TorpedoPlane.m; sourceTree = "<group>"; };
 		FC911F111318B5B0009C37A9 /* fire-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fire-hd.png"; sourceTree = "<group>"; };
 		FC911F121318B5B0009C37A9 /* fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fire.png; sourceTree = "<group>"; };
 		FC911F3F1318CAA9009C37A9 /* brownplanefrontshoot-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brownplanefrontshoot-hd.png"; sourceTree = "<group>"; };
@@ -982,6 +985,7 @@
 		50F4144210692EE7002A0D5E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FC85752D132187F600141103 /* Torpedo Planes */,
 				FC3F0B2213209F8F0016AF39 /* 321impact.ttf */,
 				FCFFEECF131DE7AE0090F6E5 /* Bullets */,
 				FCFFECFD131DD6AE0090F6E5 /* HUD */,
@@ -1346,6 +1350,8 @@
 				FCD8F0F71310AD4000A55A50 /* Bullet.m */,
 				FCBAF57E1314AD43006EAD9C /* Plane.h */,
 				FCBAF57F1314AD43006EAD9C /* Plane.m */,
+				FC8575231321864200141103 /* TorpedoPlane.h */,
+				FC8575241321864200141103 /* TorpedoPlane.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -1414,6 +1420,13 @@
 				FC6CF6F0131B420A00EE91E4 /* 321impact.png */,
 			);
 			name = Font;
+			sourceTree = "<group>";
+		};
+		FC85752D132187F600141103 /* Torpedo Planes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Torpedo Planes";
 			sourceTree = "<group>";
 		};
 		FCBAF57D1314ABA5006EAD9C /* Planes */ = {
@@ -1868,6 +1881,7 @@
 				FC20B74E131F3AA5006877D4 /* Score.m in Sources */,
 				FC3F0AA213208C960016AF39 /* Music.m in Sources */,
 				FC3F0AAD13208DEF0016AF39 /* Sound.m in Sources */,
+				FC8575251321864200141103 /* TorpedoPlane.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
