@@ -40,10 +40,10 @@ float lastRotate;
 		isDying=FALSE;
 		points = 100;
 		lastRotate = (CCRANDOM_0_1()*-120)-40;
-		bottomSprite = [[CCTextureCache sharedTextureCache] addImage:@"brownplanebottom.png"];
-		frontSprite = [[CCTextureCache sharedTextureCache] addImage:@"brownplanefront.png"];
+		bottomSprite = [[CCTextureCache sharedTextureCache] addImage:@"redplanebottom.png"];
+		frontSprite = [[CCTextureCache sharedTextureCache] addImage:@"redplanefrontwith.png"];
 		frontSpriteShoot = [[CCTextureCache sharedTextureCache] addImage:@"brownplanefrontshoot.png"];
-		turnSprite = [[CCTextureCache sharedTextureCache] addImage:@"brownplaneturn.png"];
+		turnSprite = [[CCTextureCache sharedTextureCache] addImage:@"redplaneturn.png"];
 		smoke = [[CCTextureCache sharedTextureCache] addImage:@"dpadburst.png"];
 		
 	}

@@ -1007,16 +1007,6 @@
 				FC234A98130A134200E0C48C /* infoscreen.png */,
 				FC234AA1130A134300E0C48C /* pausebutton-hd.png */,
 				FC234AA2130A134300E0C48C /* pausebutton.png */,
-				FC234AA3130A134300E0C48C /* redplanebottom-hd.png */,
-				FC234AA4130A134300E0C48C /* redplanebottom.png */,
-				FC234AA5130A134300E0C48C /* redplanefront-hd.png */,
-				FC234AA6130A134300E0C48C /* redplanefront.png */,
-				FC234AA7130A134300E0C48C /* redplanefrontwith-hd.png */,
-				FC234AA8130A134300E0C48C /* redplanefrontwith.png */,
-				FC234AA9130A134300E0C48C /* redplaneside-hd.png */,
-				FC234AAA130A134300E0C48C /* redplaneside.png */,
-				FC234AAB130A134300E0C48C /* redplaneturn-hd.png */,
-				FC234AAC130A134300E0C48C /* redplaneturn.png */,
 				FC234AB3130A134300E0C48C /* smallcrosshair-hd.png */,
 				FC234AB4130A134300E0C48C /* smallcrosshair.png */,
 				FC234AB9130A134300E0C48C /* torpedo-hd.png */,
@@ -1425,6 +1415,16 @@
 		FC85752D132187F600141103 /* Torpedo Planes */ = {
 			isa = PBXGroup;
 			children = (
+				FC234AA3130A134300E0C48C /* redplanebottom-hd.png */,
+				FC234AA4130A134300E0C48C /* redplanebottom.png */,
+				FC234AA5130A134300E0C48C /* redplanefront-hd.png */,
+				FC234AA6130A134300E0C48C /* redplanefront.png */,
+				FC234AA7130A134300E0C48C /* redplanefrontwith-hd.png */,
+				FC234AA8130A134300E0C48C /* redplanefrontwith.png */,
+				FC234AA9130A134300E0C48C /* redplaneside-hd.png */,
+				FC234AAA130A134300E0C48C /* redplaneside.png */,
+				FC234AAB130A134300E0C48C /* redplaneturn-hd.png */,
+				FC234AAC130A134300E0C48C /* redplaneturn.png */,
 			);
 			name = "Torpedo Planes";
 			sourceTree = "<group>";
