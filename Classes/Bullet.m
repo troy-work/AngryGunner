@@ -64,8 +64,8 @@ CCAction *move;
 				
 				int score = p.points;
 				
-				if (score==500) {
-					score = 1000;
+				if (score==100) {
+					score = 500;
 				}
 
 				CCLabelBMFont *bonus = [CCLabelBMFont labelWithString:

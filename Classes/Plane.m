@@ -38,7 +38,7 @@ float lastRotate;
 		randomX = -440 + randomX + 660;
 		shootTime = 100;
 		isDying=FALSE;
-		points = 500;
+		points = 100;
 		lastRotate = (CCRANDOM_0_1()*-120)-40;
 		bottomSprite = [[CCTextureCache sharedTextureCache] addImage:@"brownplanebottom.png"];
 		frontSprite = [[CCTextureCache sharedTextureCache] addImage:@"brownplanefront.png"];
@@ -82,7 +82,7 @@ float lastRotate;
 
 -(void)front
 {
-	self.points = 300;
+	self.points = 50;
 	[self setScaleX:[self scaleY]];
 	[self setTexture:frontSprite];
 	[self setRotation:45];
