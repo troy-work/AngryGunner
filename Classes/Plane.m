@@ -34,8 +34,8 @@ float lastRotate;
 	if ((self = [super init])) {
 		zIndex = 200;
 		indexZ = 200;
-		randomX = CCRANDOM_0_1()*1280;
-		randomX = -440 + randomX + 660;
+		randomX = CCRANDOM_0_1()*880;
+		randomX = randomX + 440;
 		shootTime = 100;
 		isDying=FALSE;
 		points = 100;
@@ -62,7 +62,7 @@ float lastRotate;
 	[self setTexture:turnSprite];
 	[self setScaleX:.01];
 	[self setScaleY:.015];
-	[self runAction:[CCScaleBy actionWithDuration:8 scale:30]];
+	[self runAction:[CCScaleTo actionWithDuration:8 scale:.20]];
 	move = [CCSequence actions:
 			[CCMoveTo	actionWithDuration:8 position:ccp(-640+randomX,300)],
 			[CCCallFunc actionWithTarget:self selector:@selector(front)],			

@@ -27,7 +27,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LevelData);
 		
 		[LevelData loadState];
 				
-		if (self.score==0) {
+		if (self.highScore==0) {
 			[self setScore:0];
 			[self setHighScore:0];
 			[self setUseGameCenter:FALSE];

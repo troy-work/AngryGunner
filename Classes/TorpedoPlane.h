@@ -21,7 +21,7 @@
 
 -(void)die;
 -(void)kill;
-+(id)brownSprite;
++(id)redSprite;
 -(void)start;
 
 

@@ -12,6 +12,7 @@
 #import "Bullet.h"
 #import "CCTouchDispatcher.h"
 #import "Plane.h"
+#import "TorpedoPlane.h"
 #import "Splash.h"
 #import "Score.h"
 #import "LevelData.h"
@@ -38,6 +39,7 @@ CCLayer *blips;
 
 CCSprite* fireBurst;
 float planeCountDown;
+float torpedoPlaneCountDown;
 
 @synthesize planes;
 @synthesize bullets;
@@ -211,7 +213,8 @@ float planeCountDown;
 		[brokenGlass setOpacity:0];
 		[self addChild:brokenGlass];
 				
-		planeCountDown = 0;
+		planeCountDown = 500;
+		torpedoPlaneCountDown = 0;
 		
 		radar = [CCSprite spriteWithFile:@"radar.png"];
 		[radar setOpacity:100];
@@ -283,11 +286,19 @@ float planeCountDown;
 	}
 	planeCountDown -=100*dt;
 	if (planeCountDown<1) {
-		planeCountDown = 500;
+		planeCountDown = 1000;
 		Plane *plane = [Plane brownSprite];
 		[plane start];
 		[planes addChild:plane];
 		[plane release];
+	}
+	torpedoPlaneCountDown -=100*dt;
+	if (torpedoPlaneCountDown<1) {
+		torpedoPlaneCountDown = 1000;
+		TorpedoPlane *torpedoPlane = [TorpedoPlane redSprite];
+		[torpedoPlane start];
+		[planes addChild:torpedoPlane];
+		[torpedoPlane release];
 	}
 	
 	x = x - xx*dt*10;

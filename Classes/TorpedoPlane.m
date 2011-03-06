@@ -14,13 +14,13 @@
 float indexZ;
 CGPoint fPos;
 CCAction *move;
-CCTexture2D *bottomSprite;
-CCTexture2D *frontSprite;
-CCTexture2D *frontSpriteShoot;
-CCTexture2D *turnSprite;
+CCTexture2D *tbottomSprite;
+CCTexture2D *tfrontSprite;
+CCTexture2D *tfrontSpriteWithout;
+CCTexture2D *tturnSprite;
+CCTexture2D *tsideSprite;
 float randomX;
 CCTexture2D *smoke;
-float shootTime;
 CCTexture2D *enemyBullet;
 float lastRotate;
 
@@ -34,45 +34,49 @@ float lastRotate;
 	if ((self = [super init])) {
 		zIndex = 200;
 		indexZ = 200;
-		randomX = CCRANDOM_0_1()*1280;
-		randomX = -440 + randomX + 660;
-		shootTime = 100;
+		randomX = CCRANDOM_0_1()*880;
+		randomX = randomX + 440;
 		isDying=FALSE;
-		points = 100;
+		points = 200;
 		lastRotate = (CCRANDOM_0_1()*-120)-40;
-		bottomSprite = [[CCTextureCache sharedTextureCache] addImage:@"redplanebottom.png"];
-		frontSprite = [[CCTextureCache sharedTextureCache] addImage:@"redplanefrontwith.png"];
-		frontSpriteShoot = [[CCTextureCache sharedTextureCache] addImage:@"brownplanefrontshoot.png"];
-		turnSprite = [[CCTextureCache sharedTextureCache] addImage:@"redplaneturn.png"];
+		tbottomSprite = [[CCTextureCache sharedTextureCache] addImage:@"redplanebottom.png"];
+		tfrontSprite = [[CCTextureCache sharedTextureCache] addImage:@"redplanefrontwith.png"];
+		tfrontSpriteWithout = [[CCTextureCache sharedTextureCache] addImage:@"redplanefront.png"];
+		tsideSprite = [[CCTextureCache sharedTextureCache] addImage:@"redplaneside.png"];
+		tturnSprite = [[CCTextureCache sharedTextureCache] addImage:@"redplaneturn.png"];
 		smoke = [[CCTextureCache sharedTextureCache] addImage:@"dpadburst.png"];
 		
 	}
 	return self;
 }
 
-+(id)brownSprite
++(id)redSprite
 {
-	return [self spriteWithFile:@"brownplanefront.png"];
+	return [self spriteWithFile:@"redplanefrontwith.png"];
 }
 
 -(void)start
 {
-	[self setPosition:ccp(randomX,1000)];
+	[self setPosition:ccp(randomX,350)];
 	[self setAnchorPoint:ccp(.5,.5)];
-	[self setTexture:turnSprite];
+	[self setTexture:tsideSprite];
 	[self setScaleX:.01];
 	[self setScaleY:.015];
-	[self runAction:[CCScaleBy actionWithDuration:8 scale:30]];
+	
+	
+	[self runAction:[CCSequence actions:[CCScaleTo actionWithDuration:6 scale:.15],
+					 [CCCallFunc actionWithTarget:self selector:@selector(dive)],
+					 [CCScaleTo actionWithDuration:2 scale:.2],nil]];
+	
 	move = [CCSequence actions:
-			[CCMoveTo	actionWithDuration:8 position:ccp(-640+randomX,300)],
+			[CCMoveTo	actionWithDuration:6 position:ccp(-540+randomX,350)],
+			[CCMoveTo	actionWithDuration:2 position:ccp(-640+randomX,300)],
 			[CCCallFunc actionWithTarget:self selector:@selector(front)],			
-			[CCScaleTo actionWithDuration:5 scale:1],
-			[CCCallFunc actionWithTarget:self selector:@selector(turnLeft)],
-			[CCScaleTo actionWithDuration:1 scale:1.5],
+			[CCScaleTo actionWithDuration:2 scale:.45],
 			[CCCallFunc actionWithTarget:self selector:@selector(turnRight)],
-			[CCScaleTo actionWithDuration:.75 scale:2.5],
+			[CCScaleTo actionWithDuration:.4 scale:.6],
 			[CCCallFunc actionWithTarget:self selector:@selector(spriteBottom)],
-			[CCScaleTo actionWithDuration:.3 scale:4],
+			[CCScaleTo actionWithDuration:2 scale:1.5],
 			[CCCallFunc actionWithTarget:self selector:@selector(kill)]
 			,nil];
 	[self runAction:move];
@@ -80,13 +84,22 @@ float lastRotate;
 	
 }
 
+-(void)dive
+{
+	self.points = 300;
+	[self setTexture:tturnSprite];
+}
+
+
 -(void)front
 {
 	self.points = 50;
 	[self setScaleX:[self scaleY]];
-	[self setTexture:frontSprite];
-	[self setRotation:45];
+	[self setTexture:tfrontSprite];
 	[self runAction:[CCRotateTo actionWithDuration:.6 angle:0]];
+	[self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:1.5],
+					 [CCCallFunc actionWithTarget:self selector:@selector(shoot)],
+					 nil]];
 }
 
 -(void)turnLeft
@@ -98,13 +111,14 @@ float lastRotate;
 -(void)turnRight
 {
 	[self runAction:[CCRotateTo actionWithDuration:.2 angle:40]];
-	[self runAction:[CCMoveBy actionWithDuration:2 position:ccp(800,-10)]];
+	[self runAction:[CCMoveBy actionWithDuration:2 position:ccp(100,-10)]];
 }
 
 -(void)spriteBottom
 {
-	[self setTexture:bottomSprite];
-	[self runAction:[CCMoveBy actionWithDuration:.4 position:ccp(0,1500)]];
+	[self setTexture:tbottomSprite];
+	[self setPoints:1000];
+	[self runAction:[CCMoveBy actionWithDuration:3 position:ccp(randomX,1500)]];
 }
 
 -(void)die
@@ -170,56 +184,7 @@ float lastRotate;
 -(void)shoot
 {
 	if (!isDying){
-		float lrot = (CCRANDOM_0_1()*-120)-40;
-		float diff = abs((int)(lrot-lastRotate));
-		if (diff>5) {
-			if (lrot>lastRotate) {
-				lrot+=lastRotate+5;
-			} else {
-				lrot-=lastRotate-5;
-			}
-			if (lrot<-120) {
-				lrot=-120;
-			}
-			if (lrot>-40) {
-				lrot=-40;
-			}
-		}		
-		lastRotate = lrot;
-		float rrot = -1*lrot;
-		float bscale = (CCRANDOM_0_1()*2);
-		if ([self rotation]<0) {
-			lrot = lrot + [self rotation];
-			rrot = rrot + [self rotation];
-		}
-		if ([self rotation]>0) {
-			lrot = lrot - [self rotation];
-			rrot = rrot + [self rotation];
-		}
-		
-		[[[self parent]parent]enemyPlaneBulletWithPosition:
-		 [self getRotatedPoints:32 startPoint:ccpAdd([self position],ccp(0,-6)) Angle:[self rotation]-90]
-										withBulletRotation: (int)lrot								  
-												 withScale:self.scaleX
-											andBulletScale:bscale];
-		[[[self parent]parent]enemyPlaneBulletWithPosition:
-		 [self getRotatedPoints:32 startPoint:ccpAdd([self position],ccp(0,-6)) Angle:[self rotation]-270]
-										withBulletRotation: (int)rrot								  
-												 withScale:self.scaleX
-											andBulletScale:bscale];
-		
-		[self setTexture:frontSpriteShoot];
-		[self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.1],
-						 [CCCallFunc actionWithTarget:self selector:@selector(stopShooting)],nil]];
-		
-	}
-}
-
--(void)stopShooting
-{
-	
-	if (!isDying){
-		[self setTexture:frontSprite];
+		[self setTexture:tfrontSpriteWithout];		
 	}
 }
 
@@ -230,14 +195,7 @@ float lastRotate;
 	if (zIndex<100) {
 		self.points = 100;
 	}
-	
-	shootTime -= dt*CCRANDOM_0_1()*300;
-	if (shootTime<=0) {
-		shootTime = 50;
-		if(self.texture == frontSprite)
-			[self shoot];
-	}
-	
+		
 	if (hitCount>0) {
 		CCParticleSmoke *s = [CCParticleSmoke node];
 		[s setTexture:smoke];
