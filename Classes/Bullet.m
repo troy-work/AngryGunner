@@ -96,18 +96,16 @@ CCAction *move;
 				
 	}
 	
-	if (indexZ>103) {
+	if (indexZ>83) {
 		
 		float collisionZ = indexZ-83 + self.position.y;
-//		CCLOG(@"collisionZ: %f",collisionZ);
 		if (self.position.y<270) {
 			if (self.position.y<(147+collisionZ+4)||self.position.y>(147+collisionZ-4)) {
-//				CCLOG(@"bulletY: %f",self.position.y);
 				[self unschedule:@selector(step:)];
 				CCSprite *splash = [CCSprite spriteWithFile:@"bulletSplash.png"];
 				float sScale = CCRANDOM_0_1()*self.scale/4 + self.scale/4;
 				float sScaleY = CCRANDOM_0_1()*self.scale/4 + self.scale/8;
-				[splash setOpacity:100];
+				[splash setOpacity:140];
 				[splash setAnchorPoint:ccp(.5,0)];
 				[splash setScale:sScale];
 				[splash setScaleY:(sScaleY)*4];
