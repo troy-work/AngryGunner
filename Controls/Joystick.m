@@ -68,7 +68,8 @@
 
 // Handle touch events one at a time
 -(void) registerWithTouchDispatcher {
-	
+	self.isAccelerometerEnabled = YES;
+
 	[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate: self
 										  priority: INT_MIN+2
 										  swallowsTouches:TRUE];
@@ -78,6 +79,28 @@
 //	[self setIsTouchEnabled:YES];
 //	[[CCTouchDispatcher sharedDispatcher] setDispatchEvents:TRUE];
 	[self resetVelocity];
+}
+
+- (void)accelerometer:(UIAccelerometer*)accelerometer didAccelerate:(UIAcceleration*)acceleration
+{	
+	static float prevX=0, prevY=0;
+	
+#define kFilterFactor 0.05f
+	
+//	float accelX = (float) acceleration.x * kFilterFactor + (1- kFilterFactor)*prevX;
+//	float accelY = (float) acceleration.y * kFilterFactor + (1- kFilterFactor)*prevY;
+//	
+//	
+//	//CGPoint v = ccp( -accelY, accelX);
+//	if (prevX!=accelX||prevY!=accelY) {
+//		prevX = accelX;
+//		prevY = accelY;
+//		float xx = accelY*150;
+//		float yy = -accelX*150;
+//		isTracking = YES;
+//		[thumbNode stopAllActions];
+//		[self trackVelocity: ccp(xx,yy)];
+//	}
 }
 
 

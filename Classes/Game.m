@@ -36,6 +36,7 @@ CCSprite *healthBar;
 CCSprite *healthFrame;
 CCSprite *brokenGlass;
 CCLayer *blips;
+float xx,yy;
 
 CCSprite* fireBurst;
 float planeCountDown;
@@ -69,6 +70,7 @@ float torpedoPlaneCountDown;
 {
 	if( (self=[super init])) 
 	{
+		
 		health = 100;
 		
 		score = [[LevelData sharedLevelData] score];
@@ -262,8 +264,8 @@ float torpedoPlaneCountDown;
 	if (health<30){
 		[brokenGlass setOpacity:(int)(255-(health*8.5))];
 	}
-	float xx = (jstick.velocity.x);
-	float yy = (jstick.velocity.y);
+	xx = (jstick.velocity.x);
+	yy = (jstick.velocity.y);
 	
 	if (xx>.7||xx<.7) {
 		xx = xx* 1.5;
@@ -479,6 +481,8 @@ float torpedoPlaneCountDown;
 	[[UIAccelerometer sharedAccelerometer] setUpdateInterval:(1.0 / 60)];
 	[super onEnter];
 }
+
+
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
