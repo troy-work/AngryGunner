@@ -14,7 +14,9 @@
 }
 
 +(id)scene;
--(void)fireBullets;
+-(void)killSprite:(CCSprite *)sender;
+-(void)fireBullets:(CCSprite *)sender;
+-(void)killEnemySplash:(CCSprite *)sender;
 -(CGPoint)getRotatedPoints:(int)radius startPoint:(CGPoint)start Angle:(float)angle;
 
 @property (assign,nonatomic) CCLayer *planes;

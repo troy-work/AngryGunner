@@ -236,6 +236,8 @@
 		E02BBC67126CC2F6006E46A2 /* utlist.h in Headers */ = {isa = PBXBuildFile; fileRef = E02BBBC1126CC2F6006E46A2 /* utlist.h */; };
 		E02BBC68126CC2F6006E46A2 /* ZipUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = E02BBBC2126CC2F6006E46A2 /* ZipUtils.h */; };
 		E02BBC69126CC2F6006E46A2 /* ZipUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E02BBBC3126CC2F6006E46A2 /* ZipUtils.m */; };
+		FC1B516C1325DC2D0002181C /* bulletSplash-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = FC1B516A1325DC2D0002181C /* bulletSplash-hd.png */; };
+		FC1B516D1325DC2D0002181C /* bulletSplash.png in Resources */ = {isa = PBXBuildFile; fileRef = FC1B516B1325DC2D0002181C /* bulletSplash.png */; };
 		FC20B6EC131F331B006877D4 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC20B6EB131F331B006877D4 /* GameKit.framework */; };
 		FC20B739131F348A006877D4 /* GameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FC20B738131F348A006877D4 /* GameCenterManager.m */; };
 		FC20B74E131F3AA5006877D4 /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = FC20B74D131F3AA5006877D4 /* Score.m */; };
@@ -611,6 +613,8 @@
 		E02BBBC2126CC2F6006E46A2 /* ZipUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipUtils.h; sourceTree = "<group>"; };
 		E02BBBC3126CC2F6006E46A2 /* ZipUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipUtils.m; sourceTree = "<group>"; };
 		E0C5505A11FA3A8000B9E4CB /* LICENSE.chipmunk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.chipmunk; sourceTree = "<group>"; };
+		FC1B516A1325DC2D0002181C /* bulletSplash-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bulletSplash-hd.png"; sourceTree = "<group>"; };
+		FC1B516B1325DC2D0002181C /* bulletSplash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bulletSplash.png; sourceTree = "<group>"; };
 		FC20B6EB131F331B006877D4 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		FC20B737131F348A006877D4 /* GameCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterManager.h; sourceTree = "<group>"; };
 		FC20B738131F348A006877D4 /* GameCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterManager.m; sourceTree = "<group>"; };
@@ -1523,6 +1527,8 @@
 		FCFFEECF131DE7AE0090F6E5 /* Bullets */ = {
 			isa = PBXGroup;
 			children = (
+				FC1B516A1325DC2D0002181C /* bulletSplash-hd.png */,
+				FC1B516B1325DC2D0002181C /* bulletSplash.png */,
 				FC6CF0EC1319B1F300EE91E4 /* enemyBullet-hd.png */,
 				FC6CF0ED1319B1F300EE91E4 /* enemyBullet.png */,
 				FCE01ADA13124D2E000A603A /* bullet-hd.png */,
@@ -1852,6 +1858,8 @@
 				FC3F0AFB132098560016AF39 /* musicscreen-hd.png in Resources */,
 				FC3F0AFC132098560016AF39 /* musicscreen.png in Resources */,
 				FC3F0B2313209F8F0016AF39 /* 321impact.ttf in Resources */,
+				FC1B516C1325DC2D0002181C /* bulletSplash-hd.png in Resources */,
+				FC1B516D1325DC2D0002181C /* bulletSplash.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

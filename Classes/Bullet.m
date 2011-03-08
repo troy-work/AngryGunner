@@ -19,14 +19,15 @@ CCAction *move;
 -(id)init 
 {
 	if ((self = [super init])) {
-		zIndex = 0;
-		indexZ = 0;
+		zIndex = 1;
+		indexZ = 1;
 	}
 	return self;
 }
 -(void)startAtPosition: (CGPoint) startPos finishAtPosition: (CGPoint) finishPos
 {
 	[self setPosition:startPos];
+	[self setScale:2];
 	fPos = finishPos;
 	CGPoint fall = ccpAdd(fPos, ccp(0,-15));
 	move = [CCSequence actions:[CCMoveTo actionWithDuration:.05 position:fPos],
@@ -39,6 +40,10 @@ CCAction *move;
 -(void)step:(ccTime) dt
 {
 	indexZ += 200*dt;
+//	CCLOG(@"ZindexWITHcalc: %f",indexZ);
+//	CCLOG(@"GAMEY: %f",([(Game *)[[self parent]parent]y]));
+//	CCLOG(@"BULLETY: %f",(self.position.y));
+//	CCLOG(@"BULLETY+GAMEY: %f",((self.position.y)+[(Game *)[[self parent]parent]y]));
 	zIndex = (int)indexZ;
 //	[self setRotation:[self rotation]+120];
 	[self setScale:(2-(zIndex*.01)*1)];
@@ -55,13 +60,6 @@ CCAction *move;
 			if ((self.position.x>lx&&self.position.x<lx+p.scaledSize.width*.6)
 				&&(self.position.y>by&&self.position.y<ty)) 
 			{
-//					CCLOG(@"Self x: %d",self.position.x);
-//					CCLOG(@"lx: %d",lx);
-//					CCLOG(@"rx: %d",rx);
-//					CCLOG(@"Self y: %d",self.position.y);
-//					CCLOG(@"ty: %d",ty);
-//					CCLOG(@"by: %d",by);
-				
 				int score = p.points;
 				
 				if (score==100) {
@@ -97,6 +95,33 @@ CCAction *move;
 		}
 				
 	}
+	
+	if (indexZ>103) {
+		
+		float collisionZ = indexZ-83 + self.position.y;
+//		CCLOG(@"collisionZ: %f",collisionZ);
+		if (self.position.y<270) {
+			if (self.position.y<(147+collisionZ+4)||self.position.y>(147+collisionZ-4)) {
+//				CCLOG(@"bulletY: %f",self.position.y);
+				[self unschedule:@selector(step:)];
+				CCSprite *splash = [CCSprite spriteWithFile:@"bulletSplash.png"];
+				float sScale = CCRANDOM_0_1()*self.scale/4 + self.scale/4;
+				float sScaleY = CCRANDOM_0_1()*self.scale/4 + self.scale/8;
+				[splash setOpacity:100];
+				[splash setAnchorPoint:ccp(.5,0)];
+				[splash setScale:sScale];
+				[splash setScaleY:(sScaleY)*4];
+				[splash setPosition:self.position];
+				[splash runAction:[CCSequence actions:[CCScaleBy actionWithDuration:.1 scale:2],
+								   [CCScaleBy actionWithDuration:.1 scale:.1],
+								   [CCCallFuncN actionWithTarget:[(Game *)[self parent]parent] 
+													   selector:@selector(killEnemySplash:)],nil]];
+				
+				[[[(Game *)[self parent]parent] friendsLayer]addChild:splash];
+				[[self parent] removeChild:self cleanup:TRUE];
+			}
+		}
+	}	
 }
 
 

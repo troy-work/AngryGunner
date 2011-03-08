@@ -361,6 +361,8 @@ float torpedoPlaneCountDown;
 		[sb setScale:1-p.position.y/1300];
 		[blips addChild:sb];
 	}
+	
+//	CCLOG(@"%f",y);
 }
 
 
@@ -457,6 +459,10 @@ float torpedoPlaneCountDown;
 	[[self gunner] removeChild:sender cleanup:TRUE];
 }
 
+-(void)killEnemySplash:(CCSprite *)sender
+{
+	[[self friendsLayer] removeChild:sender cleanup:TRUE];
+}
 
 -(void)killEnemyBullet:(CCSprite *)sender
 {
@@ -527,7 +533,7 @@ float torpedoPlaneCountDown;
 	isShooting = testShooting;
 }
 
--(void)killSprite:(id)sender
+-(void)killSprite:(CCSprite *)sender
 {
 	[self removeChild:sender cleanup:FALSE];
 }
