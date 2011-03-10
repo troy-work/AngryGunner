@@ -83,10 +83,10 @@
 
 - (void)accelerometer:(UIAccelerometer*)accelerometer didAccelerate:(UIAcceleration*)acceleration
 {	
-	static float prevX=0, prevY=0;
-	
-#define kFilterFactor 0.05f
-	
+//	static float prevX=0, prevY=0;
+//	
+//#define kFilterFactor 0.05f
+//	
 //	float accelX = (float) acceleration.x * kFilterFactor + (1- kFilterFactor)*prevX;
 //	float accelY = (float) acceleration.y * kFilterFactor + (1- kFilterFactor)*prevY;
 //	
@@ -105,7 +105,6 @@
 
 
 -(BOOL) ccTouchBegan: (UITouch *)touch withEvent: (UIEvent *)event {
-//	CCLOG(@"%d - touches JoyStick");
 	if(!isTracking) {
 		CGSize cs = self.contentSize;
 		float x = [self anchorPoint].x;
