@@ -155,33 +155,7 @@
 	// If necessary, normalize the velocity vector relative to the travel limits
 	CGFloat rawVelLen = ccpLength(rawVelocity);
 	velocity = rawVelocity;
-	if (rawVelLen <= 1.8) { 
-		ccpMult(rawVelocity, 0.12f/rawVelLen);
-	} 
-	if (rawVelLen <= 1.6) { 
-		ccpMult(rawVelocity, 0.06f/rawVelLen);
-	} 
-	if (rawVelLen <= 1.2) { 
-		ccpMult(rawVelocity, 0.03f/rawVelLen);
-	} 
-	if (rawVelLen <= 0.8) { 
-		ccpMult(rawVelocity, 0.015f/rawVelLen);
-	} 
-	if (rawVelLen <= 0.4) { 
-		ccpMult(rawVelocity, 0.008f/rawVelLen);
-	} 
-	if (rawVelLen <= 0.2) { 
-		ccpMult(rawVelocity, 0.004f/rawVelLen);
-	} 
-	if (rawVelLen <= 0.1) { 
-		ccpMult(rawVelocity, 0.002f/rawVelLen);
-	} 
-	if (rawVelLen <= 0.05) { 
-		ccpMult(rawVelocity, 0.001f/rawVelLen);
-	} 
-	if (rawVelLen <= 0.001) { 
-		ccpMult(rawVelocity, 0.0005f/rawVelLen);
-	} 
+	velocity = ccpMult(velocity, rawVelLen/rawVelLen);
 	// Calculate the vector in angular coordinates
 	// ccpToAngle returns counterclockwise positive relative to X-axis.
 	// We want clockwise positive relative to the Y-axis.
