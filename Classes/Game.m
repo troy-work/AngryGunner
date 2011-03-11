@@ -264,35 +264,9 @@ float torpedoPlaneCountDown;
 	if (health<30){
 		[brokenGlass setOpacity:(int)(255-(health*8.5))];
 	}
-	xx = 3*(jstick.velocity.x*jstick.velocity.x*jstick.velocity.x);
-	yy = 3*(jstick.velocity.y*jstick.velocity.y*jstick.velocity.y);
-
-	
-//	if (xx>.7||xx<.7) {
-//		xx = xx* 1.5;
-//		if (xx>4||xx<-4) {
-//			xx= xx*1.75;
-//			if (xx>10||xx<-10) {
-//				xx= xx*2;
-//				if (xx>35||xx<-35) {
-//					xx= xx*2.5;
-//				}
-//			}
-//		}
-//	}
-//	if (yy>.7||yy<-.7) {
-//		yy = yy* 1.5;
-//		if (yy>4||yy<-4) {
-//			yy= yy*1.75;
-//			if (yy>10||yy<-10) {
-//				yy= yy*2;
-//				if (yy>35||yy<-35) {
-//					yy= yy*2.5;
-//				}
-//			}
-//		}
-//	}
-	
+	xx = (jstick.velocity.x*jstick.velocity.x*jstick.velocity.x);
+	yy = (jstick.velocity.y*jstick.velocity.y*jstick.velocity.y);
+    	
 	if (xx==0){
 		if (x<-1024+480)
 			x += 400*dt;
@@ -316,8 +290,8 @@ float torpedoPlaneCountDown;
 		[torpedoPlane release];
 	}
 	
-	x = x - xx*dt*10;
-	y = y - yy*dt*10;
+	x = x - xx*dt*30;
+	y = y - yy*dt*30;
 	float staticX = 0;
 	
 	if (y>0) {

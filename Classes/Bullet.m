@@ -40,12 +40,7 @@ CCAction *move;
 -(void)step:(ccTime) dt
 {
 	indexZ += 200*dt;
-//	CCLOG(@"ZindexWITHcalc: %f",indexZ);
-//	CCLOG(@"GAMEY: %f",([(Game *)[[self parent]parent]y]));
-//	CCLOG(@"BULLETY: %f",(self.position.y));
-//	CCLOG(@"BULLETY+GAMEY: %f",((self.position.y)+[(Game *)[[self parent]parent]y]));
 	zIndex = (int)indexZ;
-//	[self setRotation:[self rotation]+120];
 	[self setScale:(2-(zIndex*.01)*1)];
 	if (zIndex>=199) {
 		[[self parent] removeChild:self cleanup:TRUE];
@@ -54,10 +49,10 @@ CCAction *move;
 	for (Plane *p in [[[[self parent]parent]planes]children]){
 		if (p.zIndex<zIndex+8&&p.zIndex>zIndex-8) 
 		{
-			float lx = p.position.x - p.scaledSize.width/3;
-			float ty = p.position.y + p.scaledSize.height/3;
-			float by = p.position.y - p.scaledSize.height/3;
-			if ((self.position.x>lx&&self.position.x<lx+p.scaledSize.width*.6)
+			float lx = p.position.x - p.scaledSize.width*.4;
+			float ty = p.position.y + p.scaledSize.height*.4;
+			float by = p.position.y - p.scaledSize.height*.4;
+			if ((self.position.x>lx&&self.position.x<lx+p.scaledSize.width*8)
 				&&(self.position.y>by&&self.position.y<ty)) 
 			{
 				int score = p.points;
@@ -105,7 +100,7 @@ CCAction *move;
 				CCSprite *splash = [CCSprite spriteWithFile:@"bulletSplash.png"];
 				float sScale = CCRANDOM_0_1()*(.4*270/self.position.y);
 				float sScaleY = CCRANDOM_0_1()*(.1*270/self.position.y);
-				[splash setOpacity:140];
+				[splash setOpacity:200];
 				[splash setAnchorPoint:ccp(.5,0)];
 				[splash setScale:sScale];
 				[splash setScaleY:(sScaleY)*4];
