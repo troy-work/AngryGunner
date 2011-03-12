@@ -9,6 +9,7 @@
 #import "Bullet.h"
 #import "Plane.h"
 #import "Game.h"
+#import "Torpedo.h"
 
 @implementation Bullet
 
@@ -52,8 +53,8 @@ CCAction *move;
 	for (Plane *p in [[(Game *)[[self parent]parent]planes]children]){
 		if (p.zIndex<zIndex+8&&p.zIndex>zIndex-8) 
 		{
-			if ((thisX>p.position.x-p.scaledSize.width/3 && thisX<p.position.x+p.scaledSize.width/3)
-				&&(thisY>p.position.y-p.scaledSize.height/3 && thisY<p.position.y+p.scaledSize.height/3)) 
+			if ((thisX>p.position.x-p.scaledSize.width/2 && thisX<p.position.x+p.scaledSize.width/2)
+				&&(thisY>p.position.y-p.scaledSize.height/2 && thisY<p.position.y+p.scaledSize.height/2)) 
 			{                                
 				int score = p.points;
 				

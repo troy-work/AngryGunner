@@ -7,7 +7,8 @@
 //
 
 #import "TorpedoPlane.h"
-
+#import "Torpedo.h"
+#import "Game.h"
 
 @implementation TorpedoPlane
 
@@ -34,8 +35,8 @@ float lastRotate;
 	if ((self = [super init])) {
 		zIndex = 200;
 		indexZ = 200;
-		randomX = CCRANDOM_0_1()*880;
-		randomX = randomX + 440;
+		randomX = CCRANDOM_0_1()*860;
+		randomX = randomX + 480;
 		isDying=FALSE;
 		points = 200;
 		lastRotate = (CCRANDOM_0_1()*-120)-40;
@@ -184,7 +185,12 @@ float lastRotate;
 -(void)shoot
 {
 	if (!isDying){
-		[self setTexture:tfrontSpriteWithout];		
+		[self setTexture:tfrontSpriteWithout];
+		
+        Torpedo *torpedo = [Torpedo torpedoSprite];
+        [torpedo startAt:ccpAdd([self position], ccp(0,-10)) scale:self.scaleY*.8];
+        [[(Game *)[[self parent]parent]planes] addChild:torpedo];
+        
 	}
 }
 
