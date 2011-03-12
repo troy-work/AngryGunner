@@ -46,15 +46,15 @@ CCAction *move;
 		[[self parent] removeChild:self cleanup:TRUE];
 	}
 	
-	for (Plane *p in [[[[self parent]parent]planes]children]){
+    float thisX = self.position.x;
+    float thisY = self.position.y;
+    
+	for (Plane *p in [[(Game *)[[self parent]parent]planes]children]){
 		if (p.zIndex<zIndex+8&&p.zIndex>zIndex-8) 
 		{
-			float lx = p.position.x - p.scaledSize.width*.4;
-			float ty = p.position.y + p.scaledSize.height*.4;
-			float by = p.position.y - p.scaledSize.height*.4;
-			if ((self.position.x>lx&&self.position.x<lx+p.scaledSize.width*8)
-				&&(self.position.y>by&&self.position.y<ty)) 
-			{
+			if ((thisX>p.position.x-p.scaledSize.width/3 && thisX<p.position.x+p.scaledSize.width/3)
+				&&(thisY>p.position.y-p.scaledSize.height/3 && thisY<p.position.y+p.scaledSize.height/3)) 
+			{                                
 				int score = p.points;
 				
 				if (score==100) {
@@ -66,10 +66,10 @@ CCAction *move;
 								fntFile:@"321impact.fnt"];
 				
 				// testing anchors
-				float xx = [(Game *)[[self parent]parent] x];
-				float yy = [(Game *)[[self parent]parent] y];
+				float txx = [(Game *)[[self parent]parent] x];
+				float tyy = [(Game *)[[self parent]parent] y];
 				
-				CGPoint bp = ccpAdd(p.position, ccp(xx,yy));
+				CGPoint bp = ccpAdd(p.position, ccp(txx,tyy));
 				
 				bonus.anchorPoint = ccp(.5,0);
 				[bonus setPosition:bp];

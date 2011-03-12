@@ -264,15 +264,24 @@ float torpedoPlaneCountDown;
 	if (health<30){
 		[brokenGlass setOpacity:(int)(255-(health*8.5))];
 	}
-	xx = (jstick.velocity.x*jstick.velocity.x*jstick.velocity.x);
-	yy = (jstick.velocity.y*jstick.velocity.y*jstick.velocity.y);
-    	
+	xx = (jstick.velocity.x);        
+	yy = (jstick.velocity.y);
+    int factorX = (xx<0)?-1:1;
+    int factorY = (yy<0)?-1:1;
+    xx = (powf(3,ABS(xx))-1)*factorX;    
+    yy = (powf(3,ABS(yy))-1)*factorY;
+    
+//    CCLOG(@"%f",xx);
+    
+    
+	//ease back toward center
 	if (xx==0){
 		if (x<-1024+480)
 			x += 400*dt;
 		if (x>1024-480)
 			x-=400*dt;
 	}
+    
 	planeCountDown -=100*dt;
 	if (planeCountDown<1) {
 		planeCountDown = 1000;
@@ -290,8 +299,8 @@ float torpedoPlaneCountDown;
 		[torpedoPlane release];
 	}
 	
-	x = x - xx*dt*30;
-	y = y - yy*dt*30;
+	x = x - xx*dt*20;
+	y = y - yy*dt*20;
 	float staticX = 0;
 	
 	if (y>0) {

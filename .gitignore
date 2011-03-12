@@ -2,3 +2,5 @@ build/*
 *.ipa
 *.mode*
 *.pbxuser
+*.xc*
+.DS_Store

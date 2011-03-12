@@ -155,7 +155,7 @@
 	// If necessary, normalize the velocity vector relative to the travel limits
 	CGFloat rawVelLen = ccpLength(rawVelocity);
 	velocity = rawVelocity;
-//	velocity = ccpMult(velocity, rawVelLen/rawVelLen);
+//	velocity = ccpMult(velocity, 1.0f/rawVelLen);
     
     // If necessary, normalize the velocity vector relative to the travel limits
 //	CGFloat rawVelLen = ccpLength(rawVelocity);
