@@ -20,10 +20,13 @@
 @property (assign,nonatomic) bool difficultOn;
 @property (assign,nonatomic) bool torpedoesOn;
 @property (assign,nonatomic) bool shouldPlaySfx;
+@property (assign,nonatomic) int currentMultiplier;
 
 + (LevelData *)sharedLevelData;
 +(void)loadState;
 +(void)saveState;
++(void)loadMultiplier;
++(void)saveMultiplier;
 
 
 @end

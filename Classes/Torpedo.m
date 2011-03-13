@@ -21,6 +21,7 @@ int countTail;
 @synthesize hitCount;
 @synthesize isDying;
 @synthesize points;
+@synthesize state;
 
 -(id)init 
 {
@@ -28,7 +29,7 @@ int countTail;
 		zIndex = 200;
 		indexZ = 200;
 		isDying=FALSE;
-		points = 200;
+		points = 100;
         countTail = 260;
 		smoke = [[CCTextureCache sharedTextureCache] addImage:@"dpadburst.png"];
         
@@ -101,11 +102,11 @@ int countTail;
 }
 -(void)startAt:(CGPoint)pos scale:(float)scale
 {
+    [self setState:@"tFalling"];
 	[self setPosition:pos];
 	[self setAnchorPoint:ccp(.5,.5)];
 	[self setScale:scale];
-	
-	
+		
 	[self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:1],
                      [CCCallFunc actionWithTarget:self selector:@selector(startTail)],
 					 [CCScaleTo actionWithDuration:20 scale:1.5],nil]];
@@ -122,6 +123,8 @@ int countTail;
 
 -(void)startTail
 {
+    [self setState:@"tTail"];
+    [self setPoints:50];
 	[self schedule:@selector(step:)];
     [self setOpacity:90];
 }
@@ -129,7 +132,7 @@ int countTail;
 -(void)step:(ccTime) dt
 {
 	[self setZIndex:200-(150*[self scale])];
-    countTail -=60*dt;
+    countTail -=50*dt;
     if (countTail<=0) {
         countTail=20;
         CCSprite *tail = [CCSprite spriteWithFile:@"bulletSplash.png"];

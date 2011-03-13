@@ -15,9 +15,12 @@
 
 +(id)scene;
 -(void)killSprite:(CCSprite *)sender;
--(void)fireBullets:(CCSprite *)sender;
+-(void)fireBullets;
 -(void)killEnemySplash:(CCSprite *)sender;
 -(CGPoint)getRotatedPoints:(int)radius startPoint:(CGPoint)start Angle:(float)angle;
+- (void)saveGLScreenshotToPhotosAlbum;
+-(void)getPic;
+-(void)checkAchievement:(NSString *)s;
 
 @property (assign,nonatomic) CCLayer *planes;
 @property (assign,nonatomic) CCLayer *bullets;
@@ -28,5 +31,8 @@
 @property (assign,nonatomic) float y;
 @property (assign,nonatomic) CCSprite *radar;
 @property (assign,nonatomic) int score;
+@property (assign,nonatomic) int countDownAchievement;
+@property (assign,nonatomic) bool didAchievement;
+
 
 @end

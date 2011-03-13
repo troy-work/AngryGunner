@@ -51,6 +51,9 @@ float torpedoPlaneCountDown;
 @synthesize y;
 @synthesize radar;
 @synthesize score;
+@synthesize countDownAchievement;
+@synthesize didAchievement;
+
 
 +(id)scene{
 	// 'scene' is an autorelease object.
@@ -70,6 +73,10 @@ float torpedoPlaneCountDown;
 {
 	if( (self=[super init])) 
 	{
+        [LevelData loadState];
+        
+        didAchievement = FALSE;
+        countDownAchievement = 3;
 		
 		health = 100;
 		
@@ -252,6 +259,34 @@ float torpedoPlaneCountDown;
 	
 }
 
+-(void)checkAchievement:(NSString *) s
+{
+    if (countDownAchievement>0) {
+        if ([[LevelData sharedLevelData]currentMultiplier]==1) {
+            if ([@"fFront" isEqualToString:s]) {
+                didAchievement=TRUE;
+                countDownAchievement-=1;
+            }
+        }
+        if (countDownAchievement==0){
+            
+            [[LevelData sharedLevelData]setCurrentMultiplier:[[LevelData sharedLevelData]currentMultiplier]+1];
+            [LevelData saveMultiplier];
+            
+            CCLabelBMFont *achievement = [CCLabelBMFont labelWithString:
+                                    [NSString stringWithFormat:@"AWESOME! YOU ARE AT %iX",[[LevelData sharedLevelData]currentMultiplier]]									   
+                                                          fntFile:@"321impact.fnt"];                
+            achievement.anchorPoint = ccp(.5,0);
+            [achievement setPosition:ccp(240,160)];
+            [achievement setScale:1];
+            [achievement runAction:[CCSequence actions:[CCDelayTime actionWithDuration:4],
+                              [CCCallFuncN actionWithTarget:self 
+                                                   selector:@selector(killSprite:)],nil]];
+            [self addChild:achievement z:0];
+            
+        }                
+    }
+}
 
 -(void)step:(ccTime)dt{
 	
@@ -299,8 +334,8 @@ float torpedoPlaneCountDown;
 		[torpedoPlane release];
 	}
 	
-	x = x - xx*dt*20;
-	y = y - yy*dt*20;
+	x = x - xx*dt*10;
+	y = y - yy*dt*10;
 	float staticX = 0;
 	
 	if (y>0) {
@@ -556,5 +591,56 @@ float torpedoPlaneCountDown;
 	[super dealloc];	
 }
 
+
+
+//**********pull this out before submitting***********************//
+//- (UIImage*) getGLScreenshot {
+//    NSInteger myDataLength = 320 * 480 * 4;
+//    
+//    // allocate array and read pixels into it.
+//    GLubyte *buffer = (GLubyte *) malloc(myDataLength);
+//    glReadPixels(0, 0, 320, 480, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
+//    
+//    // gl renders "upside down" so swap top to bottom into new array.
+//    // there's gotta be a better way, but this works.
+//    GLubyte *buffer2 = (GLubyte *) malloc(myDataLength);
+//    for(int _y = 0; _y <480; _y++)
+//        {
+//            for(int _x = 0; _x <320 * 4; _x++)
+//                {
+//                    buffer2[(479 - _y) * 320 * 4 + _x] = buffer[_y * 4 * 320 + _x];
+//                    }
+//            }
+//    
+//    // make data provider with data.
+//    CGDataProviderRef provider = CGDataProviderCreateWithData(NULL, buffer2, myDataLength, NULL);
+//    
+//    // prep the ingredients
+//    int bitsPerComponent = 8;
+//    int bitsPerPixel = 32;
+//    int bytesPerRow = 4 * 320;
+//    CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
+//    CGBitmapInfo bitmapInfo = kCGBitmapByteOrderDefault;
+//    CGColorRenderingIntent renderingIntent = kCGRenderingIntentDefault;
+//    
+//    // make the cgimage
+//    CGImageRef imageRef = CGImageCreate(320, 480, bitsPerComponent, bitsPerPixel, bytesPerRow, colorSpaceRef, bitmapInfo, provider, NULL, NO, renderingIntent);
+//    
+//    // then make the uiimage from that
+//    UIImage *myImage = [UIImage imageWithCGImage:imageRef];
+//    return myImage;
+//}
+//
+//- (void)saveGLScreenshotToPhotosAlbum {
+//    [self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.1],
+//                     [CCCallFunc actionWithTarget:self selector:@selector(getPic)], nil]];
+//}
+//
+//-(void)getPic
+//{
+//    UIImageWriteToSavedPhotosAlbum([self getGLScreenshot], nil, nil, nil);
+//
+//}
+//****************************pull above out before submitting*****************************//
 
 @end

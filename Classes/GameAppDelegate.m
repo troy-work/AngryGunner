@@ -45,7 +45,7 @@
 	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];	
 	
 	[director setDeviceOrientation:CCDeviceOrientationLandscapeLeft];
-	[director setDisplayFPS:YES];
+	[director setDisplayFPS:NO];
 	[director setAnimationInterval:1.0/60];
 
 	

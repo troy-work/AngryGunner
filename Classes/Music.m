@@ -84,7 +84,7 @@ bool isSimulator=FALSE;
 		
 		CCMenu *menu = [CCMenu menuWithItems: home,nil];
 		menu.position = ccp(0,0);
-		menu.opacity=0;
+		[menu setOpacity:0];
 		[self addChild:menu];
 		
 		

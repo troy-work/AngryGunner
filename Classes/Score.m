@@ -89,7 +89,7 @@ CCSprite *gameCenterButton;
 			[menu addChild:gameCenter z:0 tag:0];
 		}
 		menu.position = ccp(0,0);
-		menu.opacity=0;
+		[menu setOpacity:0];
 		[self addChild:menu];
 		
 		CCLabelBMFont *scoreLabel = [CCLabelBMFont labelWithString:

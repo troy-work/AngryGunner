@@ -88,7 +88,7 @@ MPMusicPlayerController* appMusicPlayer;
 		
 		CCMenu *menu = [CCMenu menuWithItems: home,sfx,offSfx,music,offMusic,nil];
 		menu.position = ccp(0,0);
-		menu.opacity=0;
+		[menu setOpacity:0];
 		[self addChild:menu];
 		[self placeChecks];
 	}

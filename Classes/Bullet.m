@@ -10,6 +10,7 @@
 #import "Plane.h"
 #import "Game.h"
 #import "Torpedo.h"
+#import "LevelData.h"
 
 @implementation Bullet
 
@@ -58,13 +59,7 @@ CCAction *move;
 			{                                
 				int score = p.points;
 				
-				if (score==100) {
-					score = 500;
-				}
-
-				CCLabelBMFont *bonus = [CCLabelBMFont labelWithString:
-						[NSString stringWithFormat:@"%i",score]									   
-								fntFile:@"321impact.fnt"];
+                score = score * [[LevelData sharedLevelData] currentMultiplier];
 				
 				// testing anchors
 				float txx = [(Game *)[[self parent]parent] x];
@@ -72,21 +67,36 @@ CCAction *move;
 				
 				CGPoint bp = ccpAdd(p.position, ccp(txx,tyy));
 				
-				bonus.anchorPoint = ccp(.5,0);
-				[bonus setPosition:bp];
-				[bonus setScale:.5];
-				[bonus runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.5],
-								  [CCCallFuncN actionWithTarget:[[self parent] parent] 
-													   selector:@selector(killSprite:)],nil]];
-				[[[self parent] parent] addChild:bonus z:0];
 				
-				[[[self parent]parent] setScore:[[[self parent]parent] score] + score];
-				
+//note: pull this out before submitting
+//                if (score>40) {
+//                    [(Game *)[[self parent]parent]saveGLScreenshotToPhotosAlbum];
+//                }
+                
+                NSString *info = [NSString stringWithString:@""];
 				p.hitCount += 1;
 				if (p.hitCount>2) {
 					[p die];
-				[[self parent] removeChild:self cleanup:TRUE];
+                    if ([(Game *)[[self parent]parent]didAchievement]){
+                        [(Game *)[[self parent]parent]setDidAchievement:FALSE];
+                        info = [NSString stringWithString:@"+1 Achievement"];
+                    }
 				}
+
+				CCLabelBMFont *bonus = [CCLabelBMFont labelWithString:
+                                        [NSString stringWithFormat:@"%@ %i",info,score]									   
+                                                              fntFile:@"321impact.fnt"];                
+                bonus.anchorPoint = ccp(.5,0);
+                [bonus setPosition:bp];
+                [bonus setScale:.5];
+                [bonus runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.5],
+                                  [CCCallFuncN actionWithTarget:[[self parent] parent] 
+                                                       selector:@selector(killSprite:)],nil]];
+                [[[self parent] parent] addChild:bonus z:0];
+                
+                [[[self parent]parent] setScore:[[[self parent]parent] score] + score];
+
+				[[self parent] removeChild:self cleanup:TRUE];                
 			}
 		}
 				

@@ -17,6 +17,7 @@
 @synthesize difficultOn;
 @synthesize torpedoesOn;
 @synthesize shouldPlaySfx;
+@synthesize currentMultiplier;
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(LevelData);
 
@@ -27,13 +28,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LevelData);
 		
 		[LevelData loadState];
 				
-		if (self.highScore==0) {
+		if (self.highScore==0||self.currentMultiplier==0) {
 			[self setScore:0];
 			[self setHighScore:0];
 			[self setUseGameCenter:FALSE];
 			[self setDifficultOn:FALSE];
 			[self setTorpedoesOn:FALSE];
 			[self setShouldPlaySfx:TRUE];
+            [self setCurrentMultiplier:1];
 			[LevelData saveState];
 		}
 		
@@ -56,17 +58,15 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LevelData);
 		sharedLevelData.difficultOn = [prefs boolForKey:@"difficultOn"];
 		sharedLevelData.torpedoesOn = [prefs boolForKey:@"torpedoesOn"];
 		sharedLevelData.shouldPlaySfx = [prefs boolForKey:@"shouldPlaySfx"];
-		[prefs synchronize];
-						
-	}
-	
+        sharedLevelData.currentMultiplier = [prefs integerForKey:@"currentMultiplier"];
+		[prefs synchronize];						
+	}	
 }
 
 +(void)saveState
 {
 	@synchronized([LevelData class]) {  
-		
-		
+				
 		NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
 		
 		// saving an NSString		
@@ -76,11 +76,32 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LevelData);
 		[prefs setBool: sharedLevelData.difficultOn forKey:@"difficultOn"];
 		[prefs setBool: sharedLevelData.torpedoesOn forKey:@"torpedoesOn"];
 		[prefs setBool: sharedLevelData.shouldPlaySfx forKey:@"shouldPlaySfx"];
+        [prefs setInteger: sharedLevelData.currentMultiplier forKey:@"currentMultiplier"];
 		
-		// This is suggested to synch prefs, but is not needed (I didn't put it in my tut)
-		[prefs synchronize];
-		
+		[prefs synchronize];		
 	}
+}
+
++(void)loadMultiplier
+{
+	@synchronized([LevelData class]) {
+		if(!sharedLevelData)
+			[LevelData sharedLevelData] ;
+		NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+        sharedLevelData.currentMultiplier = [prefs integerForKey:@"currentMultiplier"];
+
+		[prefs synchronize];
+        
+	}
+    
+}
++(void)saveMultiplier;
+{
+	@synchronized([LevelData class]) {  
+		NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];		
+        [prefs setInteger: sharedLevelData.currentMultiplier forKey:@"currentMultiplier"];		
+		[prefs synchronize];		
+	}    
 }
 
 @end

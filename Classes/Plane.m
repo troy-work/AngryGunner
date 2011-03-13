@@ -7,7 +7,7 @@
 //
 
 #import "Plane.h"
-
+#import "Game.h"
 
 @implementation Plane
 
@@ -28,6 +28,7 @@ float lastRotate;
 @synthesize hitCount;
 @synthesize isDying;
 @synthesize points;
+@synthesize state;
 
 -(id)init 
 {
@@ -57,6 +58,7 @@ float lastRotate;
 
 -(void)start
 {
+    [self setState:@"fDiving"];
 	[self setPosition:ccp(randomX,1000)];
 	[self setAnchorPoint:ccp(.5,.5)];
 	[self setTexture:turnSprite];
@@ -82,7 +84,8 @@ float lastRotate;
 
 -(void)front
 {
-	self.points = 50;
+    [self setState:@"fFront"];
+	self.points = 25;
 	[self setScaleX:[self scaleY]];
 	[self setTexture:frontSprite];
 	[self setRotation:45];
@@ -91,24 +94,29 @@ float lastRotate;
 
 -(void)turnLeft
 {
+    [self setState:@"fLeft"];
 	[self runAction:[CCRotateTo actionWithDuration:.2 angle:-40]];
 	[self runAction:[CCMoveBy actionWithDuration:.3 position:ccp(-50,-10)]];
 }
 
 -(void)turnRight
 {
+    [self setState:@"fRight"];
 	[self runAction:[CCRotateTo actionWithDuration:.2 angle:40]];
 	[self runAction:[CCMoveBy actionWithDuration:2 position:ccp(800,-10)]];
 }
 
 -(void)spriteBottom
 {
+    [self setState:@"fClimb"];
+    [self setPoints:500];
 	[self setTexture:bottomSprite];
 	[self runAction:[CCMoveBy actionWithDuration:.4 position:ccp(0,1500)]];
 }
 
 -(void)die
 {
+	[(Game *)[[self parent]parent]checkAchievement:[self state]];
 	isDying=TRUE;
 	[self unschedule:@selector(step:)];
 
@@ -155,8 +163,7 @@ float lastRotate;
 }
 
 -(void)kill
-{
-	
+{	
 	[[self parent] removeChild:self cleanup:FALSE];
 }
 
@@ -228,7 +235,7 @@ float lastRotate;
 	[self setZIndex:200-(50*[self scaleY])];
 	
 	if (zIndex<100) {
-		self.points = 100;
+		self.points = 50;
 	}
 	
 	shootTime -= dt*CCRANDOM_0_1()*300;

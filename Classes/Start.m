@@ -8,7 +8,7 @@
 
 #import "Start.h"
 #import "Game.h"
-#import "Option.h"
+#import "Achievement.h"
 #import "Sound.h"
 
 
@@ -34,13 +34,13 @@
 	if( (self=[super init])) 
 	{
 		
-		CCSprite *bg = [CCSprite spriteWithFile:@"startscreen.png"];
+		CCSprite *bg = [CCSprite spriteWithFile:@"startscreen.jpg"];
 		[bg setAnchorPoint:ccp(0,0)];
 		
 	    bg.position = ccp(0,0);
 		[self addChild:bg];
 		
-		CCMenuItem *options = [CCMenuItemFont itemFromString:@"Options|" target:self selector:@selector(viewOptions:)];
+		CCMenuItem *options = [CCMenuItemFont itemFromString:@"ACHIEVEMENTS" target:self selector:@selector(viewAchievement:)];
 		CCMenuItem *start = [CCMenuItemFont itemFromString:@"|NewGa|" target:self selector:@selector(startGame:)];
 		CCMenuItem *help = [CCMenuItemFont itemFromString:@"HelpInfo" target:self selector:@selector(viewHelp:)];
 		CCMenuItem *info = [CCMenuItemFont itemFromString:@"INF" target:self selector:@selector(viewInfo:)];
@@ -50,7 +50,7 @@
 		
 		
 		options.position = ccp(0,85);
-		start.position = ccp(150,85);
+		start.position = ccp(180,85);
 		help.position = ccp(295,85);
 		info.position = ccp(310,26);
 		speaker1.position = ccp(360,36);
@@ -59,7 +59,7 @@
 		
 		CCMenu *menu = [CCMenu menuWithItems: options,start,help,info,speaker1,speaker2,nil];
 		menu.position = ccp(90,0);
-		menu.opacity=0;
+		[menu setOpacity:0];
 		[self addChild:menu];
 		
 	}
@@ -68,9 +68,9 @@
 	
 }
 
--(void)viewOptions:(id)sender
+-(void)viewAchievement:(id)sender
 {	
-	[[CCDirector sharedDirector] replaceScene:[Option scene]];	
+	[[CCDirector sharedDirector] replaceScene:[Achievement scene]];	
 }
 
 -(void)startGame:(id)sender

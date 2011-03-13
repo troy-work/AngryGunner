@@ -29,6 +29,7 @@ float lastRotate;
 @synthesize hitCount;
 @synthesize isDying;
 @synthesize points;
+@synthesize state;
 
 -(id)init 
 {
@@ -38,7 +39,7 @@ float lastRotate;
 		randomX = CCRANDOM_0_1()*860;
 		randomX = randomX + 480;
 		isDying=FALSE;
-		points = 200;
+		points = 100;
 		lastRotate = (CCRANDOM_0_1()*-120)-40;
 		tbottomSprite = [[CCTextureCache sharedTextureCache] addImage:@"redplanebottom.png"];
 		tfrontSprite = [[CCTextureCache sharedTextureCache] addImage:@"redplanefrontwith.png"];
@@ -58,6 +59,7 @@ float lastRotate;
 
 -(void)start
 {
+    [self setState:@"tCrossing"];
 	[self setPosition:ccp(randomX,350)];
 	[self setAnchorPoint:ccp(.5,.5)];
 	[self setTexture:tsideSprite];
@@ -87,14 +89,16 @@ float lastRotate;
 
 -(void)dive
 {
-	self.points = 300;
+    [self setState:@"tDiving"];
+	self.points = 150;
 	[self setTexture:tturnSprite];
 }
 
 
 -(void)front
 {
-	self.points = 50;
+    [self setState:@"tFront"];
+	self.points = 25;
 	[self setScaleX:[self scaleY]];
 	[self setTexture:tfrontSprite];
 	[self runAction:[CCRotateTo actionWithDuration:.6 angle:0]];
@@ -105,20 +109,23 @@ float lastRotate;
 
 -(void)turnLeft
 {
+    [self setState:@"tLeft"];
 	[self runAction:[CCRotateTo actionWithDuration:.2 angle:-40]];
 	[self runAction:[CCMoveBy actionWithDuration:.3 position:ccp(-50,-10)]];
 }
 
 -(void)turnRight
 {
+    [self setState:@"tRight"];
 	[self runAction:[CCRotateTo actionWithDuration:.2 angle:40]];
 	[self runAction:[CCMoveBy actionWithDuration:2 position:ccp(100,-10)]];
 }
 
 -(void)spriteBottom
 {
+    [self setState:@"tClimb"];
 	[self setTexture:tbottomSprite];
-	[self setPoints:1000];
+	[self setPoints:500];
 	[self runAction:[CCMoveBy actionWithDuration:3 position:ccp(randomX,1500)]];
 }
 
@@ -171,7 +178,6 @@ float lastRotate;
 
 -(void)kill
 {
-	
 	[[self parent] removeChild:self cleanup:FALSE];
 }
 

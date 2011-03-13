@@ -17,6 +17,7 @@
 @property (assign,nonatomic) int hitCount;
 @property (assign,nonatomic) BOOL isDying;
 @property (assign,nonatomic) int points;
+@property (assign,nonatomic) NSString *state;
 
 -(void)die;
 -(void)kill;
