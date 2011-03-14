@@ -15,5 +15,6 @@
 
 +(NSString *)getTitleByMultiplier:(int) multiplier;
 +(NSString *)getInstructionByMultiplier:(int) multiplier;
++(int)getCountByMultiplier:(int) multiplier;
 
 @end

@@ -175,6 +175,7 @@ CCSprite *gameCenterButton;
 			
 			[tempVC presentModalViewController:leaderboardController animated: YES];
 		}
+        [leaderboardController release];
 	}
 	
 }

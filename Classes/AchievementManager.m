@@ -17,6 +17,9 @@
         case 1:
             return @"ACHIEVEMENT 1 | LEVEL 1 = 2X"; 
             break;            
+        case 2:
+            return @"ACHIEVEMENT 2 | LEVEL 1 = 3X"; 
+            break;            
         default:
             return @"";
             break;
@@ -29,11 +32,28 @@
         case 1:
             return @"FOR 2X YOU NEED TO KILL 3 FIGHTERS AFTER THEY LEVEL OFF FROM THEIR DIVE AND BEFORE THEY TURN RIGHT OR LEFT"; 
             break;            
+        case 2:
+            return @"FOR 3X NO TORPEDOES CAN HIT YOU BEFORE YOU KILL 3 FIGHTERS AFTER THEY LEVEL OFF FROM THEIR DIVE AND BEFORE THEY TURN RIGHT OR LEFT"; 
+            break;            
         default:
             return @"";
             break;
-    }
-    
+    }    
+}
+
++(int)getCountByMultiplier:(int) multiplier
+{
+    switch (multiplier) {
+        case 1:
+            return 3; 
+            break;            
+        case 2:
+            return 3; 
+            break;            
+        default:
+            return 0;
+            break;
+    }        
 }
 
 @end

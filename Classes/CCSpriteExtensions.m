@@ -19,7 +19,7 @@
 {
 	zIndex = z;
 }
--(bool)isCollidingWith:(CCSprite *)sprite
+-(bool)isCollidingWith:(CCSprite *)sprite atZIndex: (int) z
 {
 	if ([sprite zIndex]==zIndex) {
 		return TRUE;

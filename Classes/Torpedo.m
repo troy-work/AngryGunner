@@ -37,11 +37,14 @@ int countTail;
 	return self;
 }
 
-- (void) explode {
-    
+-(void)hitBoat
+{
+    [self setState:@"tHitBoat"];
     [(Game *)[[self parent]parent] setHealth:[(Game *)[[self parent]parent]health]-10];
-    
-    
+
+}
+
+- (void) explode {
     ccColor4F startColor;
 	startColor.r = 0.1f;
 	startColor.g = 0.1f;
@@ -54,16 +57,18 @@ int countTail;
 	endColor.b = 0.1f;
 	endColor.a = 0.2f;
 	
-	CCParticleSun *s = [CCParticleSun node];
-	[s setTexture:smoke];
-	[s setScale:[self scaleY]];
-	[s setPosition:[self position]];
-	[s setLife:2];
-	[s setDuration:2];
-	[s setStartColor:startColor];
-	[s setEndColor:endColor];
-	[s setPositionType:kCCPositionTypeGrouped];
-	[[[[self parent]parent]friendsLayer] addChild:s];
+    if (smoke!=nil) {
+        CCParticleSun *s = [CCParticleSun node];
+        [s setTexture:smoke];
+        [s setScale:[self scaleY]];
+        [s setPosition:[self position]];
+        [s setLife:2];
+        [s setDuration:2];
+        [s setStartColor:startColor];
+        [s setEndColor:endColor];
+        [s setPositionType:kCCPositionTypeGrouped];
+        [[[[self parent]parent]friendsLayer] addChild:s];
+    }
 	
 	CCParticleExplosion *e = [CCParticleExplosion node];
 	[e setScale:[self scaleY]];
@@ -80,20 +85,18 @@ int countTail;
 	[e setPositionType:kCCPositionTypeGrouped];
 	[e setEndColor:endColor];
 	[[[[self parent]parent]friendsLayer] addChild:e];
-
 }
 -(void)die
 {
 	isDying=TRUE;
 	[self unschedule:@selector(step:)];
 
-	[self explode];
-
-        
+	[self explode];        
    	[self kill]; 
 }
 -(void)kill
 {
+	[(Game *)[[self parent]parent]checkAchievement:[self state]];    
 	[[self parent] removeChild:self cleanup:FALSE];    
 }
 +(id)torpedoSprite
@@ -114,7 +117,7 @@ int countTail;
 	move = [CCSequence actions:
 			[CCMoveBy actionWithDuration:1 position:ccp(0,-25)],            
 			[CCMoveBy actionWithDuration:20 position:ccp(0,-220)],
-			[CCCallFunc actionWithTarget:self selector:@selector(explode)],
+			[CCCallFunc actionWithTarget:self selector:@selector(hitBoat)],
 			[CCCallFunc actionWithTarget:self selector:@selector(kill)]
 			,nil];
 	[self runAction:move];

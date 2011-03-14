@@ -16,6 +16,7 @@
 #import "Splash.h"
 #import "Score.h"
 #import "LevelData.h"
+#import "AchievementManager.h"
 
 @implementation Game
 
@@ -37,6 +38,7 @@ CCSprite *healthFrame;
 CCSprite *brokenGlass;
 CCLayer *blips;
 float xx,yy;
+int enemyCountDown;
 
 CCSprite* fireBurst;
 float planeCountDown;
@@ -76,7 +78,7 @@ float torpedoPlaneCountDown;
         [LevelData loadState];
         
         didAchievement = FALSE;
-        countDownAchievement = 3;
+        countDownAchievement = [AchievementManager getCountByMultiplier:[[LevelData sharedLevelData]currentMultiplier]];
 		
 		health = 100;
 		
@@ -222,7 +224,8 @@ float torpedoPlaneCountDown;
 		[brokenGlass setOpacity:0];
 		[self addChild:brokenGlass];
 				
-		planeCountDown = 500;
+        enemyCountDown = 1600;
+		planeCountDown = enemyCountDown/2;
 		torpedoPlaneCountDown = 0;
 		
 		radar = [CCSprite spriteWithFile:@"radar.png"];
@@ -259,20 +262,49 @@ float torpedoPlaneCountDown;
 	
 }
 
+- (void)achievementFailedMessage
+{
+  CCLabelBMFont *failed = [CCLabelBMFont labelWithString:
+                                              [NSString stringWithFormat:@"%iX FAILED",[[LevelData sharedLevelData]currentMultiplier]]									   
+                                                                    fntFile:@"321impact.fnt"];                
+                failed.anchorPoint = ccp(.5,0);
+                [failed setPosition:ccp(240,160)];
+                [failed setScale:1];
+                [failed runAction:[CCSequence actions:[CCDelayTime actionWithDuration:4],
+                                        [CCCallFuncN actionWithTarget:self 
+                                                             selector:@selector(killSprite:)],nil]];
+                [self addChild:failed z:0];
+}
+
 -(void)checkAchievement:(NSString *) s
 {
     if (countDownAchievement>0) {
+        //achievement 1
         if ([[LevelData sharedLevelData]currentMultiplier]==1) {
             if ([@"fFront" isEqualToString:s]) {
                 didAchievement=TRUE;
                 countDownAchievement-=1;
             }
         }
+
+        //achievement 2
+        if ([[LevelData sharedLevelData]currentMultiplier]==2) {
+            if ([@"tHitBoat" isEqualToString:s]) {
+                countDownAchievement= -1;
+                [self achievementFailedMessage];
+
+            }
+            if ([@"fFront" isEqualToString:s]) {
+                didAchievement=TRUE;
+                countDownAchievement-=1;
+            }
+        }
+
         if (countDownAchievement==0){
             
             [[LevelData sharedLevelData]setCurrentMultiplier:[[LevelData sharedLevelData]currentMultiplier]+1];
             [LevelData saveMultiplier];
-            
+            [LevelData loadMultiplier];
             CCLabelBMFont *achievement = [CCLabelBMFont labelWithString:
                                     [NSString stringWithFormat:@"AWESOME! YOU ARE AT %iX",[[LevelData sharedLevelData]currentMultiplier]]									   
                                                           fntFile:@"321impact.fnt"];                
@@ -319,7 +351,7 @@ float torpedoPlaneCountDown;
     
 	planeCountDown -=100*dt;
 	if (planeCountDown<1) {
-		planeCountDown = 1000;
+		planeCountDown = enemyCountDown;
 		Plane *plane = [Plane brownSprite];
 		[plane start];
 		[planes addChild:plane];
@@ -327,7 +359,7 @@ float torpedoPlaneCountDown;
 	}
 	torpedoPlaneCountDown -=100*dt;
 	if (torpedoPlaneCountDown<1) {
-		torpedoPlaneCountDown = 1000;
+		torpedoPlaneCountDown = enemyCountDown;
 		TorpedoPlane *torpedoPlane = [TorpedoPlane redSprite];
 		[torpedoPlane start];
 		[planes addChild:torpedoPlane];

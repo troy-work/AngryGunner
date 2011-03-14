@@ -39,7 +39,7 @@
 }
 
 +(id) joystickWithThumb: (CCNode*) aNode andSize: (CGSize) size {
-	return [[self alloc] initWithThumb: aNode andSize: size];
+	return [[[self alloc] initWithThumb: aNode andSize: size] autorelease];
 }
 
 -(id) initWithThumb: (CCNode*) aNode andBackdrop: (CCNode*) bgNode {
@@ -53,7 +53,7 @@
 }
 
 +(id) joystickWithThumb: (CCNode*) thumbNode andBackdrop: (CCNode*) backgroundNode {
-	return [[self alloc] initWithThumb: thumbNode andBackdrop: backgroundNode];
+	return [[[self alloc] initWithThumb: thumbNode andBackdrop: backgroundNode] autorelease];
 }
 
 // Overridden to also set the limit of travel for the thumb node to
@@ -153,7 +153,7 @@
 									  relPoint.y / travelLimit.y);
 
 	// If necessary, normalize the velocity vector relative to the travel limits
-	CGFloat rawVelLen = ccpLength(rawVelocity);
+//	CGFloat rawVelLen = ccpLength(rawVelocity);
 	velocity = rawVelocity;
 //	velocity = ccpMult(velocity, 1.0f/rawVelLen);
     
