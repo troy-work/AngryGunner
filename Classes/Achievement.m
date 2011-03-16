@@ -51,9 +51,9 @@ CCSprite *greenSfxCheck;
 
         CCLabelTTF *title =
         [CCLabelTTF labelWithString:[AchievementManager getTitleByMultiplier:[[LevelData sharedLevelData]currentMultiplier]] 
-                         dimensions:CGSizeMake(420, 100) alignment:CCTextAlignmentLeft  fontName:@"321impact.ttf" fontSize:30.0f];
+                         dimensions:CGSizeMake(420, 120) alignment:CCTextAlignmentLeft  fontName:@"321impact.ttf" fontSize:30.0f];
         [title setAnchorPoint:ccp(.5,.5)];
-        [title setPosition:ccp(240,170)];
+        [title setPosition:ccp(240,160)];
         [title setColor:ccc3(180,50,50)];
         [self addChild:title];
         
@@ -68,9 +68,9 @@ CCSprite *greenSfxCheck;
 
         CCLabelTTF *multiplier =
         [CCLabelTTF labelWithString:[NSString stringWithFormat:@"YOU ARE AT: %iX", [[LevelData sharedLevelData]currentMultiplier]] 
-                         dimensions:CGSizeMake(420, 100) alignment:CCTextAlignmentLeft  fontName:@"321impact.ttf" fontSize:44.0f];
+                         dimensions:CGSizeMake(420, 120) alignment:CCTextAlignmentLeft  fontName:@"321impact.ttf" fontSize:44.0f];
         [multiplier setAnchorPoint:ccp(.5,.5)];
-        [multiplier setPosition:ccp(240,15)];
+        [multiplier setPosition:ccp(240,5)];
         [multiplier setColor:ccc3(180,50,50)];
         [self addChild:multiplier];
 }

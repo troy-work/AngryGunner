@@ -39,6 +39,7 @@ CCSprite *brokenGlass;
 CCLayer *blips;
 float xx,yy;
 int enemyCountDown;
+float levelCountDown;
 
 CCSprite* fireBurst;
 float planeCountDown;
@@ -75,6 +76,8 @@ float torpedoPlaneCountDown;
 {
 	if( (self=[super init])) 
 	{
+        levelCountDown = 600;
+        
         [LevelData loadState];
         
         didAchievement = FALSE;
@@ -322,6 +325,7 @@ float torpedoPlaneCountDown;
 
 -(void)step:(ccTime)dt{
 	
+    
 	[healthBar setScaleX:health/100];
 	
 	if (health<=0) {
@@ -427,9 +431,38 @@ float torpedoPlaneCountDown;
 		[blips addChild:sb];
 	}
 	
-//	CCLOG(@"%f",y);
+    levelCountDown -= 10 * dt;
+    if (levelCountDown<=0) {
+        [self unschedule:@selector(step:)];
+        [planes removeAllChildrenWithCleanup:FALSE];
+        [self level2];
+    }
 }
 
+-(void)level2
+{
+    CCLabelBMFont *level2 = [CCLabelBMFont labelWithString:@"Get Ready. Level 2"									   
+                                                   fntFile:@"321impact.fnt"];                
+    level2.anchorPoint = ccp(.5,0);
+    [level2 setPosition:ccp(240,160)];
+    [level2 setScale:1];
+    [level2 runAction:[CCSequence actions:[CCDelayTime actionWithDuration:4],
+                       [CCCallFuncN actionWithTarget:self 
+                                            selector:@selector(killSprite:)],[CCCallFuncN actionWithTarget:self 
+                                                                                                  selector:@selector(restart)],nil]];
+    [self addChild:level2 z:0];
+ 
+}
+
+-(void)restart
+{
+    levelCountDown = 600;
+    enemyCountDown = 1000;
+    planeCountDown = enemyCountDown/2;
+    torpedoPlaneCountDown = 0;
+ 
+    [self schedule:@selector(step:)];
+}
 
 -(void)fireBullets
 {
