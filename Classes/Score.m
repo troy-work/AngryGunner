@@ -207,6 +207,3 @@ CCSprite *gameCenterButton;
 }
 
 @end
-
-
-@end

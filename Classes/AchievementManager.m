@@ -20,6 +20,9 @@
         case 2:
             return @"ACHIEVEMENT 2 | LEVEL 1 = 3X"; 
             break;            
+        case 3:
+            return @"ACHIEVEMENT 3 | LEVEL 1 = 4X"; 
+            break;            
         default:
             return @"";
             break;
@@ -35,6 +38,9 @@
         case 2:
             return @"FOR 3X NO TORPEDOES CAN HIT YOU BEFORE YOU KILL 3 FIGHTERS AFTER THEY LEVEL OFF FROM THEIR DIVE AND BEFORE THEY TURN RIGHT OR LEFT"; 
             break;            
+        case 3:
+            return @"FOR 4X YOU NEED TO SCORE OVER 15000 ALL IN LEVEL 1"; 
+            break;            
         default:
             return @"";
             break;
@@ -49,6 +55,9 @@
             break;            
         case 2:
             return 3; 
+            break;            
+        case 3:
+            return 1; 
             break;            
         default:
             return 0;

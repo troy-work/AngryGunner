@@ -95,7 +95,7 @@ CCAction *move;
                 [[[self parent] parent] addChild:bonus z:0];
                 
                 [[[self parent]parent] setScore:[[[self parent]parent] score] + score];
-
+                
 				[[self parent] removeChild:self cleanup:TRUE];                
 			}
 		}

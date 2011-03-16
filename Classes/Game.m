@@ -40,6 +40,8 @@ CCLayer *blips;
 float xx,yy;
 int enemyCountDown;
 float levelCountDown;
+int level;
+
 
 CCSprite* fireBurst;
 float planeCountDown;
@@ -76,7 +78,8 @@ float torpedoPlaneCountDown;
 {
 	if( (self=[super init])) 
 	{
-        levelCountDown = 600;
+        levelCountDown = 700;
+        level = 1;
         
         [LevelData loadState];
         
@@ -303,6 +306,18 @@ float torpedoPlaneCountDown;
             }
         }
 
+        //achievement 3
+        if ([[LevelData sharedLevelData]currentMultiplier]==3) {
+            if (level>1) {
+                countDownAchievement= -1;
+                [self achievementFailedMessage];                
+            }
+            if ([self score]>15000) {
+                didAchievement=TRUE;
+                countDownAchievement-=1;
+            }
+        }
+                
         if (countDownAchievement==0){
             
             [[LevelData sharedLevelData]setCurrentMultiplier:[[LevelData sharedLevelData]currentMultiplier]+1];
@@ -435,29 +450,32 @@ float torpedoPlaneCountDown;
     if (levelCountDown<=0) {
         [self unschedule:@selector(step:)];
         [planes removeAllChildrenWithCleanup:FALSE];
-        [self level2];
+        [self levelUp];
     }
 }
 
--(void)level2
+-(void)levelUp
 {
-    CCLabelBMFont *level2 = [CCLabelBMFont labelWithString:@"Get Ready. Level 2"									   
+    level += 1;
+    CCLabelBMFont *levelMessage = [CCLabelBMFont labelWithString:
+                             [NSString stringWithFormat:@"Get Ready. Level %i",level]									   
                                                    fntFile:@"321impact.fnt"];                
-    level2.anchorPoint = ccp(.5,0);
-    [level2 setPosition:ccp(240,160)];
-    [level2 setScale:1];
-    [level2 runAction:[CCSequence actions:[CCDelayTime actionWithDuration:4],
+    levelMessage.anchorPoint = ccp(.5,0);
+    [levelMessage setPosition:ccp(240,190)];
+    [levelMessage setScale:1];
+    [levelMessage runAction:[CCSequence actions:[CCDelayTime actionWithDuration:4],
                        [CCCallFuncN actionWithTarget:self 
                                             selector:@selector(killSprite:)],[CCCallFuncN actionWithTarget:self 
                                                                                                   selector:@selector(restart)],nil]];
-    [self addChild:level2 z:0];
+    [self addChild:levelMessage z:0];
  
 }
 
 -(void)restart
 {
-    levelCountDown = 600;
-    enemyCountDown = 1000;
+    levelCountDown = 700;
+    enemyCountDown = 1600 - (level*300);
+    if (enemyCountDown<300){enemyCountDown=300;}
     planeCountDown = enemyCountDown/2;
     torpedoPlaneCountDown = 0;
  
@@ -605,6 +623,10 @@ float torpedoPlaneCountDown;
 	float ty = 80;
 	for( UITouch *touch in touches ) {		
 		CGPoint nodeTouchPoint = [self convertTouchToNodeSpace: touch];		
+
+        if (nodeTouchPoint.y>290) {
+            [self kill];
+        }
 		
 		if (nodeTouchPoint.x<tx+cs.width/2&&nodeTouchPoint.x>tx-cs.width/2) {
 			if (nodeTouchPoint.y<ty+cs.height/2&&nodeTouchPoint.y>ty-cs.height/2) {

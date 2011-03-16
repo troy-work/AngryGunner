@@ -10,7 +10,7 @@
 #import "Game.h"
 #import "Achievement.h"
 #import "Sound.h"
-
+#import "LevelData.h"
 
 @implementation Start
 
@@ -61,11 +61,34 @@
 		menu.position = ccp(90,0);
 		[menu setOpacity:0];
 		[self addChild:menu];
-		
+
+        CCMenuItem *lowerMultiplier = [CCMenuItemFont itemFromString:@"Lower Achievement for Testing" target:self selector:@selector(lowerAchievement:)];
+        CCMenuItem *raiseMultiplier = [CCMenuItemFont itemFromString:@"Raise Achievement for Testing" target:self selector:@selector(raiseAchievement:)];
+        CCMenu *multiplierMenu = [CCMenu menuWithItems:lowerMultiplier,raiseMultiplier, nil];
+        [lowerMultiplier setPosition:ccp(0,0)];
+        [raiseMultiplier setPosition:ccp(0,40)];
+        [multiplierMenu setAnchorPoint:ccp(.5,0)];
+        [multiplierMenu setPosition:ccp(240,250)];
+        [self addChild:multiplierMenu];
+        
 	}
 	
 	return self;
 	
+}
+
+-(void)raiseAchievement:(id)sender
+{
+    [[LevelData sharedLevelData]setCurrentMultiplier:[[LevelData sharedLevelData]currentMultiplier]+1 ];
+    [LevelData saveState];
+    [LevelData loadState];
+}
+
+-(void)lowerAchievement:(id)sender
+{
+    [[LevelData sharedLevelData]setCurrentMultiplier:[[LevelData sharedLevelData]currentMultiplier]-1 ];
+    [LevelData saveState];
+    [LevelData loadState];
 }
 
 -(void)viewAchievement:(id)sender
