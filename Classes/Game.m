@@ -41,7 +41,7 @@ float xx,yy;
 int enemyCountDown;
 float levelCountDown;
 int level;
-
+CCLabelBMFont *scoreDisplay;
 
 CCSprite* fireBurst;
 float planeCountDown;
@@ -90,6 +90,8 @@ float torpedoPlaneCountDown;
 		
 		score = [[LevelData sharedLevelData] score];
 		
+        
+        
 		CCSprite *bg1 = [CCSprite spriteWithFile:@"backgroundright.png"];
 		[bg1 flipY];
 		[bg1 setAnchorPoint:ccp(1,0)];
@@ -246,7 +248,12 @@ float torpedoPlaneCountDown;
 		[self schedule:@selector(step:)];
 		x = 0;
 		y = 0;
+
 		
+        scoreDisplay = [CCLabelBMFont labelWithString:[NSString stringWithFormat:@"%i",score] fntFile:@"321impact.fnt"];
+        [scoreDisplay setAnchorPoint:ccp(0,0)];
+        [scoreDisplay setPosition:ccp(300,275)];
+        [self addChild:scoreDisplay];
 		
 	}
 	
@@ -340,6 +347,7 @@ float torpedoPlaneCountDown;
 
 -(void)step:(ccTime)dt{
 	
+    [scoreDisplay setString:[NSString stringWithFormat:@"%i",score]];
     
 	[healthBar setScaleX:health/100];
 	
