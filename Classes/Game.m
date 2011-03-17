@@ -319,7 +319,15 @@ float torpedoPlaneCountDown;
                 countDownAchievement= -1;
                 [self achievementFailedMessage];                
             }
-            if ([self score]>15000) {
+            if ([self score]>14000) {
+                didAchievement=TRUE;
+                countDownAchievement-=1;
+            }
+        }
+
+        //achievement 4
+        if ([[LevelData sharedLevelData]currentMultiplier]==4) {
+            if (level>2) {
                 didAchievement=TRUE;
                 countDownAchievement-=1;
             }
@@ -347,6 +355,8 @@ float torpedoPlaneCountDown;
 
 -(void)step:(ccTime)dt{
 	
+    [self checkAchievement:@"loop"];
+    
     [scoreDisplay setString:[NSString stringWithFormat:@"%i",score]];
     
 	[healthBar setScaleX:health/100];
@@ -376,22 +386,24 @@ float torpedoPlaneCountDown;
 			x-=400*dt;
 	}
     
-	planeCountDown -=100*dt;
-	if (planeCountDown<1) {
-		planeCountDown = enemyCountDown;
-		Plane *plane = [Plane brownSprite];
-		[plane start];
-		[planes addChild:plane];
-		[plane release];
-	}
-	torpedoPlaneCountDown -=100*dt;
-	if (torpedoPlaneCountDown<1) {
-		torpedoPlaneCountDown = enemyCountDown;
-		TorpedoPlane *torpedoPlane = [TorpedoPlane redSprite];
-		[torpedoPlane start];
-		[planes addChild:torpedoPlane];
-		[torpedoPlane release];
-	}
+    if ([[planes children] count]<8) {
+        planeCountDown -=100*dt;
+        if (planeCountDown<1) {
+            planeCountDown = enemyCountDown;
+            Plane *plane = [Plane brownSprite];
+            [plane start];
+            [planes addChild:plane];
+            [plane release];
+        }
+        torpedoPlaneCountDown -=100*dt;
+        if (torpedoPlaneCountDown<1) {
+            torpedoPlaneCountDown = enemyCountDown;
+            TorpedoPlane *torpedoPlane = [TorpedoPlane redSprite];
+            [torpedoPlane start];
+            [planes addChild:torpedoPlane];
+            [torpedoPlane release];
+        }
+    }
 	
 	x = x - xx*dt*10;
 	y = y - yy*dt*10;
