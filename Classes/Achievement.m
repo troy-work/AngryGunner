@@ -13,7 +13,6 @@
 
 @implementation Achievement
 
-CCSprite *greenSfxCheck;
 
 +(id)scene{
 	// 'scene' is an autorelease object.

@@ -75,12 +75,19 @@ float lastRotate;
 			[CCScaleTo actionWithDuration:.75 scale:2.5],
 			[CCCallFunc actionWithTarget:self selector:@selector(spriteBottom)],
 			[CCScaleTo actionWithDuration:.3 scale:4],
-			[CCCallFunc actionWithTarget:self selector:@selector(kill)]
+			[CCCallFunc actionWithTarget:self selector:@selector(removeSelf)]
 			,nil];
 	[self runAction:move];
 	[self schedule:@selector(step:)];
 
 }
+
+-(void)removeSelf
+{
+    [self setState:@"fMissed"];
+	[self kill];
+}
+
 
 -(void)front
 {
@@ -116,7 +123,6 @@ float lastRotate;
 
 -(void)die
 {
-	[(Game *)[[self parent]parent]checkAchievement:[self state]];
 	isDying=TRUE;
 	[self unschedule:@selector(step:)];
 
@@ -164,6 +170,7 @@ float lastRotate;
 
 -(void)kill
 {	
+	[(Game *)[[self parent]parent]checkAchievement:[self state]];
 	[[self parent] removeChild:self cleanup:FALSE];
 }
 

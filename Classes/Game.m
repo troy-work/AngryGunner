@@ -278,7 +278,7 @@ float torpedoPlaneCountDown;
 - (void)achievementFailedMessage
 {
   CCLabelBMFont *failed = [CCLabelBMFont labelWithString:
-                                              [NSString stringWithFormat:@"%iX FAILED",[[LevelData sharedLevelData]currentMultiplier]]									   
+                                              [NSString stringWithFormat:@"%iX FAILED",[[LevelData sharedLevelData]currentMultiplier]+1]									   
                                                                     fntFile:@"321impact.fnt"];                
                 failed.anchorPoint = ccp(.5,0);
                 [failed setPosition:ccp(240,160)];
@@ -292,47 +292,87 @@ float torpedoPlaneCountDown;
 -(void)checkAchievement:(NSString *) s
 {
     if (countDownAchievement>0) {
-        //achievement 1
-        if ([[LevelData sharedLevelData]currentMultiplier]==1) {
-            if ([@"fFront" isEqualToString:s]) {
-                didAchievement=TRUE;
-                countDownAchievement-=1;
-            }
+        
+        int mult = [[LevelData sharedLevelData]currentMultiplier];
+        
+        
+        switch (mult) {
+            case 1:
+                if ([@"fFront" isEqualToString:s]) {
+                    didAchievement=TRUE;
+                    countDownAchievement-=1;
+                }
+                break;
+            case 2:
+                if ([@"tHitBoat" isEqualToString:s]) {
+                    countDownAchievement= -1;
+                    [self achievementFailedMessage];
+                    
+                }
+                if ([@"fFront" isEqualToString:s]) {
+                    didAchievement=TRUE;
+                    countDownAchievement-=1;
+                }
+                break;
+            case 3:
+                if (level>1) {
+                    countDownAchievement= -1;
+                    [self achievementFailedMessage];                
+                }
+                if ([self score]>14000) {
+                    didAchievement=TRUE;
+                    countDownAchievement-=1;
+                }
+                break;
+            case 4:
+                if (level>2) {
+                    didAchievement=TRUE;
+                    countDownAchievement-=1;
+                }
+                break;
+            case 5:
+                if ([@"tHitBoat" isEqualToString:s]) {
+                    countDownAchievement= -1;
+                    [self achievementFailedMessage];
+                    
+                }
+                if (level>2) {
+                    countDownAchievement-=1;
+                }
+                break;
+            case 6:
+                if ([@"tMissed" isEqualToString:s]) {
+                    countDownAchievement= -1;
+                    [self achievementFailedMessage];
+                    
+                }
+                if (level>1) {
+                    countDownAchievement-=1;
+                }
+                break;
+            case 7:
+                if ([@"tCrossing" isEqualToString:s]) {
+                    didAchievement=TRUE;
+                    countDownAchievement-=1;
+                }
+                break;
+            case 8:
+                if ([@"fDiving" isEqualToString:s]) {
+                    didAchievement=TRUE;
+                    countDownAchievement-=1;
+                }
+                break;
+            case 9:
+                if ([@"tDiving" isEqualToString:s]) {
+                    didAchievement=TRUE;
+                    countDownAchievement-=1;
+                }
+                break;
+            default:
+                break;
         }
+        
 
-        //achievement 2
-        if ([[LevelData sharedLevelData]currentMultiplier]==2) {
-            if ([@"tHitBoat" isEqualToString:s]) {
-                countDownAchievement= -1;
-                [self achievementFailedMessage];
-
-            }
-            if ([@"fFront" isEqualToString:s]) {
-                didAchievement=TRUE;
-                countDownAchievement-=1;
-            }
-        }
-
-        //achievement 3
-        if ([[LevelData sharedLevelData]currentMultiplier]==3) {
-            if (level>1) {
-                countDownAchievement= -1;
-                [self achievementFailedMessage];                
-            }
-            if ([self score]>14000) {
-                didAchievement=TRUE;
-                countDownAchievement-=1;
-            }
-        }
-
-        //achievement 4
-        if ([[LevelData sharedLevelData]currentMultiplier]==4) {
-            if (level>2) {
-                didAchievement=TRUE;
-                countDownAchievement-=1;
-            }
-        }
-                
         if (countDownAchievement==0){
             
             [[LevelData sharedLevelData]setCurrentMultiplier:[[LevelData sharedLevelData]currentMultiplier]+1];
@@ -443,7 +483,7 @@ float torpedoPlaneCountDown;
 	
 	if (isShooting) {
 		shootTimer += 60*dt;
-		if (shootTimer>8) {
+		if (shootTimer>12) {
 			[self fireBullets];
 		}
 	}else {

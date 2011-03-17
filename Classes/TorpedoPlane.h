@@ -21,6 +21,7 @@
 @property (assign,nonatomic) NSString *state;
 
 -(void)die;
+-(void)removeSelf;
 -(void)kill;
 +(id)redSprite;
 -(void)start;

@@ -20,6 +20,7 @@
 @property (assign,nonatomic) NSString *state;
 
 -(void)die;
+-(void)removeSelf;
 -(void)kill;
 +(id)brownSprite;
 -(void)start;
