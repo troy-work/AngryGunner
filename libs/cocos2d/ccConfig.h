@@ -92,7 +92,7 @@
  
  @warning This feature is experimental
  */
-#define CC_DIRECTOR_DISPATCH_FAST_EVENTS 0
+#define CC_DIRECTOR_DISPATCH_FAST_EVENTS 1
 
 /** @def CC_DIRECTOR_MAC_USE_DISPLAY_LINK_THREAD
  If enabled, cocos2d-mac will run on the Display Link thread. If disabled cocos2d-mac will run in its own thread.

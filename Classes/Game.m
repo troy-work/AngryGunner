@@ -320,7 +320,6 @@ float torpedoPlaneCountDown;
                     [self achievementFailedMessage];                
                 }
                 if ([self score]>14000) {
-                    didAchievement=TRUE;
                     countDownAchievement-=1;
                 }
                 break;
@@ -343,8 +342,7 @@ float torpedoPlaneCountDown;
             case 6:
                 if ([@"tMissed" isEqualToString:s]) {
                     countDownAchievement= -1;
-                    [self achievementFailedMessage];
-                    
+                    [self achievementFailedMessage];                    
                 }
                 if (level>1) {
                     countDownAchievement-=1;
@@ -366,6 +364,105 @@ float torpedoPlaneCountDown;
                 if ([@"tDiving" isEqualToString:s]) {
                     didAchievement=TRUE;
                     countDownAchievement-=1;
+                }
+                break;
+            case 10:
+                if (score>50000) {
+                    didAchievement=TRUE;
+                    countDownAchievement-=1;
+                }
+                if (level>1) {
+                    countDownAchievement= -1;
+                    [self achievementFailedMessage];                    
+                }
+                break;
+            case 11:
+                if ([@"tClimb" isEqualToString:s]) {
+                    didAchievement=TRUE;
+                    countDownAchievement-=1;
+                }
+                break;
+            case 12:
+                if ([@"tHitBoat" isEqualToString:s]) {
+                    countDownAchievement= -1;
+                    [self achievementFailedMessage];                    
+                }
+                if ([@"fMissed" isEqualToString:s]) {
+                    countDownAchievement= -1;
+                    [self achievementFailedMessage];                    
+                }
+                if ([@"tMissed" isEqualToString:s]) {
+                    countDownAchievement= -1;
+                    [self achievementFailedMessage];                    
+                }
+                if (level>1) {
+                    countDownAchievement-=1;
+                }
+                break;
+            case 13:
+                if ([@"fLeft" isEqualToString:s]) {
+                    didAchievement=TRUE;
+                    countDownAchievement-=1;
+                }
+                break;
+            case 14:
+                if ([@"fLeft" isEqualToString:s]) {
+                    didAchievement=TRUE;
+                    countDownAchievement-=1;
+                }                
+                if ([@"fMissed" isEqualToString:s]) {
+                    countDownAchievement= -1;
+                    [self achievementFailedMessage];                    
+                }
+                if ([@"fRight" isEqualToString:s]) {
+                    countDownAchievement= -1;
+                    [self achievementFailedMessage];                    
+                }
+                if ([@"fDiving" isEqualToString:s]) {
+                    countDownAchievement= -1;
+                    [self achievementFailedMessage];                    
+                }
+                if ([@"fClimb" isEqualToString:s]) {
+                    countDownAchievement= -1;
+                    [self achievementFailedMessage];                    
+                }
+                if ([@"fFront" isEqualToString:s]) {
+                    countDownAchievement= -1;
+                    [self achievementFailedMessage];                    
+                }                
+                if (level>1) {
+                    countDownAchievement-=1;
+                }
+                break;
+            case 15:
+                if (level>3&&health>30) {
+                    countDownAchievement-=1;
+                }
+                if (health<30) {
+                    countDownAchievement= -1;
+                    [self achievementFailedMessage];
+                }
+                break;
+            case 16:
+                if (level>1&&health>30) {
+                    countDownAchievement= -1;
+                    [self achievementFailedMessage];
+                }
+                if (health<30) {
+                    countDownAchievement-=1;
+                }
+                break;
+            case 17:
+                if (level>1&&score==27200) {
+                    countDownAchievement-=1;
+                }
+                if (level>1&&score!=27200) {
+                    countDownAchievement= -1;
+                    [self achievementFailedMessage];
+                }
+                if (level==1&&score>27200) {
+                    countDownAchievement= -1;
+                    [self achievementFailedMessage];
                 }
                 break;
             default:
