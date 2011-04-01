@@ -61,15 +61,16 @@
         [CCLabelTTF labelWithString:[AchievementManager getInstructionByMultiplier:[[LevelData sharedLevelData]currentMultiplier]]
                          dimensions:CGSizeMake(420, 140) alignment:CCTextAlignmentLeft  fontName:@"321impact.ttf" fontSize:18.0f];
         [achievement setAnchorPoint:ccp(.5,.5)];
-        [achievement setPosition:ccp(240,138)];
+        [achievement setPosition:ccp(240,113)];
         [achievement setColor:ccc3(180,160,50)];
         [self addChild:achievement];
 
         CCLabelTTF *multiplier =
-        [CCLabelTTF labelWithString:[NSString stringWithFormat:@"\nYOU ARE AT: %iX", [[LevelData sharedLevelData]currentMultiplier]] 
-                         dimensions:CGSizeMake(420, 120) alignment:CCTextAlignmentLeft  fontName:@"321impact.ttf" fontSize:44.0f];
+        [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",
+                                     [AchievementManager getCurrentTitleByMultiplier:[[LevelData sharedLevelData]currentMultiplier]]] 
+                         dimensions:CGSizeMake(420, 120) alignment:CCTextAlignmentLeft  fontName:@"321impact.ttf" fontSize:26.0f];
         [multiplier setAnchorPoint:ccp(.5,.5)];
-        [multiplier setPosition:ccp(240,46)];
+        [multiplier setPosition:ccp(240,32)];
         [multiplier setColor:ccc3(180,50,50)];
         [self addChild:multiplier];
 }

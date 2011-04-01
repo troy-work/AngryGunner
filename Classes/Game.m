@@ -278,7 +278,8 @@ float torpedoPlaneCountDown;
 - (void)achievementFailedMessage
 {
   CCLabelBMFont *failed = [CCLabelBMFont labelWithString:
-                                              [NSString stringWithFormat:@"%iX FAILED",[[LevelData sharedLevelData]currentMultiplier]+1]									   
+                                              [NSString stringWithFormat:@"STILL %@",
+                                               [AchievementManager getCurrentTitleByMultiplier:[[LevelData sharedLevelData]currentMultiplier]]]
                                                                     fntFile:@"321impact.fnt"];                
                 failed.anchorPoint = ccp(.5,0);
                 [failed setPosition:ccp(240,160)];

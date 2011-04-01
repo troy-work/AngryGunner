@@ -15,55 +15,64 @@
 {
     switch (multiplier) {
         case 1:
-            return @"\nACHIEVEMENT 2X"; 
+            return @"\nMISSION: SEAMAN APPRENTICE"; 
             break;            
         case 2:
-            return @"\nACHIEVEMENT 3X"; 
+            return @"\nMISSION: SEAMAN"; 
             break;            
         case 3:
-            return @"\nACHIEVEMENT 4X"; 
+            return @"\nPETTY OFFICER THIRD CLASS"; 
             break;            
         case 4:
-            return @"\nACHIEVEMENT 5X"; 
+            return @"\nPETTY OFFICER SECOND CLASS"; 
             break;            
         case 5:
-            return @"\nACHIEVEMENT 6X"; 
+            return @"\nPETTY OFFICER FIRST CLASS"; 
             break;            
         case 6:
-            return @"\nACHIEVEMENT 7X"; 
+            return @"\nCHIEF PETTY OFFICER"; 
             break;            
         case 7:
-            return @"\nACHIEVEMENT 8X"; 
+            return @"\nSENIOR CHIEF PETTY OFFICER"; 
             break;            
         case 8:
-            return @"\nACHIEVEMENT 9X"; 
+            return @"\nMASTER CHIEF PETTY OFFICER"; 
             break;            
         case 9:
-            return @"\nACHIEVEMENT 10X"; 
+            return @"\nMASTER CHIEF PETTY OFFICER OF THE NAVY"; 
             break;            
         case 10:
-            return @"\nACHIEVEMENT 11X"; 
+            return @"\nENSIGN"; 
             break;            
         case 11:
-            return @"\nACHIEVEMENT 12X"; 
+            return @"\nLIEUTENANT JUNIOR GRADE"; 
             break;            
         case 12:
-            return @"\nACHIEVEMENT 13X"; 
+            return @"\nLIEUTENANT"; 
             break;            
         case 13:
-            return @"\nACHIEVEMENT 14X"; 
+            return @"\nLIEUTENANT COMMANDER"; 
             break;            
         case 14:
-            return @"\nACHIEVEMENT 15X"; 
+            return @"\nCOMMANDER"; 
             break;            
         case 15:
-            return @"\nACHIEVEMENT 16X"; 
+            return @"\nCAPTAIN"; 
             break;            
         case 16:
-            return @"\nACHIEVEMENT 17X"; 
+            return @"\nREAR ADMIRAL (LOWER HALF)"; 
             break;            
         case 17:
-            return @"\nACHIEVEMENT 18X"; 
+            return @"\nREAR ADMIRAL (UPPER HALF)"; 
+            break;            
+        case 18:
+            return @"\nVICE ADMIRAL"; 
+            break;            
+        case 19:
+            return @"\nADMIRAL"; 
+            break;            
+        case 20:
+            return @"\nFLEET ADMIRAL"; 
             break;            
         default:
             return @"";
@@ -71,59 +80,142 @@
     }
 }
 
+
++(NSString *)getCurrentTitleByMultiplier:(int) multiplier
+{
+    switch (multiplier-1) {
+        case 0:
+            return @"\nRANK: SEAMAN RECRUIT"; 
+            break;                        
+        case 1:
+            return @"\nRANK: SEAMAN APPRENTICE"; 
+            break;            
+        case 2:
+            return @"\nRANK: SEAMAN"; 
+            break;            
+        case 3:
+            return @"\nRANK: PETTY OFFICER THIRD CLASS"; 
+            break;            
+        case 4:
+            return @"\nRANK: PETTY OFFICER SECOND CLASS"; 
+            break;            
+        case 5:
+            return @"\nRANK: PETTY OFFICER FIRST CLASS"; 
+            break;            
+        case 6:
+            return @"\nRANK: CHIEF PETTY OFFICER"; 
+            break;            
+        case 7:
+            return @"\nRANK: SENIOR CHIEF PETTY OFFICER"; 
+            break;            
+        case 8:
+            return @"\nRANK: MASTER CHIEF PETTY OFFICER"; 
+            break;            
+        case 9:
+            return @"\nRANK: MASTER CHIEF PETTY OFFICER OF THE NAVY"; 
+            break;            
+        case 10:
+            return @"\nRANK: ENSIGN"; 
+            break;            
+        case 11:
+            return @"\nRANK: LIEUTENANT JUNIOR GRADE"; 
+            break;            
+        case 12:
+            return @"\nRANK: LIEUTENANT"; 
+            break;            
+        case 13:
+            return @"\nRANK: LIEUTENANT COMMANDER"; 
+            break;            
+        case 14:
+            return @"\nRANK: COMMANDER"; 
+            break;            
+        case 15:
+            return @"\nRANK: CAPTAIN"; 
+            break;            
+        case 16:
+            return @"\nRANK: REAR ADMIRAL (LOWER HALF)"; 
+            break;            
+        case 17:
+            return @"\nRANK: REAR ADMIRAL (UPPER HALF)"; 
+            break;            
+        case 18:
+            return @"\nRANK: VICE ADMIRAL"; 
+            break;            
+        case 19:
+            return @"\nRANK: ADMIRAL"; 
+            break;            
+        case 20:
+            return @"\nRANK: FLEET ADMIRAL"; 
+            break;            
+        default:
+            return @"";
+            break;
+    }
+}
+
+
 +(NSString *)getInstructionByMultiplier:(int) multiplier
 {
     switch (multiplier) {
         case 1:
-            return @"\nFOR 2X YOU NEED TO KILL 3 FIGHTERS AFTER THEY LEVEL OFF FROM THEIR DIVE AND BEFORE THEY TURN RIGHT OR LEFT"; 
+            return @"\nFOR SEAMAN APPRENTICE YOU NEED TO KILL 3 FIGHTERS AFTER THEY LEVEL OFF FROM THEIR DIVE AND BEFORE THEY TURN RIGHT OR LEFT"; 
             break;            
         case 2:
-            return @"\nFOR 3X NO TORPEDOES CAN HIT YOU BEFORE YOU KILL 3 FIGHTERS AFTER THEY LEVEL OFF FROM THEIR DIVE AND BEFORE THEY TURN RIGHT OR LEFT"; 
+            return @"\nFOR SEAMAN NO TORPEDOES CAN HIT YOU BEFORE YOU KILL 3 FIGHTERS AFTER THEY LEVEL OFF FROM THEIR DIVE AND BEFORE THEY TURN RIGHT OR LEFT"; 
             break;            
         case 3:
-            return @"\nFOR 4X YOU NEED TO SCORE OVER 14000 ALL IN LEVEL 1"; 
+            return @"\nFOR PETTY OFFICER THIRD CLASS YOU NEED TO SCORE OVER 14000 ALL IN LEVEL 1"; 
             break;            
         case 4:
-            return @"\nFOR 5X YOU NEED TO STAY ALIVE UNTIL LEVEL 3"; 
+            return @"\nFOR PETTY OFFICER SECOND CLASS YOU NEED TO STAY ALIVE UNTIL LEVEL 3"; 
             break;            
         case 5:
-            return @"\nFOR 6X YOU NEED TO STAY ALIVE UNTIL LEVEL 3. BUT, THIS TIME WITHOUT A TORPEDO HIT!"; 
+            return @"\nFOR PETTY OFFICER FIRST CLASS YOU NEED TO STAY ALIVE UNTIL LEVEL 3. BUT, THIS TIME WITHOUT A TORPEDO HIT!"; 
             break;            
         case 6:
-            return @"\nFOR 7X YOU CAN'T ALLOW A SINGLE TORPEDO PLANE TO ESCAPE IN ALL OF LEVEL 1."; 
+            return @"\nFOR CHIEF PETTY OFFICER YOU CAN'T ALLOW A SINGLE TORPEDO PLANE TO ESCAPE IN ALL OF LEVEL 1."; 
             break;            
         case 7:
-            return @"\nFOR 8X KILL A TORPEDO PLANE WHILE IT IS CROSSING, BEFORE IT DIVES."; 
+            return @"\nFOR SENIOR CHIEF PETTY OFFICER KILL A TORPEDO PLANE WHILE IT IS CROSSING, BEFORE IT DIVES."; 
             break;            
         case 8:
-            return @"\nFOR 9X KILL A FIGHTER IN IT'S LONG DIVE, BEFORE IT TURNS TOWARD YOU."; 
+            return @"\nFOR MASTER CHIEF PETTY OFFICER KILL A FIGHTER IN IT'S LONG DIVE, BEFORE IT TURNS TOWARD YOU."; 
             break;            
         case 9:
-            return @"\nFOR 10X KILL A TORPEDO PLANE IN IT'S SHORT DIVE, AFTER IT CROSSES, BUT, BEFORE IT TURNS TOWARD YOU."; 
+            return @"\nFOR MASTER CHIEF PETTY OFFICER OF THE NAVY KILL A TORPEDO PLANE IN IT'S SHORT DIVE, AFTER IT CROSSES, BUT, BEFORE IT TURNS TOWARD YOU."; 
             break;            
         case 10:
-            return @"\nPROVE YOUR SKILL. FOR 11X, YOU MUST SCORE MORE THAN 50000 IN LEVEL 1."; 
+            return @"\nPROVE YOUR SKILL. FOR ENSIGN, YOU MUST SCORE MORE THAN 50000 IN LEVEL 1."; 
             break;            
         case 11:
-            return @"\nTIME FOR BIG SCORE AND SHARP SHOOTING. FOR 12X KILL A TORPEDO PLANE AFTER IT DROPS THE TORPEDO AND IS CLIMBING AWAY."; 
+            return @"\nTIME FOR BIG SCORE AND SHARP SHOOTING. FOR LIEUTENANT JUNIOR GRADE KILL A TORPEDO PLANE AFTER IT DROPS THE TORPEDO AND IS CLIMBING AWAY."; 
             break;            
         case 12:
-            return @"\nEASY MONEY. FOR 13X, KILL EVERY PLANE AND NEVER GET HIT WITH A TORPEDO FOR ALL OF LEVEL 1."; 
+            return @"\nEASY MONEY. FOR LIEUTENANT, KILL EVERY PLANE AND NEVER GET HIT WITH A TORPEDO FOR ALL OF LEVEL 1."; 
             break;            
         case 13:
-            return @"\nFOR 14X, KILL A FIGHTER DODGING TO YOUR LEFT."; 
+            return @"\nFOR LIEUTENANT COMMANDER, KILL A FIGHTER DODGING TO YOUR LEFT."; 
             break;            
         case 14:
-            return @"\nFOR 15X, KILL EVERY FIGHTER DODGING TO YOUR LEFT FOR ALL OF LEVEL 1."; 
+            return @"\nFOR COMMANDER, KILL EVERY FIGHTER DODGING TO YOUR LEFT FOR ALL OF LEVEL 1."; 
             break;            
         case 15:
-            return @"\nFOR 16X, YOU HAVE TO MAKE IT ALL THE WAY TO LEVEL 4 WITHOUT A CRACKED GLASS!!."; 
+            return @"\nFOR CAPTAIN, YOU HAVE TO MAKE IT ALL THE WAY TO LEVEL 4 WITHOUT A CRACKED GLASS!!."; 
             break;            
         case 16:
-            return @"\nFOR 17X, YOU HAVE TO GET YOUR GLASS CRACKED IN LEVEL 1. IT'S HARDER THAN IT SOUNDS."; 
+            return @"\nFOR REAR ADMIRAL (LOWER HALF), YOU HAVE TO GET YOUR GLASS CRACKED IN LEVEL 1. IT'S HARDER THAN IT SOUNDS."; 
             break;            
         case 17:
-            return @"\nFOR 18X, YOU HAVE TO FINISH LEVEL 1 WITH EXACTLY 27200 POINTS."; 
+            return @"\nFOR REAR ADMIRAL (UPPER HALF), YOU HAVE TO FINISH LEVEL 1 WITH EXACTLY 27200 POINTS."; 
+            break;            
+        case 18:
+            return @"\nFOR VICE ADMIRAL, "; 
+            break;            
+        case 19:
+            return @"\nFOR ADMIRAL, "; 
+            break;            
+        case 20:
+            return @"\nFINALLY, FLEET ADMIRAL, "; 
             break;            
         default:
             return @"";
@@ -183,6 +275,15 @@
             return 1; 
             break;            
         case 17:
+            return 1; 
+            break;            
+        case 18:
+            return 1; 
+            break;            
+        case 19:
+            return 1; 
+            break;            
+        case 20:
             return 1; 
             break;            
         default:
