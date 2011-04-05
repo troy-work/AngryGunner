@@ -466,6 +466,11 @@ float torpedoPlaneCountDown;
                     [self achievementFailedMessage];
                 }
                 break;
+            case 18:
+                if ([self score]>320000) {
+                    countDownAchievement-=1;
+                }
+                break;
             default:
                 break;
         }

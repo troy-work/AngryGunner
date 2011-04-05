@@ -14,6 +14,7 @@
 #import <UIKit/UIDevice.h>
 #import "GameCenterManager.h"
 #import "LevelData.h"
+#import "AchievementManager.h"
 
 @implementation Score
 
@@ -58,7 +59,7 @@ CCSprite *gameCenterButton;
 			[self reportScore];
 		}
 		
-		if(score>20000){
+		if(score>50000){
 			[Appirater userDidSignificantEvent:YES]; 	
 		}
 		
@@ -184,6 +185,7 @@ CCSprite *gameCenterButton;
 {
 	GameCenterManager *g = [[GameCenterManager alloc]init];
 	[g reportScore:score forCategory:@"angrygunner"];
+    [g submitAchievement:[NSString stringWithFormat:@"%i", [[LevelData sharedLevelData]currentMultiplier]-1] percentComplete:100] ;
 	[g release];
 }
 

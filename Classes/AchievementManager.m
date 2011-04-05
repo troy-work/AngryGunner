@@ -209,7 +209,7 @@
             return @"\nFOR REAR ADMIRAL (UPPER HALF), YOU HAVE TO FINISH LEVEL 1 WITH EXACTLY 27200 POINTS."; 
             break;            
         case 18:
-            return @"\nFOR VICE ADMIRAL, "; 
+            return @"\nFOR VICE ADMIRAL, THE CHALLENGE IS ON. YOU HAVE TO SCORE OVER 320K. YES SIR, THAT'S 320,000."; 
             break;            
         case 19:
             return @"\nFOR ADMIRAL, "; 
