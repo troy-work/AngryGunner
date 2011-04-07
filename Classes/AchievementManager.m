@@ -74,6 +74,9 @@
         case 20:
             return @"\nFLEET ADMIRAL"; 
             break;            
+        case 21:
+            return @"\nCONGRADULATIONS"; 
+            break;            
         default:
             return @"";
             break;
@@ -216,6 +219,9 @@
             break;            
         case 20:
             return @"\nFINALLY, FLEET ADMIRAL, WITH ALL YOUR SKILL YOU MUST SCORE OVER 140000 ALL IN LEVEL 1."; 
+            break;            
+        case 21:
+            return @"\nAWESOME. NOW THAT YOU HAVE ARRIVED, YOU CAN REALLY POST THE HIGHEST SCORE!."; 
             break;            
         default:
             return @"";

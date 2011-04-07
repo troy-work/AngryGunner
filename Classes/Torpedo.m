@@ -102,7 +102,7 @@ int countTail;
 
 -(void)hit
 {
-    hitCount+=2;
+    hitCount+=4;
 }
 
 +(id)torpedoSprite
