@@ -84,7 +84,7 @@ CGPoint torpPosition;
 		CCMenu *menu = [CCMenu menuWithItems: home,difficult,difficult2,torp,torp2,difficultOff,difficult2Off,torpOff,torp2Off,nil];
 		
 		menu.position = ccp(0,0);
-		menu.opacity=0;
+		[menu setOpacity:0];
 		[self addChild:menu];
 		[self placeDifficulty]; 
 		[self placeTorpedo];
