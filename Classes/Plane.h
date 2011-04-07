@@ -24,6 +24,7 @@
 -(void)kill;
 +(id)brownSprite;
 -(void)start;
+-(void)hit;
 
 
 @end

@@ -25,6 +25,6 @@
 -(void)kill;
 +(id)redSprite;
 -(void)start;
-
+-(void)hit;
 
 @end

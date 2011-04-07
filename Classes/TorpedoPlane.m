@@ -52,6 +52,11 @@ float lastRotate;
 	return self;
 }
 
+-(void)hit
+{
+    hitCount+=1;
+}
+
 +(id)redSprite
 {
 	return [self spriteWithFile:@"redplanefrontwith.png"];

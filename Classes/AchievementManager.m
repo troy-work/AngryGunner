@@ -212,10 +212,10 @@
             return @"\nFOR VICE ADMIRAL, THE CHALLENGE IS ON. YOU HAVE TO SCORE OVER 320K. YES SIR, THAT'S 320,000."; 
             break;            
         case 19:
-            return @"\nFOR ADMIRAL, "; 
+            return @"\nFOR ADMIRAL, KILL EVERY PLANE AND NEVER GET HIT WITH A TORPEDO FOR ALL OF LEVEL 1 AND LEVEL 2."; 
             break;            
         case 20:
-            return @"\nFINALLY, FLEET ADMIRAL, "; 
+            return @"\nFINALLY, FLEET ADMIRAL, WITH ALL YOUR SKILL YOU MUST SCORE OVER 140000 ALL IN LEVEL 1."; 
             break;            
         default:
             return @"";

@@ -471,6 +471,32 @@ float torpedoPlaneCountDown;
                     countDownAchievement-=1;
                 }
                 break;
+            case 19:
+                if ([@"tHitBoat" isEqualToString:s]) {
+                    countDownAchievement= -1;
+                    [self achievementFailedMessage];                    
+                }
+                if ([@"fMissed" isEqualToString:s]) {
+                    countDownAchievement= -1;
+                    [self achievementFailedMessage];                    
+                }
+                if ([@"tMissed" isEqualToString:s]) {
+                    countDownAchievement= -1;
+                    [self achievementFailedMessage];                    
+                }
+                if (level>2) {
+                    countDownAchievement-=1;
+                }
+                break;
+            case 20:
+                if (level>1) {
+                    countDownAchievement= -1;
+                    [self achievementFailedMessage];                
+                }
+                if ([self score]>140000) {
+                    countDownAchievement-=1;
+                }
+                break;
             default:
                 break;
         }
@@ -841,56 +867,5 @@ float torpedoPlaneCountDown;
 	[super dealloc];	
 }
 
-
-
-//**********pull this out before submitting***********************//
-//- (UIImage*) getGLScreenshot {
-//    NSInteger myDataLength = 320 * 480 * 4;
-//    
-//    // allocate array and read pixels into it.
-//    GLubyte *buffer = (GLubyte *) malloc(myDataLength);
-//    glReadPixels(0, 0, 320, 480, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
-//    
-//    // gl renders "upside down" so swap top to bottom into new array.
-//    // there's gotta be a better way, but this works.
-//    GLubyte *buffer2 = (GLubyte *) malloc(myDataLength);
-//    for(int _y = 0; _y <480; _y++)
-//        {
-//            for(int _x = 0; _x <320 * 4; _x++)
-//                {
-//                    buffer2[(479 - _y) * 320 * 4 + _x] = buffer[_y * 4 * 320 + _x];
-//                    }
-//            }
-//    
-//    // make data provider with data.
-//    CGDataProviderRef provider = CGDataProviderCreateWithData(NULL, buffer2, myDataLength, NULL);
-//    
-//    // prep the ingredients
-//    int bitsPerComponent = 8;
-//    int bitsPerPixel = 32;
-//    int bytesPerRow = 4 * 320;
-//    CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
-//    CGBitmapInfo bitmapInfo = kCGBitmapByteOrderDefault;
-//    CGColorRenderingIntent renderingIntent = kCGRenderingIntentDefault;
-//    
-//    // make the cgimage
-//    CGImageRef imageRef = CGImageCreate(320, 480, bitsPerComponent, bitsPerPixel, bytesPerRow, colorSpaceRef, bitmapInfo, provider, NULL, NO, renderingIntent);
-//    
-//    // then make the uiimage from that
-//    UIImage *myImage = [UIImage imageWithCGImage:imageRef];
-//    return myImage;
-//}
-//
-//- (void)saveGLScreenshotToPhotosAlbum {
-//    [self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.1],
-//                     [CCCallFunc actionWithTarget:self selector:@selector(getPic)], nil]];
-//}
-//
-//-(void)getPic
-//{
-//    UIImageWriteToSavedPhotosAlbum([self getGLScreenshot], nil, nil, nil);
-//
-//}
-//****************************pull above out before submitting*****************************//
 
 @end

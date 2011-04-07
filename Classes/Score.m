@@ -222,7 +222,7 @@ CCSprite *gameCenterButton;
 {
 	GameCenterManager *g = [[GameCenterManager alloc]init];
 	[g reportScore:score forCategory:@"angrygunner"];
-    [g submitAchievement:[NSString stringWithFormat:@"%i", [[LevelData sharedLevelData]currentMultiplier]-1] percentComplete:100] ;
+    [g submitAchievement:[NSString stringWithFormat:@"%i", [[LevelData sharedLevelData]currentMultiplier]] percentComplete:100] ;
 	[g release];
 }
 

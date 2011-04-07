@@ -56,6 +56,11 @@ float lastRotate;
 	return [self spriteWithFile:@"brownplanefront.png"];
 }
 
+-(void)hit
+{
+    hitCount+=1;
+}
+
 -(void)start
 {
     [self setState:@"fDiving"];

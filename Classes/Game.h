@@ -18,8 +18,6 @@
 -(void)fireBullets;
 -(void)killEnemySplash:(CCSprite *)sender;
 -(CGPoint)getRotatedPoints:(int)radius startPoint:(CGPoint)start Angle:(float)angle;
-- (void)saveGLScreenshotToPhotosAlbum;
--(void)getPic;
 -(void)checkAchievement:(NSString *)s;
 
 @property (assign,nonatomic) CCLayer *planes;

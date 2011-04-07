@@ -66,15 +66,9 @@ CCAction *move;
 				float tyy = [(Game *)[[self parent]parent] y];
 				
 				CGPoint bp = ccpAdd(p.position, ccp(txx,tyy));
-				
-				
-//note: pull this out before submitting
-//                if (score>40) {
-//                    [(Game *)[[self parent]parent]saveGLScreenshotToPhotosAlbum];
-//                }
-                
+								                
                 NSString *info = [NSString stringWithString:@""];
-				p.hitCount += 1;
+				[p hit];
 				if (p.hitCount>2) {
 					[p die];
                     if ([(Game *)[[self parent]parent]didAchievement]){

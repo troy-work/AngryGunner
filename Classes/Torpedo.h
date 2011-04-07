@@ -23,5 +23,6 @@
 -(void)kill;
 +(id)torpedoSprite;
 -(void)startAt:(CGPoint)pos scale:(float)scale;
+-(void)hit;
 
 @end

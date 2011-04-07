@@ -99,6 +99,12 @@ int countTail;
 	[(Game *)[[self parent]parent]checkAchievement:[self state]];    
 	[[self parent] removeChild:self cleanup:FALSE];    
 }
+
+-(void)hit
+{
+    hitCount+=2;
+}
+
 +(id)torpedoSprite
 {
     return [self spriteWithFile:@"torpedo.png"];
