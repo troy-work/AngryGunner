@@ -176,9 +176,46 @@ CCSprite *gameCenterButton;
 			
 			[tempVC presentModalViewController:leaderboardController animated: YES];
 		}
-        [leaderboardController release];
 	}
 	
+}
+
+- (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
+{	 
+	[viewController.view setHidden:TRUE];
+	[viewController release];
+	[tempVC release];
+    [self achievementBoard];
+}
+
+-(void) achievementBoard
+{	
+	if (![[LevelData sharedLevelData] useGameCenter]) {
+		[self authenticateLocalPlayer];
+	}
+	if ([[LevelData sharedLevelData]useGameCenter]) {
+		tempVC = [[UIViewController alloc]init];
+		
+		GKAchievementViewController *acheivementController = [[GKAchievementViewController alloc] init];
+		
+		if (acheivementController != nil)
+		{
+			acheivementController.achievementDelegate = self;
+			
+			[[[CCDirector sharedDirector] openGLView] addSubview:tempVC.view];
+			[[UIDevice currentDevice] setOrientation:UIInterfaceOrientationLandscapeRight];		
+			
+			[tempVC presentModalViewController:acheivementController animated: YES];
+		}
+	}	
+}
+
+- (void)achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
+{	 
+	[viewController.view setHidden:TRUE];
+    //    [viewController dismissModalViewControllerAnimated:YES];
+	[viewController release];
+	[tempVC release];
 }
 
 - (void) reportScore 
@@ -187,13 +224,6 @@ CCSprite *gameCenterButton;
 	[g reportScore:score forCategory:@"angrygunner"];
     [g submitAchievement:[NSString stringWithFormat:@"%i", [[LevelData sharedLevelData]currentMultiplier]-1] percentComplete:100] ;
 	[g release];
-}
-
-- (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
-{	 
-	[viewController.view setHidden:TRUE];
-	[viewController release];
-	[tempVC release];
 }
 
 -(UIViewController*) getRootViewController 

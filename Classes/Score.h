@@ -15,8 +15,10 @@
 {
 }
 
--(void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController;
--(void) menuItemLeaderBoardClicked:(id)sender;
+- (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController;
+- (void) menuItemLeaderBoardClicked:(id)sender;
+- (void)achievementBoard;
+- (void)achievementViewControllerDidFinish:(GKAchievementViewController *)viewController;
 - (void) reportScore;
 -(UIViewController*) getRootViewController; 
 
