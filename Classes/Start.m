@@ -51,7 +51,7 @@ CCLabelTTF *achievement;
 
         CCSprite *down =[CCSprite spriteWithFile:@"down.png"];
         [down setAnchorPoint:ccp(.5,.5)];
-        [down setPosition:ccp(450,200)];
+        [down setPosition:ccp(450,215)];
         [self addChild:down];
 
 		CCMenuItem *options = [CCMenuItemFont itemFromString:@"ACHIEVEMENTS" target:self selector:@selector(viewAchievement:)];
@@ -80,9 +80,9 @@ CCLabelTTF *achievement;
         CCMenuItem *raiseMultiplier = [CCMenuItemFont itemFromString:@"Raise" target:self selector:@selector(raiseAchievement:)];
         CCMenu *multiplierMenu = [CCMenu menuWithItems:lowerMultiplier,raiseMultiplier, nil];
         [lowerMultiplier setPosition:ccp(0,0)];
-        [raiseMultiplier setPosition:ccp(0,90)];
+        [raiseMultiplier setPosition:ccp(0,75)];
         [multiplierMenu setAnchorPoint:ccp(.5,0)];
-        [multiplierMenu setPosition:ccp(450,200)];
+        [multiplierMenu setPosition:ccp(450,215)];
         [multiplierMenu setOpacity:0];
         [self addChild:multiplierMenu];
         

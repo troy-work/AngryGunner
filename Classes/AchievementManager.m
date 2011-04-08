@@ -63,10 +63,10 @@
             return @"CAPTAIN"; 
             break;            
         case 16:
-            return @"REAR ADMIRAL (LOWER HALF)"; 
+            return @"REAR ADMIRAL \n(LOWER HALF)"; 
             break;            
         case 17:
-            return @"REAR ADMIRAL (UPPER HALF)"; 
+            return @"REAR ADMIRAL \n(UPPER HALF)"; 
             break;            
         case 18:
             return @"VICE ADMIRAL"; 
@@ -148,13 +148,13 @@
             return @"\nFOR REAR ADMIRAL (UPPER HALF), YOU HAVE TO FINISH LEVEL 1 WITH EXACTLY 27200 POINTS."; 
             break;            
         case 18:
-            return @"\nFOR VICE ADMIRAL, THE CHALLENGE IS ON. YOU HAVE TO SCORE OVER 320K. YES SIR, THAT'S 320,000."; 
+            return @"\nFOR VICE ADMIRAL, THE CHALLENGE IS ON. YOU HAVE TO SCORE OVER 320K. YES SIR, THAT'S \n320,000."; 
             break;            
         case 19:
-            return @"\nFOR ADMIRAL, KILL EVERY PLANE AND NEVER GET HIT WITH A TORPEDO FOR ALL OF LEVEL 1 AND LEVEL 2."; 
+            return @"\nFOR ADMIRAL, KILL EVERY PLANE AND NEVER GET HIT WITH A TORPEDO FOR ALL OF LEVEL ONE AND LEVEL TWO."; 
             break;            
         case 20:
-            return @"\nFINALLY, FLEET ADMIRAL, WITH ALL YOUR SKILL YOU MUST SCORE OVER 140000 ALL IN LEVEL 1."; 
+            return @"\nFINALLY, FLEET ADMIRAL, WITH ALL YOUR SKILL YOU MUST SCORE OVER 140000 ALL IN LEVEL ONE."; 
             break;            
         case 21:
             return @"\nAWESOME. NOW THAT YOU HAVE ARRIVED, YOU CAN REALLY POST THE HIGHEST SCORE!."; 
