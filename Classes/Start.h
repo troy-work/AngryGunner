@@ -14,5 +14,5 @@
 }
 
 +(id)scene;
-
+-(void)updateAchievement;
 @end

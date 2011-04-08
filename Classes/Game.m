@@ -30,7 +30,7 @@ CCSprite *rightShield;
 CCSprite *crossHair;
 CCSprite *pushButton;
 float shootTimer;
-BOOL isShooting;
+bool isShooting;
 CCSprite *flash;
 CCSprite *flash2;
 CCSprite *healthBar;
@@ -42,6 +42,8 @@ int enemyCountDown;
 float levelCountDown;
 int level;
 CCLabelBMFont *scoreDisplay;
+bool levelIsChanging;
+CCLabelBMFont *levelMessage;
 
 CCSprite* fireBurst;
 float planeCountDown;
@@ -90,7 +92,7 @@ float torpedoPlaneCountDown;
 		
 		score = [[LevelData sharedLevelData] score];
 		
-        
+        levelIsChanging = FALSE;
         
 		CCSprite *bg1 = [CCSprite spriteWithFile:@"backgroundright.png"];
 		[bg1 flipY];
@@ -278,7 +280,7 @@ float torpedoPlaneCountDown;
 - (void)achievementFailedMessage
 {
   CCLabelBMFont *failed = [CCLabelBMFont labelWithString:
-                                              [NSString stringWithFormat:@"STILL %@",
+                                              [NSString stringWithFormat:@"        STILL \n%@",
                                                [AchievementManager getCurrentTitleByMultiplier:[[LevelData sharedLevelData]currentMultiplier]]]
                                                                     fntFile:@"321impact.fnt"];                
                 failed.anchorPoint = ccp(.5,0);
@@ -508,7 +510,7 @@ float torpedoPlaneCountDown;
             [LevelData saveMultiplier];
             [LevelData loadMultiplier];
             CCLabelBMFont *achievement = [CCLabelBMFont labelWithString:
-                                    [NSString stringWithFormat:@"AWESOME! YOU ARE AT %iX",[[LevelData sharedLevelData]currentMultiplier]]									   
+                                    [NSString stringWithFormat:@"   AWESOME! PROMOTED TO: \n%@",[AchievementManager getCurrentTitleByMultiplier:[[LevelData sharedLevelData]currentMultiplier]]]
                                                           fntFile:@"321impact.fnt"];                
             achievement.anchorPoint = ccp(.5,0);
             [achievement setPosition:ccp(240,160)];
@@ -645,23 +647,72 @@ float torpedoPlaneCountDown;
 
 -(void)levelUp
 {
+    
+    NSString *levelUpMessage;
+    
+    switch (level) {
+        case 1:
+            levelUpMessage =
+            [NSString stringWithFormat:@"\nThe enemy didn't expect you\nto hold your position.\nReenforcements are attacking\nGet Ready\n%@\nLEVEL TWO",[AchievementManager getCurrentTitleByMultiplier:[[LevelData sharedLevelData]currentMultiplier]] ];
+            break;
+        case 2:
+            levelUpMessage =
+            [NSString stringWithFormat:@"\nThat was good!\nYou're rock solid.\nThe enemy has regrouped.\nGet Ready\n%@\nLEVEL THREE",[AchievementManager getCurrentTitleByMultiplier:[[LevelData sharedLevelData]currentMultiplier]] ];
+            break;
+        case 3:
+            levelUpMessage =
+            [NSString stringWithFormat:@"\nYou can't hold back.\nMany more are on the way.\nThe attack is coming.\nGet Ready\n%@\nLEVEL FOUR",[AchievementManager getCurrentTitleByMultiplier:[[LevelData sharedLevelData]currentMultiplier]] ];
+            break;
+        case 4:
+            levelUpMessage =
+            [NSString stringWithFormat:@"\nThe enemy didn't expect you\nto hold your position.\nCombined forces coming\nGet Ready\n%@\nLEVEL FIVE",[AchievementManager getCurrentTitleByMultiplier:[[LevelData sharedLevelData]currentMultiplier]] ];
+            break;
+        case 5:
+            levelUpMessage =
+            [NSString stringWithFormat:@"\nYou can't still be\nALIVE!!\nThat was incredible.\nGet Ready\n%@\nLEVEL SIX",[AchievementManager getCurrentTitleByMultiplier:[[LevelData sharedLevelData]currentMultiplier]] ];
+            break;
+        case 6:
+            levelUpMessage =
+            [NSString stringWithFormat:@"\nWe bow to you!!\nYou have totally proven\nYou are the best!!\nGet Ready\n%@\nThis can't happen\nLEVEL SEVEN",[AchievementManager getCurrentTitleByMultiplier:[[LevelData sharedLevelData]currentMultiplier]] ];
+            break;
+        case 7:
+            levelUpMessage =
+            [NSString stringWithFormat:@"\nThis can't be possible!!\nHow are you here???\nYou're a dead man!\nGet Ready\n%@\n**EIGHTH LEVEL**",[AchievementManager getCurrentTitleByMultiplier:[[LevelData sharedLevelData]currentMultiplier]] ];
+            break;
+        default:
+            levelUpMessage = @"\nTILT TILT TILT TILT\n";
+            levelUpMessage = [NSString stringWithFormat:@"%@TILT TILT TILT TILT\n",levelUpMessage];
+            levelUpMessage = [NSString stringWithFormat:@"%@TILT TILT TILT TILT\n",levelUpMessage];
+            levelUpMessage = [NSString stringWithFormat:@"%@TILT TILT TILT TILT\n",levelUpMessage];
+            levelUpMessage = [NSString stringWithFormat:@"%@TILT TILT TILT TILT\n",levelUpMessage];
+            levelUpMessage = [NSString stringWithFormat:@"%@TILT TILT TILT TILT\n",levelUpMessage];
+            levelUpMessage = [NSString stringWithFormat:@"%@TILT TILT TILT TILT\n",levelUpMessage];
+            levelUpMessage = [NSString stringWithFormat:@"%@TILT TILT TILT TILT\n",levelUpMessage];
+            levelUpMessage = [NSString stringWithFormat:@"%@TILT TILT TILT TILT\n",levelUpMessage];
+            levelUpMessage = [NSString stringWithFormat:@"%@TILT TILT TILT TILT\n",levelUpMessage];
+            break;
+    }
+    
     level += 1;
-    CCLabelBMFont *levelMessage = [CCLabelBMFont labelWithString:
-                             [NSString stringWithFormat:@"Get Ready. Level %i",level]									   
-                                                   fntFile:@"321impact.fnt"];                
-    levelMessage.anchorPoint = ccp(.5,0);
-    [levelMessage setPosition:ccp(240,190)];
+
+    levelMessage =[CCLabelBMFont  labelWithString:levelUpMessage fntFile:@"321impact.fnt"];  
+    levelMessage.anchorPoint = ccp(.5,.5);
+    [levelMessage setPosition:ccp(240,160)];
     [levelMessage setScale:1];
-    [levelMessage runAction:[CCSequence actions:[CCDelayTime actionWithDuration:4],
-                       [CCCallFuncN actionWithTarget:self 
-                                            selector:@selector(killSprite:)],[CCCallFuncN actionWithTarget:self 
-                                                                                                  selector:@selector(restart)],nil]];
     [self addChild:levelMessage z:0];
+    [self waitForClick];
  
 }
 
--(void)restart
+-(void)waitForClick
 {
+    levelIsChanging = TRUE;
+}
+
+-(void)restart
+{    
+    [self killSprite:levelMessage];
+    levelIsChanging = FALSE;
     levelCountDown = 700;
     enemyCountDown = 1600 - (level*300);
     if (enemyCountDown<300){enemyCountDown=300;}
@@ -792,17 +843,23 @@ float torpedoPlaneCountDown;
 	CGSize cs = CGSizeMake(150, 150);
 	float tx = 400;
 	float ty = 80;
-	
-	for( UITouch *touch in touches ) {		
-		CGPoint nodeTouchPoint = [self convertTouchToNodeSpace: touch];		
-		
-		if (nodeTouchPoint.x<tx+cs.width/2&&nodeTouchPoint.x>tx-cs.width/2) {
-			if (nodeTouchPoint.y<ty+cs.height/2&&nodeTouchPoint.y>ty-cs.height/2) {
-				[self fireBullets];
-				isShooting=TRUE;
-			}
-		}
-	}
+	if (!levelIsChanging) {
+        for( UITouch *touch in touches ) {		
+            CGPoint nodeTouchPoint = [self convertTouchToNodeSpace: touch];		
+            
+            if (nodeTouchPoint.x<tx+cs.width/2&&nodeTouchPoint.x>tx-cs.width/2) {
+                if (nodeTouchPoint.y<ty+cs.height/2&&nodeTouchPoint.y>ty-cs.height/2) {
+                    [self fireBullets];
+                    isShooting=TRUE;
+                }
+            }
+        }
+    }
+    
+    if (levelIsChanging) {
+        [self restart];
+    }
+    
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -810,19 +867,21 @@ float torpedoPlaneCountDown;
 	CGSize cs = CGSizeMake(150, 150);
 	float tx = 400;
 	float ty = 80;
-	for( UITouch *touch in touches ) {		
-		CGPoint nodeTouchPoint = [self convertTouchToNodeSpace: touch];		
+	if (!levelIsChanging) {
+        for( UITouch *touch in touches ) {		
+            CGPoint nodeTouchPoint = [self convertTouchToNodeSpace: touch];		
 
-        if (nodeTouchPoint.y>290) {
-            [self kill];
+            if (nodeTouchPoint.y>290) {
+                [self kill];
+            }
+            
+            if (nodeTouchPoint.x<tx+cs.width/2&&nodeTouchPoint.x>tx-cs.width/2) {
+                if (nodeTouchPoint.y<ty+cs.height/2&&nodeTouchPoint.y>ty-cs.height/2) {
+                    isShooting=FALSE;
+                }
+            }
         }
-		
-		if (nodeTouchPoint.x<tx+cs.width/2&&nodeTouchPoint.x>tx-cs.width/2) {
-			if (nodeTouchPoint.y<ty+cs.height/2&&nodeTouchPoint.y>ty-cs.height/2) {
-				isShooting=FALSE;
-			}
-		}
-	}
+    }
 }
 
 - (void)ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
@@ -844,7 +903,7 @@ float torpedoPlaneCountDown;
 	isShooting = testShooting;
 }
 
--(void)killSprite:(CCSprite *)sender
+-(void)killSprite:(id)sender
 {
 	[self removeChild:sender cleanup:FALSE];
 }

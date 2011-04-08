@@ -14,11 +14,14 @@
 }
 
 +(id)scene;
--(void)killSprite:(CCSprite *)sender;
+-(void)killSprite:(id)sender;
 -(void)fireBullets;
 -(void)killEnemySplash:(CCSprite *)sender;
 -(CGPoint)getRotatedPoints:(int)radius startPoint:(CGPoint)start Angle:(float)angle;
 -(void)checkAchievement:(NSString *)s;
+-(void)levelUp;
+-(void)restart;
+-(void)waitForClick;
 
 @property (assign,nonatomic) CCLayer *planes;
 @property (assign,nonatomic) CCLayer *bullets;

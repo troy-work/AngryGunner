@@ -14,68 +14,71 @@
 +(NSString *)getTitleByMultiplier:(int) multiplier
 {
     switch (multiplier) {
+        case 0:
+            return @"SEAMAN RECRUIT"; 
+            break;                        
         case 1:
-            return @"\nMISSION: SEAMAN APPRENTICE"; 
+            return @"SEAMAN APPRENTICE"; 
             break;            
         case 2:
-            return @"\nMISSION: SEAMAN"; 
+            return @"SEAMAN"; 
             break;            
         case 3:
-            return @"\nPETTY OFFICER THIRD CLASS"; 
+            return @"PETTY OFFICER THIRD CLASS"; 
             break;            
         case 4:
-            return @"\nPETTY OFFICER SECOND CLASS"; 
+            return @"PETTY OFFICER SECOND CLASS"; 
             break;            
         case 5:
-            return @"\nPETTY OFFICER FIRST CLASS"; 
+            return @"PETTY OFFICER FIRST CLASS"; 
             break;            
         case 6:
-            return @"\nCHIEF PETTY OFFICER"; 
+            return @"CHIEF PETTY OFFICER"; 
             break;            
         case 7:
-            return @"\nSENIOR CHIEF PETTY OFFICER"; 
+            return @"SENIOR CHIEF PETTY OFFICER"; 
             break;            
         case 8:
-            return @"\nMASTER CHIEF PETTY OFFICER"; 
+            return @"MASTER CHIEF PETTY OFFICER"; 
             break;            
         case 9:
-            return @"\nMASTER CHIEF PETTY OFFICER OF THE NAVY"; 
+            return @"MASTER CHIEF PETTY OFFICER OF THE NAVY"; 
             break;            
         case 10:
-            return @"\nENSIGN"; 
+            return @"ENSIGN"; 
             break;            
         case 11:
-            return @"\nLIEUTENANT JUNIOR GRADE"; 
+            return @"LIEUTENANT JUNIOR GRADE"; 
             break;            
         case 12:
-            return @"\nLIEUTENANT"; 
+            return @"LIEUTENANT"; 
             break;            
         case 13:
-            return @"\nLIEUTENANT COMMANDER"; 
+            return @"LIEUTENANT COMMANDER"; 
             break;            
         case 14:
-            return @"\nCOMMANDER"; 
+            return @"COMMANDER"; 
             break;            
         case 15:
-            return @"\nCAPTAIN"; 
+            return @"CAPTAIN"; 
             break;            
         case 16:
-            return @"\nREAR ADMIRAL (LOWER HALF)"; 
+            return @"REAR ADMIRAL (LOWER HALF)"; 
             break;            
         case 17:
-            return @"\nREAR ADMIRAL (UPPER HALF)"; 
+            return @"REAR ADMIRAL (UPPER HALF)"; 
             break;            
         case 18:
-            return @"\nVICE ADMIRAL"; 
+            return @"VICE ADMIRAL"; 
             break;            
         case 19:
-            return @"\nADMIRAL"; 
+            return @"ADMIRAL"; 
             break;            
         case 20:
-            return @"\nFLEET ADMIRAL"; 
+            return @"FLEET ADMIRAL"; 
             break;            
         case 21:
-            return @"\nCONGRADULATIONS"; 
+            return @"CONGRADULATIONS"; 
             break;            
         default:
             return @"";
@@ -86,74 +89,7 @@
 
 +(NSString *)getCurrentTitleByMultiplier:(int) multiplier
 {
-    switch (multiplier-1) {
-        case 0:
-            return @"\nRANK: SEAMAN RECRUIT"; 
-            break;                        
-        case 1:
-            return @"\nRANK: SEAMAN APPRENTICE"; 
-            break;            
-        case 2:
-            return @"\nRANK: SEAMAN"; 
-            break;            
-        case 3:
-            return @"\nRANK: PETTY OFFICER THIRD CLASS"; 
-            break;            
-        case 4:
-            return @"\nRANK: PETTY OFFICER SECOND CLASS"; 
-            break;            
-        case 5:
-            return @"\nRANK: PETTY OFFICER FIRST CLASS"; 
-            break;            
-        case 6:
-            return @"\nRANK: CHIEF PETTY OFFICER"; 
-            break;            
-        case 7:
-            return @"\nRANK: SENIOR CHIEF PETTY OFFICER"; 
-            break;            
-        case 8:
-            return @"\nRANK: MASTER CHIEF PETTY OFFICER"; 
-            break;            
-        case 9:
-            return @"\nRANK: MASTER CHIEF PETTY OFFICER OF THE NAVY"; 
-            break;            
-        case 10:
-            return @"\nRANK: ENSIGN"; 
-            break;            
-        case 11:
-            return @"\nRANK: LIEUTENANT JUNIOR GRADE"; 
-            break;            
-        case 12:
-            return @"\nRANK: LIEUTENANT"; 
-            break;            
-        case 13:
-            return @"\nRANK: LIEUTENANT COMMANDER"; 
-            break;            
-        case 14:
-            return @"\nRANK: COMMANDER"; 
-            break;            
-        case 15:
-            return @"\nRANK: CAPTAIN"; 
-            break;            
-        case 16:
-            return @"\nRANK: REAR ADMIRAL (LOWER HALF)"; 
-            break;            
-        case 17:
-            return @"\nRANK: REAR ADMIRAL (UPPER HALF)"; 
-            break;            
-        case 18:
-            return @"\nRANK: VICE ADMIRAL"; 
-            break;            
-        case 19:
-            return @"\nRANK: ADMIRAL"; 
-            break;            
-        case 20:
-            return @"\nRANK: FLEET ADMIRAL"; 
-            break;            
-        default:
-            return @"";
-            break;
-    }
+    return [self getTitleByMultiplier:multiplier-1];
 }
 
 

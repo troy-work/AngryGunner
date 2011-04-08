@@ -49,7 +49,7 @@
 		[self addChild:menu];
 
         CCLabelTTF *title =
-        [CCLabelTTF labelWithString:[AchievementManager getTitleByMultiplier:[[LevelData sharedLevelData]currentMultiplier]] 
+        [CCLabelTTF labelWithString:[NSString stringWithFormat:@"\nMISSION: %@",[AchievementManager getTitleByMultiplier:[[LevelData sharedLevelData]currentMultiplier]]] 
                          dimensions:CGSizeMake(420, 120) alignment:CCTextAlignmentLeft  fontName:@"321impact.ttf" fontSize:30.0f];
         [title setAnchorPoint:ccp(.5,.5)];
         [title setPosition:ccp(240,190)];
@@ -66,7 +66,7 @@
         [self addChild:achievement];
 
         CCLabelTTF *multiplier =
-        [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%@",
+        [CCLabelTTF labelWithString:[NSString stringWithFormat:@"\nRANK: %@",
                                      [AchievementManager getCurrentTitleByMultiplier:[[LevelData sharedLevelData]currentMultiplier]]] 
                          dimensions:CGSizeMake(420, 120) alignment:CCTextAlignmentLeft  fontName:@"321impact.ttf" fontSize:26.0f];
         [multiplier setAnchorPoint:ccp(.5,.5)];
