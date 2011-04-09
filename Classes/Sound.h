@@ -12,5 +12,6 @@
 @interface Sound : CCLayer {
 
 }
+-(void)placeChecks;
 
 @end

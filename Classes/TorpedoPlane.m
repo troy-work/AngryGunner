@@ -9,6 +9,7 @@
 #import "TorpedoPlane.h"
 #import "Torpedo.h"
 #import "Game.h"
+#import "SimpleAudioEngine.h"
 
 @implementation TorpedoPlane
 
@@ -24,6 +25,7 @@ float randomX;
 CCTexture2D *smoke;
 CCTexture2D *enemyBullet;
 float lastRotate;
+SimpleAudioEngine *se;
 
 @synthesize zIndex;
 @synthesize hitCount;
@@ -47,6 +49,8 @@ float lastRotate;
 		tsideSprite = [[CCTextureCache sharedTextureCache] addImage:@"redplaneside.png"];
 		tturnSprite = [[CCTextureCache sharedTextureCache] addImage:@"redplaneturn.png"];
 		smoke = [[CCTextureCache sharedTextureCache] addImage:@"dpadburst.png"];
+        [se preloadEffect:@"explosion.aiff"];
+
 		
 	}
 	return self;
@@ -54,6 +58,8 @@ float lastRotate;
 
 -(void)hit
 {
+    [se setEffectsVolume:[self scaleX]];
+    [se playEffect:@"explosion.aiff"];
     hitCount+=1;
 }
 

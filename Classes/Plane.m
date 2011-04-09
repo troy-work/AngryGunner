@@ -8,6 +8,7 @@
 
 #import "Plane.h"
 #import "Game.h"
+#import "SimpleAudioEngine.h"
 
 @implementation Plane
 
@@ -23,6 +24,8 @@ CCTexture2D *smoke;
 float shootTime;
 CCTexture2D *enemyBullet;
 float lastRotate;
+SimpleAudioEngine *se;
+
 
 @synthesize zIndex;
 @synthesize hitCount;
@@ -46,7 +49,9 @@ float lastRotate;
 		frontSpriteShoot = [[CCTextureCache sharedTextureCache] addImage:@"brownplanefrontshoot.png"];
 		turnSprite = [[CCTextureCache sharedTextureCache] addImage:@"brownplaneturn.png"];
 		smoke = [[CCTextureCache sharedTextureCache] addImage:@"dpadburst.png"];
-
+        se = [SimpleAudioEngine sharedEngine];
+        [se preloadEffect:@"explosion.aiff"];
+        [se preloadEffect:@"PlaneMachineGun.aiff"];
 	}
 	return self;
 }
@@ -58,6 +63,8 @@ float lastRotate;
 
 -(void)hit
 {
+    [se setEffectsVolume:[self scaleX]];
+    [se playEffect:@"explosion.aiff"];
     hitCount+=1;
 }
 
@@ -189,6 +196,10 @@ float lastRotate;
 -(void)shoot
 {
 	if (!isDying){
+        
+        [se setEffectsVolume:[self scaleX]/2];
+        [se playEffect:@"PlaneMachineGun.aiff"];
+        
 		float lrot = (CCRANDOM_0_1()*-120)-40;
 		float diff = abs((int)(lrot-lastRotate));
 		if (diff>5) {

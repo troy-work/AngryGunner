@@ -17,6 +17,7 @@
 #import "Score.h"
 #import "LevelData.h"
 #import "AchievementManager.h"
+#import "SimpleAudioEngine.h"
 
 @implementation Game
 
@@ -44,10 +45,11 @@ int level;
 CCLabelBMFont *scoreDisplay;
 bool levelIsChanging;
 CCLabelBMFont *levelMessage;
-
 CCSprite* fireBurst;
 float planeCountDown;
 float torpedoPlaneCountDown;
+SimpleAudioEngine *se;
+
 
 @synthesize planes;
 @synthesize bullets;
@@ -80,6 +82,9 @@ float torpedoPlaneCountDown;
 {
 	if( (self=[super init])) 
 	{
+        [se setEffectsVolume:1.0f];
+        [se preloadEffect:@"BigMachineGun.aiff"];
+        
         levelCountDown = 700;
         level = 1;
         
@@ -724,6 +729,9 @@ float torpedoPlaneCountDown;
 
 -(void)fireBullets
 {
+    [se setEffectsVolume:1.0f];
+    [se playEffect:@"BigMachineGun.aiff"];
+    
 	[bullets setPosition:[gunner position]];
 	Bullet *bullet = [Bullet spriteWithFile:@"bullet.png"];
 	[bullet setAnchorPoint:ccp(.5,.5)];

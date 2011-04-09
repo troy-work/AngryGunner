@@ -8,6 +8,7 @@
 
 #import "Torpedo.h"
 #import "Game.h"
+#import "SimpleAudioEngine.h"
 
 @implementation Torpedo
 
@@ -16,6 +17,7 @@ CGPoint fPos;
 CCAction *move;
 CCTexture2D *smoke;
 int countTail;
+SimpleAudioEngine *se;
 
 @synthesize zIndex;
 @synthesize hitCount;
@@ -32,13 +34,16 @@ int countTail;
 		points = 100;
         countTail = 260;
 		smoke = [[CCTextureCache sharedTextureCache] addImage:@"dpadburst.png"];
-        
+        [se preloadEffect:@"explosion.aiff"];
+
 	}
 	return self;
 }
 
 -(void)hitBoat
 {
+    [se setEffectsVolume:[self scaleX]];
+    [se playEffect:@"explosion.aiff"];
     [self setState:@"tHitBoat"];
     [(Game *)[[self parent]parent] setHealth:[(Game *)[[self parent]parent]health]-10];
 
@@ -102,6 +107,8 @@ int countTail;
 
 -(void)hit
 {
+    [se setEffectsVolume:[self scaleX]];
+    [se playEffect:@"explosion.aiff"];
     hitCount+=4;
 }
 
