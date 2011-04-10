@@ -52,6 +52,7 @@ SimpleAudioEngine *se;
         se = [SimpleAudioEngine sharedEngine];
         [se preloadEffect:@"explosion.aiff"];
         [se preloadEffect:@"PlaneMachineGun.aiff"];
+        [self setTag:kPlane];
 	}
 	return self;
 }
@@ -63,8 +64,8 @@ SimpleAudioEngine *se;
 
 -(void)hit
 {
-    [se setEffectsVolume:[self scaleX]];
-    [se playEffect:@"explosion.aiff"];
+    [se playEffect:@"explosion.aiff" pitch:1 pan:0 gain:[self scaleX]];
+
     hitCount+=1;
 }
 
@@ -197,8 +198,7 @@ SimpleAudioEngine *se;
 {
 	if (!isDying){
         
-        [se setEffectsVolume:[self scaleX]/2];
-        [se playEffect:@"PlaneMachineGun.aiff"];
+        [se playEffect:@"PlaneMachineGun.aiff" pitch:1 pan:0 gain:[self scaleX]/16 ];
         
 		float lrot = (CCRANDOM_0_1()*-120)-40;
 		float diff = abs((int)(lrot-lastRotate));

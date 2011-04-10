@@ -35,15 +35,15 @@ SimpleAudioEngine *se;
         countTail = 260;
 		smoke = [[CCTextureCache sharedTextureCache] addImage:@"dpadburst.png"];
         [se preloadEffect:@"explosion.aiff"];
-
+        [self setTag:kTorpedo];
 	}
 	return self;
 }
 
 -(void)hitBoat
 {
-    [se setEffectsVolume:[self scaleX]];
-    [se playEffect:@"explosion.aiff"];
+    [se playEffect:@"explosion.aiff" pitch:1 pan:0 gain:[self scaleX]];
+
     [self setState:@"tHitBoat"];
     [(Game *)[[self parent]parent] setHealth:[(Game *)[[self parent]parent]health]-10];
 
@@ -107,8 +107,8 @@ SimpleAudioEngine *se;
 
 -(void)hit
 {
-    [se setEffectsVolume:[self scaleX]];
-    [se playEffect:@"explosion.aiff"];
+    [se playEffect:@"explosion.aiff" pitch:1 pan:0 gain:[self scaleX]];
+
     hitCount+=4;
 }
 

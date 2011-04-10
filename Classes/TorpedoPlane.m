@@ -50,16 +50,15 @@ SimpleAudioEngine *se;
 		tturnSprite = [[CCTextureCache sharedTextureCache] addImage:@"redplaneturn.png"];
 		smoke = [[CCTextureCache sharedTextureCache] addImage:@"dpadburst.png"];
         [se preloadEffect:@"explosion.aiff"];
-
-		
+        [self setTag:kTPlane];		
 	}
 	return self;
 }
 
 -(void)hit
 {
-    [se setEffectsVolume:[self scaleX]];
-    [se playEffect:@"explosion.aiff"];
+    [se playEffect:@"explosion.aiff" pitch:1 pan:0 gain:[self scaleX]];
+
     hitCount+=1;
 }
 
@@ -214,8 +213,8 @@ SimpleAudioEngine *se;
 		
         Torpedo *torpedo = [Torpedo torpedoSprite];
         [torpedo startAt:ccpAdd([self position], ccp(0,-10)) scale:self.scaleY*.8];
-        [[(Game *)[[self parent]parent]planes] addChild:torpedo];
-        
+        [torpedo setZIndex:[self zIndex]];
+        [[(Game *)[[self parent]parent]planes] addChild:torpedo];        
 	}
 }
 

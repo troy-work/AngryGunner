@@ -82,8 +82,11 @@ SimpleAudioEngine *se;
 {
 	if( (self=[super init])) 
 	{
-        [se setEffectsVolume:1.0f];
+        se = [SimpleAudioEngine sharedEngine];
+        [se setEffectsVolume:.5f];
         [se preloadEffect:@"BigMachineGun.aiff"];
+        [se preloadEffect:@"Whiz1.aiff"];
+        [se preloadEffect:@"Whiz2.aiff"];
         
         levelCountDown = 700;
         level = 1;
@@ -639,6 +642,22 @@ SimpleAudioEngine *se;
 		[sb setAnchorPoint:ccp(.5,.5)];
 		[sb setPosition:sbp];
 		[sb setScale:1-p.position.y/1300];
+        
+        switch ([p tag]) {
+            case kPlane:
+                [sb setColor:ccc3(255,255, 0)];
+                break;
+            case kTPlane:
+                [sb setColor:ccc3(0,255,0)];
+                break;
+            case kTorpedo:
+                [sb setColor:ccc3(255,0,0)];
+                break;                
+            default:
+                [sb setColor:ccc3(255,0,0)];
+                break;
+        }
+                
 		[blips addChild:sb];
 	}
 	
@@ -729,8 +748,7 @@ SimpleAudioEngine *se;
 
 -(void)fireBullets
 {
-    [se setEffectsVolume:1.0f];
-    [se playEffect:@"BigMachineGun.aiff"];
+    [se playEffect:@"BigMachineGun.aiff" pitch:1 pan:0 gain:1.0f];
     
 	[bullets setPosition:[gunner position]];
 	Bullet *bullet = [Bullet spriteWithFile:@"bullet.png"];
@@ -805,6 +823,21 @@ SimpleAudioEngine *se;
 		
 	if (x+p.x>100&&x+p.x<380) {
 		if (y+p.y>60&&y+p.y<260){
+            
+            int ran = (int)(CCRANDOM_0_1()*2);
+            
+            switch (ran) {
+                case 0:
+                    [se playEffect:@"Whiz1.aiff" pitch:1 pan:0 gain:CCRANDOM_0_1()*.5 + .5];
+                    break;
+                case 1:
+                    [se playEffect:@"Whiz2.aiff" pitch:1 pan:0 gain:CCRANDOM_0_1()*.5 + .5];
+                    break;                    
+                default:
+                    [se playEffect:@"Whiz1.aiff" pitch:1 pan:0 gain:CCRANDOM_0_1()*.5 + .5];
+                    break;
+            }
+            
 			CCSprite *bulletHole = [CCSprite spriteWithFile:@"bullethole.png"];
 			[bulletHole setOpacity:150];
 			[bulletHole setAnchorPoint:ccp(.5,.5)];

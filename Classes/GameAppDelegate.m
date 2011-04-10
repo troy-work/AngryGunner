@@ -13,6 +13,7 @@
 #import <GameKit/GameKit.h>
 #import "LevelData.h"
 #import "GameCenterManager.h"
+#import "CDAudioManager.h"
 
 @interface GameAppDelegate (PrivateMethods)
 
@@ -66,6 +67,12 @@
 	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
 	if( ! [director enableRetinaDisplay:YES] )
 		CCLOG(@"Retina Display Not supported");
+
+    
+	CDAudioManager *am = [CDAudioManager sharedManager];
+	if (am!=nil) {
+		[am setMode:kAMM_FxOnly];
+	}
 	
 	CCSprite *sprite = [CCSprite spriteWithFile:@"Default.png"];
 	[sprite visit];

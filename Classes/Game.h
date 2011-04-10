@@ -10,7 +10,7 @@
 #import "cocos2d.h"
 
 @interface Game : CCLayer {
-
+    enum {kPlane=1,kTPlane=2,kTorpedo=3} enemyType;
 }
 
 +(id)scene;
