@@ -14,6 +14,7 @@
 #import "Start.h"
 #import "Music.h"
 #import "LevelData.h"
+#import "SimpleAudioEngine.h"
 
 @implementation Sound
 
@@ -125,6 +126,7 @@ MPMusicPlayerController* appMusicPlayer;
 -(void)stopSfx:(id)sender
 {
 	[[LevelData sharedLevelData] setShouldPlaySfx:FALSE];
+    [[SimpleAudioEngine sharedEngine] setMute:TRUE];
 	[LevelData saveState];
 	[self placeChecks];
 }
@@ -132,6 +134,7 @@ MPMusicPlayerController* appMusicPlayer;
 -(void)playSfx:(id)sender
 {
 	[[LevelData sharedLevelData] setShouldPlaySfx:TRUE ];
+    [[SimpleAudioEngine sharedEngine] setMute:FALSE];
 	[LevelData saveState];
 	[self placeChecks];
 }

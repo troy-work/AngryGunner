@@ -44,11 +44,14 @@ float levelCountDown;
 int level;
 CCLabelBMFont *scoreDisplay;
 bool levelIsChanging;
-CCLabelBMFont *levelMessage;
+//CCLabelBMFont *levelMessage;
+CCLabelTTF *levelMessage;
+CCSprite *messagBg;
 CCSprite* fireBurst;
 float planeCountDown;
 float torpedoPlaneCountDown;
 SimpleAudioEngine *se;
+CCSprite *topInfo;
 
 
 @synthesize planes;
@@ -264,7 +267,13 @@ SimpleAudioEngine *se;
         [scoreDisplay setAnchorPoint:ccp(0,0)];
         [scoreDisplay setPosition:ccp(300,275)];
         [self addChild:scoreDisplay];
-		
+        
+        topInfo = [CCSprite spriteWithFile:@"TopInfo.jpg"];
+        [topInfo setAnchorPoint:ccp(0,1)];
+        [topInfo setPosition:ccp(0,320)];
+        [topInfo runAction:[CCSequence actions:[CCDelayTime actionWithDuration:4], [CCMoveTo actionWithDuration:.2 position:ccpAdd(ccp(0.0f,320.0f), (ccp(0.0f,320.0f),ccp(0.0f,topInfo.contentSize.height)))],nil]];
+        
+		[self addChild:topInfo];
 	}
 	
 	return self;	
@@ -287,13 +296,13 @@ SimpleAudioEngine *se;
 
 - (void)achievementFailedMessage
 {
-  CCLabelBMFont *failed = [CCLabelBMFont labelWithString:
-                                              [NSString stringWithFormat:@"        STILL \n%@",
-                                               [AchievementManager getCurrentTitleByMultiplier:[[LevelData sharedLevelData]currentMultiplier]]]
-                                                                    fntFile:@"321impact.fnt"];                
-                failed.anchorPoint = ccp(.5,0);
+    CCLabelTTF *failed = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"\nYOU ARE STILL \n%@",[AchievementManager getCurrentTitleByMultiplier:[[LevelData sharedLevelData]currentMultiplier]]] dimensions:CGSizeMake(450, 200) alignment:CCTextAlignmentCenter fontName:@"321impact.ttf" fontSize:32.0f];
+
+                failed.anchorPoint = ccp(.5,.5);
                 [failed setPosition:ccp(240,160)];
                 [failed setScale:1];
+                [failed setColor:ccc3(255, 0, 0)];
+
                 [failed runAction:[CCSequence actions:[CCDelayTime actionWithDuration:4],
                                         [CCCallFuncN actionWithTarget:self 
                                                              selector:@selector(killSprite:)],nil]];
@@ -517,16 +526,17 @@ SimpleAudioEngine *se;
             [[LevelData sharedLevelData]setCurrentMultiplier:[[LevelData sharedLevelData]currentMultiplier]+1];
             [LevelData saveMultiplier];
             [LevelData loadMultiplier];
-            CCLabelBMFont *achievement = [CCLabelBMFont labelWithString:
-                                    [NSString stringWithFormat:@"   AWESOME! PROMOTED TO: \n%@",[AchievementManager getCurrentTitleByMultiplier:[[LevelData sharedLevelData]currentMultiplier]]]
-                                                          fntFile:@"321impact.fnt"];                
-            achievement.anchorPoint = ccp(.5,0);
-            [achievement setPosition:ccp(240,160)];
-            [achievement setScale:1];
-            [achievement runAction:[CCSequence actions:[CCDelayTime actionWithDuration:4],
+            CCLabelTTF *achievmentMessage = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"\nAWESOME! PROMOTED TO: \n%@",[AchievementManager getCurrentTitleByMultiplier:[[LevelData sharedLevelData]currentMultiplier]]]
+                                            dimensions:CGSizeMake(450, 200) alignment:CCTextAlignmentCenter  fontName:@"321impact.ttf" fontSize:32.0f];
+            
+            achievmentMessage.anchorPoint = ccp(.5,.5);
+            [achievmentMessage setPosition:ccp(240,160)];
+            [achievmentMessage setScale:1];
+            [achievmentMessage setColor:ccc3(255, 0, 0)];
+            [achievmentMessage runAction:[CCSequence actions:[CCDelayTime actionWithDuration:4],
                               [CCCallFuncN actionWithTarget:self 
                                                    selector:@selector(killSprite:)],nil]];
-            [self addChild:achievement z:0];
+            [self addChild:achievmentMessage z:0];
             
         }                
     }
@@ -677,7 +687,7 @@ SimpleAudioEngine *se;
     switch (level) {
         case 1:
             levelUpMessage =
-            [NSString stringWithFormat:@"\nThe enemy didn't expect you\nto hold your position.\nReenforcements are attacking\nGet Ready\n%@\nLEVEL TWO",[AchievementManager getCurrentTitleByMultiplier:[[LevelData sharedLevelData]currentMultiplier]] ];
+            [NSString stringWithFormat:@"\nThe enemy didn't expect you to hold your position.\nReenforcements are attacking\nGet Ready\n%@\nLEVEL TWO",[AchievementManager getCurrentTitleByMultiplier:[[LevelData sharedLevelData]currentMultiplier]] ];
             break;
         case 2:
             levelUpMessage =
@@ -719,10 +729,20 @@ SimpleAudioEngine *se;
     
     level += 1;
 
-    levelMessage =[CCLabelBMFont  labelWithString:levelUpMessage fntFile:@"321impact.fnt"];  
-    levelMessage.anchorPoint = ccp(.5,.5);
+//    levelMessage =[CCLabelBMFont  labelWithString:levelUpMessage fntFile:@"321impact.fnt"]; 
+    
+    messagBg = [CCSprite spriteWithFile:@"GunnerScreen.jpg"];
+    [messagBg setAnchorPoint:ccp(0,0)];    
+    [messagBg setPosition:ccp(0,0)];
+    [self addChild:messagBg];
+
+    
+    levelMessage = [CCLabelTTF labelWithString:levelUpMessage 
+                                    dimensions:CGSizeMake(450, 290) alignment:CCTextAlignmentCenter  fontName:@"321impact.ttf" fontSize:32.0f];
+    [levelMessage setAnchorPoint:ccp(.5,.5)];
     [levelMessage setPosition:ccp(240,160)];
     [levelMessage setScale:1];
+    [levelMessage setColor:ccc3(180, 160, 50)];
     [self addChild:levelMessage z:0];
     [self waitForClick];
  
@@ -736,6 +756,7 @@ SimpleAudioEngine *se;
 -(void)restart
 {    
     [self killSprite:levelMessage];
+    [self killSprite:messagBg];
     levelIsChanging = FALSE;
     levelCountDown = 700;
     enemyCountDown = 1600 - (level*300);

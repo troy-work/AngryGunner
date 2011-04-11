@@ -12,11 +12,13 @@
 #import "Sound.h"
 #import "LevelData.h"
 #import "AchievementManager.h"
+#import "SimpleAudioEngine.h"
 
 @implementation Start
 
 CCLabelTTF *title;
 CCLabelTTF *achievement;
+CCMenu *multiplierMenu;
 
 +(id)scene{
 	// 'scene' is an autorelease object.
@@ -37,6 +39,10 @@ CCLabelTTF *achievement;
 {
 	if( (self=[super init])) 
 	{
+        if (![[LevelData sharedLevelData] shouldPlaySfx])
+        {
+            [[SimpleAudioEngine sharedEngine] setMute:TRUE];
+        }
 		
 		CCSprite *bg = [CCSprite spriteWithFile:@"startscreen.jpg"];
 		[bg setAnchorPoint:ccp(0,0)];
@@ -78,7 +84,7 @@ CCLabelTTF *achievement;
 
         CCMenuItem *lowerMultiplier = [CCMenuItemFont itemFromString:@"Lower" target:self selector:@selector(lowerAchievement:)];
         CCMenuItem *raiseMultiplier = [CCMenuItemFont itemFromString:@"Raise" target:self selector:@selector(raiseAchievement:)];
-        CCMenu *multiplierMenu = [CCMenu menuWithItems:lowerMultiplier,raiseMultiplier, nil];
+        multiplierMenu = [CCMenu menuWithItems:lowerMultiplier,raiseMultiplier, nil];
         [lowerMultiplier setPosition:ccp(0,0)];
         [raiseMultiplier setPosition:ccp(0,75)];
         [multiplierMenu setAnchorPoint:ccp(.5,0)];
@@ -109,6 +115,21 @@ CCLabelTTF *achievement;
 	
 }
 
+-(void)flash:(CCMenuItem*)menuItem
+{
+    CCSprite *flash = [CCSprite spriteWithFile:@"dpadburst.png"];
+    [flash runAction:[CCSequence actions:[CCScaleBy actionWithDuration:.25 scale:4],
+                      [CCCallFuncN actionWithTarget:self selector:@selector(killSprite:)],nil]];
+    [flash setPosition:ccpAdd([menuItem position], [[menuItem parent] position])];
+    [self addChild:flash];
+}
+
+-(void)killSprite:(id)sender
+{
+	[[sender parent] removeChild:sender cleanup:FALSE];
+}
+
+
 -(void)updateAchievement
 {
     [title setString:[NSString stringWithFormat:@"\nMISSION: %@",[AchievementManager getTitleByMultiplier:[[LevelData sharedLevelData]currentMultiplier]]]];    
@@ -119,6 +140,7 @@ CCLabelTTF *achievement;
 
 -(void)raiseAchievement:(id)sender
 {
+    [self flash:sender];
     [[LevelData sharedLevelData]setCurrentMultiplier:[[LevelData sharedLevelData]currentMultiplier]+1 ];
     [LevelData saveState];
     [LevelData loadState];
@@ -127,6 +149,7 @@ CCLabelTTF *achievement;
 
 -(void)lowerAchievement:(id)sender
 {
+    [self flash:sender];
     [[LevelData sharedLevelData]setCurrentMultiplier:[[LevelData sharedLevelData]currentMultiplier]-1 ];
     [LevelData saveState];
     [LevelData loadState];
@@ -135,26 +158,45 @@ CCLabelTTF *achievement;
 
 -(void)viewAchievement:(id)sender
 {	
+	[self flash:sender];
+    [self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.25],
+                     [CCCallFunc actionWithTarget:self selector:@selector(replaceAchievement)],nil]];
+}
+-(void)replaceAchievement
+{	
 	[[CCDirector sharedDirector] replaceScene:[Achievement scene]];	
 }
 
 -(void)startGame:(id)sender
 {	
-	
+	[self flash:sender];
+    [self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.25],
+                     [CCCallFunc actionWithTarget:self selector:@selector(replaceGame)],nil]];
+}
+-(void)replaceGame
+{	
 	[[CCDirector sharedDirector] replaceScene:[Game scene]];	
 }
 
 -(void)viewHelp:(id)sender
 {	
+    [self flash:sender];
 //	[[CCDirector sharedDirector] replaceScene:[Help scene]];	
 }
 
 -(void)viewInfo:(id)sender
 {	
+    [self flash:sender];
 //	[[CCDirector sharedDirector] replaceScene:[Info scene]];	
 }
 
 -(void)toggleSpeaker:(id)sender
+{	
+    [self flash:sender];
+    [self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.25],
+                     [CCCallFunc actionWithTarget:self selector:@selector(replaceSound)],nil]];
+}
+-(void)replaceSound
 {	
 	[[CCDirector sharedDirector] replaceScene:[Sound scene]];	
 }
