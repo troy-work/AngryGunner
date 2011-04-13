@@ -18,6 +18,7 @@
 @synthesize torpedoesOn;
 @synthesize shouldPlaySfx;
 @synthesize currentMultiplier;
+@synthesize highestAchievement;
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(LevelData);
 
@@ -36,6 +37,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LevelData);
 			[self setTorpedoesOn:FALSE];
 			[self setShouldPlaySfx:TRUE];
             [self setCurrentMultiplier:1];
+            [self setHighestAchievement:0];
 			[LevelData saveState];
 		}
 		
@@ -59,6 +61,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LevelData);
 		sharedLevelData.torpedoesOn = [prefs boolForKey:@"torpedoesOn"];
 		sharedLevelData.shouldPlaySfx = [prefs boolForKey:@"shouldPlaySfx"];
         sharedLevelData.currentMultiplier = [prefs integerForKey:@"currentMultiplier"];
+        sharedLevelData.highestAchievement = [prefs integerForKey:@"highestAchievement"];
 		[prefs synchronize];						
 	}	
 }
@@ -77,10 +80,34 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LevelData);
 		[prefs setBool: sharedLevelData.torpedoesOn forKey:@"torpedoesOn"];
 		[prefs setBool: sharedLevelData.shouldPlaySfx forKey:@"shouldPlaySfx"];
         [prefs setInteger: sharedLevelData.currentMultiplier forKey:@"currentMultiplier"];
+        [prefs setInteger: sharedLevelData.highestAchievement forKey:@"highestAchievement"];
 		
 		[prefs synchronize];		
 	}
 }
+
++(void)loadAchievement
+{
+	@synchronized([LevelData class]) {
+		if(!sharedLevelData)
+			[LevelData sharedLevelData] ;
+		NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+        sharedLevelData.highestAchievement = [prefs integerForKey:@"highestAchievement"];
+        
+		[prefs synchronize];
+        
+	}
+    
+}
++(void)saveAchievement;
+{
+	@synchronized([LevelData class]) {  
+		NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];		
+        [prefs setInteger: sharedLevelData.highestAchievement forKey:@"highestAchievement"];		
+		[prefs synchronize];		
+	}    
+}
+
 
 +(void)loadMultiplier
 {

@@ -21,12 +21,15 @@
 @property (assign,nonatomic) bool torpedoesOn;
 @property (assign,nonatomic) bool shouldPlaySfx;
 @property (assign,nonatomic) int currentMultiplier;
+@property (assign,nonatomic) int highestAchievement;
 
 + (LevelData *)sharedLevelData;
 +(void)loadState;
 +(void)saveState;
 +(void)loadMultiplier;
 +(void)saveMultiplier;
++(void)loadAchievement;
++(void)saveAchievement;
 
 
 @end

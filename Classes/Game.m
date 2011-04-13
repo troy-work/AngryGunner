@@ -522,6 +522,10 @@ CCSprite *topInfo;
         
 
         if (countDownAchievement==0){
+
+            [[LevelData sharedLevelData]setHighestAchievement:[[LevelData sharedLevelData]currentMultiplier]];
+            [LevelData saveAchievement];
+            [LevelData loadAchievement];
             
             [[LevelData sharedLevelData]setCurrentMultiplier:[[LevelData sharedLevelData]currentMultiplier]+1];
             [LevelData saveMultiplier];

@@ -21,6 +21,8 @@
 CCLabelTTF *title;
 CCLabelTTF *achievement;
 CCMenu *multiplierMenu;
+CCSprite *up;
+CCSprite *down;
 
 +(id)scene{
 	// 'scene' is an autorelease object.
@@ -52,14 +54,16 @@ CCMenu *multiplierMenu;
 	    bg.position = ccp(0,0);
 		[self addChild:bg];
         
-        CCSprite *up =[CCSprite spriteWithFile:@"up.png"];
+        up =[CCSprite spriteWithFile:@"up.png"];
         [up setAnchorPoint:ccp(.5,.5)];
         [up setPosition:ccp(440,238)];
+        [up setOpacity:0];
         [self addChild:up];
 
-        CCSprite *down =[CCSprite spriteWithFile:@"down.png"];
+        down =[CCSprite spriteWithFile:@"down.png"];
         [down setAnchorPoint:ccp(.5,.5)];
         [down setPosition:ccp(440,140)];
+        [down setOpacity:0];
         [self addChild:down];
 
 		CCMenuItem *score = [CCMenuItemFont itemFromString:@"VIEWHIGHSCORE" target:self selector:@selector(viewHighScore:)];
@@ -110,11 +114,33 @@ CCMenu *multiplierMenu;
         [achievement setPosition:ccp(225,173)];
         [achievement setColor:ccc3(180,160,50)];
         [self addChild:achievement];
-                
+        [self checkUpDown];              
+        
 	}
 	
 	return self;
 	
+}
+
+-(void)checkUpDown
+{
+    if ([[LevelData sharedLevelData]currentMultiplier]<21)
+    {
+        [up setOpacity:255];
+    }
+    else
+    {
+        [up setOpacity:0];
+    }
+    
+    if ([[LevelData sharedLevelData]currentMultiplier]>1)
+    {
+        [down setOpacity:255];
+    }
+    else
+    {
+        [down setOpacity:0];
+    }
 }
 
 -(void)flash:(CCMenuItem*)menuItem
@@ -123,6 +149,16 @@ CCMenu *multiplierMenu;
     [flash runAction:[CCSequence actions:[CCScaleBy actionWithDuration:.25 scale:2],
                       [CCCallFuncN actionWithTarget:self selector:@selector(killSprite:)],nil]];
     [flash setPosition:ccpAdd([menuItem position], [[menuItem parent] position])];
+    [self addChild:flash];
+}
+-(void)redFlash:(CCMenuItem*)menuItem
+{
+    CCSprite *flash = [CCSprite spriteWithFile:@"dpadburst.png"];
+    [flash runAction:[CCSequence actions:[CCScaleBy actionWithDuration:.25 scale:2],
+                      [CCCallFuncN actionWithTarget:self selector:@selector(killSprite:)],nil]];
+    [flash setPosition:ccpAdd([menuItem position], [[menuItem parent] position])];
+    [flash setColor:ccc3(255, 0, 0)];
+    [flash setOpacity:50];
     [self addChild:flash];
 }
 
@@ -134,6 +170,8 @@ CCMenu *multiplierMenu;
 
 -(void)updateAchievement
 {
+    [self checkUpDown];
+    
     [title setString:[NSString stringWithFormat:@"\nMISSION: %@",[AchievementManager getTitleByMultiplier:[[LevelData sharedLevelData]currentMultiplier]]]];    
     
     [achievement setString:[AchievementManager getInstructionByMultiplier:
@@ -142,20 +180,34 @@ CCMenu *multiplierMenu;
 
 -(void)raiseAchievement:(id)sender
 {
-    [self flash:sender];
-    [[LevelData sharedLevelData]setCurrentMultiplier:[[LevelData sharedLevelData]currentMultiplier]+1 ];
-    [LevelData saveState];
-    [LevelData loadState];
-    [self updateAchievement];
+    if ([[LevelData sharedLevelData]currentMultiplier]<21)
+    {
+        [self flash:sender];
+        [[LevelData sharedLevelData]setCurrentMultiplier:[[LevelData sharedLevelData]currentMultiplier]+1 ];
+        [LevelData saveState];
+        [LevelData loadState];
+        [self updateAchievement];
+    }
+    else
+    {
+        [self redFlash:sender];
+    }
 }
 
 -(void)lowerAchievement:(id)sender
 {
-    [self flash:sender];
-    [[LevelData sharedLevelData]setCurrentMultiplier:[[LevelData sharedLevelData]currentMultiplier]-1 ];
-    [LevelData saveState];
-    [LevelData loadState];
-    [self updateAchievement];
+    if ([[LevelData sharedLevelData]currentMultiplier]>1)
+    {
+        [self flash:sender];
+        [[LevelData sharedLevelData]setCurrentMultiplier:[[LevelData sharedLevelData]currentMultiplier]-1 ];
+        [LevelData saveState];
+        [LevelData loadState];
+        [self updateAchievement];
+    }
+    else
+    {
+        [self redFlash:sender];
+    }
 }
 
 -(void)viewHighScore:(id)sender
@@ -171,9 +223,16 @@ CCMenu *multiplierMenu;
 
 -(void)startGame:(id)sender
 {	
-	[self flash:sender];
-    [self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.25],
-                     [CCCallFunc actionWithTarget:self selector:@selector(replaceGame)],nil]];
+    if ([[LevelData sharedLevelData]highestAchievement]>=[[LevelData sharedLevelData]currentMultiplier]-1)
+    {
+        [self flash:sender];
+        [self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.25],
+                         [CCCallFunc actionWithTarget:self selector:@selector(replaceGame)],nil]];
+    }
+    else
+    {
+        [self redFlash:sender];
+    }
 }
 -(void)replaceGame
 {	
