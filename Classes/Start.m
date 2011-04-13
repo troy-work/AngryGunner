@@ -23,6 +23,7 @@ CCLabelTTF *achievement;
 CCMenu *multiplierMenu;
 CCSprite *up;
 CCSprite *down;
+CCSprite *lock;
 
 +(id)scene{
 	// 'scene' is an autorelease object.
@@ -48,6 +49,7 @@ CCSprite *down;
             [[SimpleAudioEngine sharedEngine] setMute:TRUE];
         }
 		
+        
 		CCSprite *bg = [CCSprite spriteWithFile:@"startscreen.jpg"];
 		[bg setAnchorPoint:ccp(0,0)];
 		
@@ -114,8 +116,14 @@ CCSprite *down;
         [achievement setPosition:ccp(225,173)];
         [achievement setColor:ccc3(180,160,50)];
         [self addChild:achievement];
-        [self checkUpDown];              
         
+        lock = [CCSprite spriteWithFile:@"lock.png"];
+        [lock setAnchorPoint:ccp(.5,.5)];
+        [lock setPosition:ccp(210,190)];
+        [lock setScaleY:.65];
+        [lock setScaleX:.8];
+        [self addChild:lock];
+        [self checkUpDown];
 	}
 	
 	return self;
@@ -124,6 +132,16 @@ CCSprite *down;
 
 -(void)checkUpDown
 {
+    
+    if ([[LevelData sharedLevelData]highestAchievement]>=[[LevelData sharedLevelData]currentMultiplier]-1)
+    {
+        [lock setOpacity:0];
+    }
+    else
+    {
+        [lock setOpacity:255];
+    }
+    
     if ([[LevelData sharedLevelData]currentMultiplier]<21)
     {
         [up setOpacity:255];
@@ -158,7 +176,7 @@ CCSprite *down;
                       [CCCallFuncN actionWithTarget:self selector:@selector(killSprite:)],nil]];
     [flash setPosition:ccpAdd([menuItem position], [[menuItem parent] position])];
     [flash setColor:ccc3(255, 0, 0)];
-    [flash setOpacity:50];
+    [flash setOpacity:100];
     [self addChild:flash];
 }
 

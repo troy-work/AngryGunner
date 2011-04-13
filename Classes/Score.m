@@ -80,7 +80,7 @@ CCSprite *gameCenterButton;
 		}
 		
 		CCMenuItem *home = [CCMenuItemFont itemFromString:@"HOME" target:self selector:@selector(goHome:)];
-		CCMenuItem *start = [CCMenuItemFont itemFromString:@"NEWGAME" target:self selector:@selector(goStart:)];
+		CCMenuItem *start = [CCMenuItemFont itemFromString:@"NEWGAME" target:self selector:@selector(startGame:)];
 		
 		home.position = ccp(10,295);
 		start.position = ccp(240,40);
@@ -120,10 +120,47 @@ CCSprite *gameCenterButton;
 	
 }
 
-
--(void)goStart:(id)sender
+-(void)flash:(CCMenuItem*)menuItem
 {
-	[[CCDirector sharedDirector] replaceScene:[Game node]];
+    CCSprite *flash = [CCSprite spriteWithFile:@"dpadburst.png"];
+    [flash runAction:[CCSequence actions:[CCScaleBy actionWithDuration:.25 scale:2],
+                      [CCCallFuncN actionWithTarget:self selector:@selector(killSprite:)],nil]];
+    [flash setPosition:ccpAdd([menuItem position], [[menuItem parent] position])];
+    [self addChild:flash];
+}
+-(void)redFlash:(CCMenuItem*)menuItem
+{
+    CCSprite *flash = [CCSprite spriteWithFile:@"dpadburst.png"];
+    [flash runAction:[CCSequence actions:[CCScaleBy actionWithDuration:.25 scale:2],
+                      [CCCallFuncN actionWithTarget:self selector:@selector(killSprite:)],nil]];
+    [flash setPosition:ccpAdd([menuItem position], [[menuItem parent] position])];
+    [flash setColor:ccc3(255, 0, 0)];
+    [flash setOpacity:100];
+    [self addChild:flash];
+}
+
+-(void)startGame:(id)sender
+{	
+    if ([[LevelData sharedLevelData]highestAchievement]>=[[LevelData sharedLevelData]currentMultiplier]-1)
+    {
+        [self flash:sender];
+        [self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.25],
+                         [CCCallFunc actionWithTarget:self selector:@selector(replaceGame)],nil]];
+    }
+    else
+    {
+        [self redFlash:sender];
+    }
+}
+
+-(void)killSprite:(id)sender
+{
+	[[sender parent] removeChild:sender cleanup:TRUE];
+}
+
+-(void)replaceGame
+{	
+	[[CCDirector sharedDirector] replaceScene:[Game scene]];	
 }
 
 -(void)goHome:(id)sender

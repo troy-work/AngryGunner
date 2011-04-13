@@ -387,7 +387,6 @@ CCSprite *topInfo;
                 break;
             case 10:
                 if (score>50000) {
-                    didAchievement=TRUE;
                     countDownAchievement-=1;
                 }
                 if (level>1) {
