@@ -345,7 +345,6 @@ CCSprite *topInfo;
                 break;
             case 4:
                 if (level>2) {
-                    didAchievement=TRUE;
                     countDownAchievement-=1;
                 }
                 break;
@@ -523,18 +522,25 @@ CCSprite *topInfo;
 
         if (countDownAchievement==0){
             
+            NSString *addMessage = @"";
+            
             if ([[LevelData sharedLevelData]highestAchievement]<[[LevelData sharedLevelData]currentMultiplier])
             {
                 [[LevelData sharedLevelData]setHighestAchievement:[[LevelData sharedLevelData]currentMultiplier]];
                 [LevelData saveAchievement];
                 [LevelData loadAchievement];
             }
-
+            else
+            {
+                addMessage = @"\n***AGAIN***";
+            }
             [[LevelData sharedLevelData]setCurrentMultiplier:[[LevelData sharedLevelData]currentMultiplier]+1];
             [LevelData saveMultiplier];
             [LevelData loadMultiplier];
-            CCLabelTTF *achievmentMessage = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"\nAWESOME! PROMOTED TO: \n%@",[AchievementManager getCurrentTitleByMultiplier:[[LevelData sharedLevelData]currentMultiplier]]]
-                                            dimensions:CGSizeMake(450, 200) alignment:CCTextAlignmentCenter  fontName:@"321impact.ttf" fontSize:32.0f];
+            
+            NSString *upGradeMessage = [NSString stringWithFormat:@"\nAWESOME! PROMOTED TO: \n%@%@",[AchievementManager getCurrentTitleByMultiplier:[[LevelData sharedLevelData]currentMultiplier]],addMessage];
+
+            CCLabelTTF *achievmentMessage = [CCLabelTTF labelWithString:upGradeMessage dimensions:CGSizeMake(450, 200) alignment:CCTextAlignmentCenter  fontName:@"321impact.ttf" fontSize:32.0f];
             
             achievmentMessage.anchorPoint = ccp(.5,.5);
             [achievmentMessage setPosition:ccp(240,160)];

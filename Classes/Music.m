@@ -106,12 +106,10 @@ bool isSimulator=FALSE;
 				[CCMenuItemFont setFontName:@"321impact.ttf"];
 				CCMenuItem *item = [CCMenuItemFont itemFromString:parm target:self selector:@selector(playMusic:)];
 				
-                UIColor *c = [UIColor colorWithRed:180 green:100 blue:50 alpha:0];
                 
 				[item setUserData:parm];
 				[item setAnchorPoint:ccp(.5,.5)];
 				[item setPosition:ccp(x , y - i * 30)];
-				[item setColor: c];
 				[menuList addChild:item z:10 tag:i];
 				
 				i++;
@@ -125,7 +123,7 @@ bool isSimulator=FALSE;
 				//					NSLog (@"\t\t%@", songTitle);
 				//				}
 			}
-			
+            [menuList setColor:ccc3(180, 100, 50)];
 			[self addChild:menuList];
 			
 			if ([appMusicPlayer nowPlayingItem]) {								
