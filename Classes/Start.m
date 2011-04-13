@@ -8,7 +8,7 @@
 
 #import "Start.h"
 #import "Game.h"
-#import "Achievement.h"
+#import "Score.h"
 #import "Sound.h"
 #import "LevelData.h"
 #import "AchievementManager.h"
@@ -52,16 +52,16 @@ CCMenu *multiplierMenu;
         
         CCSprite *up =[CCSprite spriteWithFile:@"up.png"];
         [up setAnchorPoint:ccp(.5,.5)];
-        [up setPosition:ccp(450,290)];
+        [up setPosition:ccp(440,238)];
         [self addChild:up];
 
         CCSprite *down =[CCSprite spriteWithFile:@"down.png"];
         [down setAnchorPoint:ccp(.5,.5)];
-        [down setPosition:ccp(450,215)];
+        [down setPosition:ccp(440,140)];
         [self addChild:down];
 
-		CCMenuItem *options = [CCMenuItemFont itemFromString:@"ACHIEVEMENTS" target:self selector:@selector(viewAchievement:)];
-		CCMenuItem *start = [CCMenuItemFont itemFromString:@"|NewGa|" target:self selector:@selector(startGame:)];
+		CCMenuItem *score = [CCMenuItemFont itemFromString:@"VIEWHIGHSCORE" target:self selector:@selector(viewHighScore:)];
+		CCMenuItem *start = [CCMenuItemFont itemFromString:@"|NEWGA|" target:self selector:@selector(startGame:)];
 		CCMenuItem *help = [CCMenuItemFont itemFromString:@"HelpInfo" target:self selector:@selector(viewHelp:)];
 		CCMenuItem *info = [CCMenuItemFont itemFromString:@"INF" target:self selector:@selector(viewInfo:)];
 		CCMenuItem *speaker1 = [CCMenuItemFont itemFromString:@"SPP" target:self selector:@selector(toggleSpeaker:)];
@@ -69,7 +69,7 @@ CCMenu *multiplierMenu;
 		
 		
 		
-		options.position = ccp(0,85);
+		score.position = ccp(0,85);
 		start.position = ccp(180,85);
 		help.position = ccp(295,85);
 		info.position = ccp(310,26);
@@ -77,35 +77,35 @@ CCMenu *multiplierMenu;
 		speaker2.position = ccp(360,16);
 		
 		
-		CCMenu *menu = [CCMenu menuWithItems: options,start,help,info,speaker1,speaker2,nil];
+		CCMenu *menu = [CCMenu menuWithItems: score,start,help,info,speaker1,speaker2,nil];
 		menu.position = ccp(90,0);
 		[menu setOpacity:0];
 		[self addChild:menu];
 
-        CCMenuItem *lowerMultiplier = [CCMenuItemFont itemFromString:@"Lower" target:self selector:@selector(lowerAchievement:)];
-        CCMenuItem *raiseMultiplier = [CCMenuItemFont itemFromString:@"Raise" target:self selector:@selector(raiseAchievement:)];
-        multiplierMenu = [CCMenu menuWithItems:lowerMultiplier,raiseMultiplier, nil];
+        CCMenuItem *lowerMultiplier = [CCMenuItemFont itemFromString:@"LOWER" target:self selector:@selector(lowerAchievement:)];
+        CCMenuItem *raiseMultiplier = [CCMenuItemFont itemFromString:@"RAISE" target:self selector:@selector(raiseAchievement:)];
+        [raiseMultiplier setPosition:ccp(0,102)];
         [lowerMultiplier setPosition:ccp(0,0)];
-        [raiseMultiplier setPosition:ccp(0,75)];
+        multiplierMenu = [CCMenu menuWithItems:lowerMultiplier,raiseMultiplier, nil];
         [multiplierMenu setAnchorPoint:ccp(.5,0)];
-        [multiplierMenu setPosition:ccp(450,215)];
+        [multiplierMenu setPosition:ccp(450,135)];
         [multiplierMenu setOpacity:0];
         [self addChild:multiplierMenu];
         
         title =
         [CCLabelTTF labelWithString:[NSString stringWithFormat:@"\nMISSION: %@",[AchievementManager getTitleByMultiplier:[[LevelData sharedLevelData]currentMultiplier]]] 
-                         dimensions:CGSizeMake(410, 120) alignment:CCTextAlignmentLeft  fontName:@"321impact.ttf" fontSize:30.0f];
+                         dimensions:CGSizeMake(385, 120) alignment:CCTextAlignmentLeft  fontName:@"321impact.ttf" fontSize:30.0f];
         [title setAnchorPoint:ccp(.5,.5)];
-        [title setPosition:ccp(225,280)];
+        [title setPosition:ccp(225,220)];
         [title setColor:ccc3(180,50,50)];
         [self addChild:title];
         
         
         achievement =
         [CCLabelTTF labelWithString:[AchievementManager getInstructionByMultiplier:[[LevelData sharedLevelData]currentMultiplier]]
-                         dimensions:CGSizeMake(410, 140) alignment:CCTextAlignmentLeft  fontName:@"321impact.ttf" fontSize:18.0f];
+                         dimensions:CGSizeMake(385, 80) alignment:CCTextAlignmentLeft  fontName:@"321impact.ttf" fontSize:18.0f];
         [achievement setAnchorPoint:ccp(.5,.5)];
-        [achievement setPosition:ccp(225,203)];
+        [achievement setPosition:ccp(225,173)];
         [achievement setColor:ccc3(180,160,50)];
         [self addChild:achievement];
                 
@@ -156,15 +156,15 @@ CCMenu *multiplierMenu;
     [self updateAchievement];
 }
 
--(void)viewAchievement:(id)sender
+-(void)viewHighScore:(id)sender
 {	
 	[self flash:sender];
     [self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.25],
-                     [CCCallFunc actionWithTarget:self selector:@selector(replaceAchievement)],nil]];
+                     [CCCallFunc actionWithTarget:self selector:@selector(replaceHighScore)],nil]];
 }
--(void)replaceAchievement
+-(void)replaceHighScore
 {	
-	[[CCDirector sharedDirector] replaceScene:[Achievement scene]];	
+	[[CCDirector sharedDirector] replaceScene:[Score scene]];	
 }
 
 -(void)startGame:(id)sender
