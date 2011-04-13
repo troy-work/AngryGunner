@@ -757,8 +757,10 @@ CCSprite *topInfo;
     [levelMessage setScale:1];
     [levelMessage setColor:ccc3(180, 160, 50)];
     [self addChild:levelMessage z:0];
-    [self waitForClick];
- 
+    isShooting = FALSE;
+    [self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:4],
+                     [CCCallFunc actionWithTarget:self selector:@selector(waitForClick)],nil]];
+     
 }
 
 -(void)waitForClick
