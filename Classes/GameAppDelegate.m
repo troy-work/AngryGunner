@@ -74,7 +74,7 @@
 		[am setMode:kAMM_FxOnly];
 	}
 	
-	CCSprite *sprite = [CCSprite spriteWithFile:@"Default.png"];
+	CCSprite *sprite = [CCSprite spriteWithFile:@"Default.jpg"];
 	[sprite visit];
 	
 		

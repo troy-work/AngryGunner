@@ -36,7 +36,7 @@
 		[se setEffectsVolume:2];
 		[se playEffect:@"load.mp3"];
 		
-		CCSprite *bg = [CCSprite spriteWithFile:@"loadscreen.png"];
+		CCSprite *bg = [CCSprite spriteWithFile:@"loadscreen.jpg"];
 		[bg setAnchorPoint:ccp(.5,.5)];
 		
 	    bg.position = ccp(240,160);

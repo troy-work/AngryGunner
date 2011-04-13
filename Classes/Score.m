@@ -63,7 +63,7 @@ CCSprite *gameCenterButton;
 			[Appirater userDidSignificantEvent:YES]; 	
 		}
 		
-		CCSprite *bg = [CCSprite spriteWithFile:@"gameoverscreen.png"];
+		CCSprite *bg = [CCSprite spriteWithFile:@"gameoverscreen.jpg"];
 		[bg setAnchorPoint:ccp(0,0)];
 		
 	    bg.position = ccp(0,0);

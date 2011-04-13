@@ -71,7 +71,7 @@ bool isSimulator=FALSE;
 		
 		//********************************		
 		
-		CCSprite *bg = [CCSprite spriteWithFile:@"musicscreen.png"];
+		CCSprite *bg = [CCSprite spriteWithFile:@"musicscreen.jpg"];
 		[bg setAnchorPoint:ccp(0,0)];		
 		
 	    bg.position = ccp(0,0);
@@ -106,10 +106,12 @@ bool isSimulator=FALSE;
 				[CCMenuItemFont setFontName:@"321impact.ttf"];
 				CCMenuItem *item = [CCMenuItemFont itemFromString:parm target:self selector:@selector(playMusic:)];
 				
+                UIColor *c = [UIColor colorWithRed:180 green:100 blue:50 alpha:0];
+                
 				[item setUserData:parm];
 				[item setAnchorPoint:ccp(.5,.5)];
 				[item setPosition:ccp(x , y - i * 30)];
-				[item setColor: ccc3(180,100,50)];
+				[item setColor: c];
 				[menuList addChild:item z:10 tag:i];
 				
 				i++;
@@ -144,7 +146,7 @@ bool isSimulator=FALSE;
 				[self playLast];
 				
 				CCLabelTTF *message =
-				[CCLabelTTF labelWithString:@"If you group the music in your ipod player into a play list, you can choose it here." 
+				[CCLabelTTF labelWithString:@"\nIf you group the music in your ipod player into a play list, you can choose it here." 
 								 dimensions:CGSizeMake(300, 150) alignment:CCTextAlignmentLeft  fontName:@"321impact.ttf" fontSize:30.0f];
 				[message setAnchorPoint:ccp(.5,.5)];
 				[message setPosition:ccp(240,160)];
@@ -152,7 +154,7 @@ bool isSimulator=FALSE;
 				[self addChild:message];
 			}else {
 				CCLabelTTF *message =
-				[CCLabelTTF labelWithString:@"There is no music in your iPod. You can download music from iTunes!" 
+				[CCLabelTTF labelWithString:@"\nThere is no music in your iPod. You can download music from iTunes!" 
 								 dimensions:CGSizeMake(300, 150) alignment:CCTextAlignmentLeft  fontName:@"321impact.ttf" fontSize:30.0f];
 				[message setAnchorPoint:ccp(.5,.5)];
 				[message setPosition:ccp(240,160)];

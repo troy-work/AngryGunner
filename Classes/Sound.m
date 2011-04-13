@@ -63,7 +63,7 @@ MPMusicPlayerController* appMusicPlayer;
 		
 		//********************************		
 		
-		CCSprite *bg = [CCSprite spriteWithFile:@"soundscreen.png"];
+		CCSprite *bg = [CCSprite spriteWithFile:@"soundscreen.jpg"];
 		[bg setAnchorPoint:ccp(0,0)];		
 		
 	    bg.position = ccp(0,0);

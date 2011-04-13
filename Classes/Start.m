@@ -10,6 +10,8 @@
 #import "Game.h"
 #import "Score.h"
 #import "Sound.h"
+#import "Help.h"
+#import "Info.h"
 #import "LevelData.h"
 #import "AchievementManager.h"
 #import "SimpleAudioEngine.h"
@@ -118,7 +120,7 @@ CCMenu *multiplierMenu;
 -(void)flash:(CCMenuItem*)menuItem
 {
     CCSprite *flash = [CCSprite spriteWithFile:@"dpadburst.png"];
-    [flash runAction:[CCSequence actions:[CCScaleBy actionWithDuration:.25 scale:4],
+    [flash runAction:[CCSequence actions:[CCScaleBy actionWithDuration:.25 scale:2],
                       [CCCallFuncN actionWithTarget:self selector:@selector(killSprite:)],nil]];
     [flash setPosition:ccpAdd([menuItem position], [[menuItem parent] position])];
     [self addChild:flash];
@@ -181,14 +183,27 @@ CCMenu *multiplierMenu;
 -(void)viewHelp:(id)sender
 {	
     [self flash:sender];
-//	[[CCDirector sharedDirector] replaceScene:[Help scene]];	
+    [self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.25],
+                     [CCCallFunc actionWithTarget:self selector:@selector(replaceHelp)],nil]];
 }
+-(void)replaceHelp
+{	
+    [[CCDirector sharedDirector] replaceScene:[Help scene]];	
+}
+
+
 
 -(void)viewInfo:(id)sender
 {	
     [self flash:sender];
-//	[[CCDirector sharedDirector] replaceScene:[Info scene]];	
+    [self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.25],
+                     [CCCallFunc actionWithTarget:self selector:@selector(replaceInfo)],nil]];
 }
+-(void)replaceInfo
+{	
+    [[CCDirector sharedDirector] replaceScene:[Info scene]];	
+}
+
 
 -(void)toggleSpeaker:(id)sender
 {	

@@ -1,18 +1,16 @@
 //
-//  Option.h
+//  Help.h
 //  AngryGunner
 //
-//  Created by Troy Cox on 3/1/11.
+//  Created by Troy Cox on 4/12/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface Option : CCLayer {
-
+@interface Help : CCLayer {
+    
 }
-
-+(id)scene;
 
 @end
