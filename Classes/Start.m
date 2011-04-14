@@ -117,7 +117,7 @@ CCSprite *lock;
         [achievement setColor:ccc3(180,160,50)];
         [self addChild:achievement];
         
-        lock = [CCSprite spriteWithFile:@"lock.png"];
+        lock = [CCSprite spriteWithFile:@"Lock.png"];
         [lock setAnchorPoint:ccp(.5,.5)];
         [lock setPosition:ccp(210,190)];
         [lock setScaleY:.65];

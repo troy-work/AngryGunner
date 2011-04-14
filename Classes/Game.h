@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "Joystick.h"
 
 @interface Game : CCLayer {
     enum {kPlane=1,kTPlane=2,kTorpedo=3} enemyType;
