@@ -205,13 +205,16 @@ bool isSimulator=FALSE;
 	
 	[appMusicPlayer endGeneratingPlaybackNotifications];
 	//*****************************	
+    
+    [[CCTextureCache sharedTextureCache] removeTextureForKey:@"musicscreen.jpg"];
+    
 	[super release];
 }
 
 -(void)playMusic:(CCMenuItem *)sender
 {
 	
-	NSLog(@"%@",sender.userData); 
+//	NSLog(@"%@",sender.userData); 
 	
 	[appMusicPlayer setShuffleMode: MPMusicShuffleModeSongs];
 	[appMusicPlayer setRepeatMode: MPMusicRepeatModeAll];	

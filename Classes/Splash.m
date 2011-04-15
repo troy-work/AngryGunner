@@ -65,6 +65,7 @@
 
 - (void)release {
 	//	NSLog(@"StartLayer retain count = %d", [self retainCount]);
+    [[CCTextureCache sharedTextureCache] removeTextureForKey:@"loadscreen.jpg"];
 	[super release];
 }
 

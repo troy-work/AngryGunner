@@ -173,13 +173,15 @@ MPMusicPlayerController* appMusicPlayer;
 	
 	[appMusicPlayer endGeneratingPlaybackNotifications];
 	//*****************************	
+    [[CCTextureCache sharedTextureCache] removeTextureForKey:@"soundscreen.jpg"];
+    
 	[super release];
 }
 
 
 -(void)dealloc
 {
-	CCLOG(@"dealloc: %@", self);
+//	CCLOG(@"dealloc: %@", self);
 	[super dealloc];	
 }
 

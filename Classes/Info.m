@@ -58,6 +58,7 @@
 
 -(void)release
 {
+    [[CCTextureCache sharedTextureCache] removeTextureForKey:@"infoscreen.jpg"];
 	[super release];
 }
 

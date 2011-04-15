@@ -981,7 +981,7 @@ CCSprite *topInfo;
 
 -(void)killSprite:(id)sender
 {
-	[self removeChild:sender cleanup:FALSE];
+	[self removeChild:sender cleanup:TRUE];
 }
 
 -(void)startScene:(id)sender

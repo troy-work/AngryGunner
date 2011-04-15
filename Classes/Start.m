@@ -302,7 +302,8 @@ CCSprite *lock;
 }
 
 - (void)release {
-	NSLog(@"StartLayer retain count = %d", [self retainCount]);
+//	NSLog(@"StartLayer retain count = %d", [self retainCount]);
+    [[CCTextureCache sharedTextureCache] removeTextureForKey:@"startscreen.jpg"];    
 	[super release];
 }
 

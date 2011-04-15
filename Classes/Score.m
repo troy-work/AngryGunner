@@ -268,7 +268,13 @@ CCSprite *gameCenterButton;
 	return [ UIApplication sharedApplication] .keyWindow.rootViewController; 
 } 
 
-// on "dealloc" you need to release all your retained objects
+-(void) release
+{
+    [[CCTextureCache sharedTextureCache] removeTextureForKey:@"gameoverscreen.jpg"];
+
+    [super release];
+}
+
 - (void) dealloc
 {
 	// don't forget to call "super dealloc"

@@ -14,6 +14,7 @@
 #import "LevelData.h"
 #import "GameCenterManager.h"
 #import "CDAudioManager.h"
+#import "SimpleAudioEngine.h"
 
 @interface GameAppDelegate (PrivateMethods)
 
@@ -74,6 +75,8 @@
 		[am setMode:kAMM_FxOnly];
 	}
 	
+    [[SimpleAudioEngine sharedEngine] setEffectsVolume:1];
+    
 	CCSprite *sprite = [CCSprite spriteWithFile:@"Default.jpg"];
 	[sprite visit];
 	
@@ -135,7 +138,8 @@
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
 {
-	[[CCTextureCache sharedTextureCache] removeAllTextures];
+//	[[CCTextureCache sharedTextureCache] removeUnusedTextures];
+    [[SimpleAudioEngine sharedEngine] unloadEffect:@"load.mp3"];
 }
 
 @end
