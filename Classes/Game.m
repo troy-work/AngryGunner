@@ -795,6 +795,7 @@ int levelCountdownDisplayFilter;
     [self killSprite:messagBg];
     levelIsChanging = FALSE;
     levelCountDown = 700;
+    levelCountdownDisplayFilter = 50;    
     enemyCountDown = 1600 - (level*300);
     if (enemyCountDown<300){enemyCountDown=300;}
     planeCountDown = enemyCountDown/2;
