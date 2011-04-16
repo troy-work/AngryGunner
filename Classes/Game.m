@@ -53,6 +53,7 @@ float torpedoPlaneCountDown;
 SimpleAudioEngine *se;
 CCSprite *topInfo;
 
+int levelCountdownDisplayFilter;
 
 @synthesize planes;
 @synthesize bullets;
@@ -91,8 +92,9 @@ CCSprite *topInfo;
         [se preloadEffect:@"Whiz1.aiff"];
         [se preloadEffect:@"Whiz2.aiff"];
         
-        levelCountDown = 700;
+        levelCountDown = 60;//700;
         level = 1;
+        levelCountdownDisplayFilter = 50;
         
         [LevelData loadState];
         
@@ -307,6 +309,22 @@ CCSprite *topInfo;
                                         [CCCallFuncN actionWithTarget:self 
                                                              selector:@selector(killSprite:)],nil]];
                 [self addChild:failed z:0];
+}
+
+-(void)displayCountDown:(int)value
+{
+    CCLabelTTF *levelCountdownDisplay = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%i",value/10] 
+                                                           fontName:@"Arial" fontSize:192.0f];
+    levelCountdownDisplay.anchorPoint = ccp(.5,.5);
+    [levelCountdownDisplay setPosition:ccp(240,160)];
+    [levelCountdownDisplay setScale:1];
+    [levelCountdownDisplay setOpacity:10]; 
+    [levelCountdownDisplay setColor:ccc3(255, 255, 200)];
+    
+    [levelCountdownDisplay runAction:[CCSequence actions:[CCScaleTo actionWithDuration:1  scale:2],
+                       [CCCallFuncN actionWithTarget:self 
+                                            selector:@selector(killSprite:)],nil]];
+    [self addChild:levelCountdownDisplay];
 }
 
 -(void)checkAchievement:(NSString *) s
@@ -684,10 +702,14 @@ CCSprite *topInfo;
 	}
 	
     levelCountDown -= 10 * dt;
-    if (levelCountDown<=0) {
-        [self unschedule:@selector(step:)];
-        [planes removeAllChildrenWithCleanup:FALSE];
-        [self levelUp];
+    if ((int)levelCountDown==levelCountdownDisplayFilter) {
+        if (levelCountDown<=0) {
+            [self unschedule:@selector(step:)];
+            [planes removeAllChildrenWithCleanup:FALSE];
+            [self levelUp];
+        }
+        [self displayCountDown:levelCountdownDisplayFilter];
+        levelCountdownDisplayFilter -= 1;
     }
 }
 
