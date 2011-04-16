@@ -92,7 +92,7 @@ int levelCountdownDisplayFilter;
         [se preloadEffect:@"Whiz1.aiff"];
         [se preloadEffect:@"Whiz2.aiff"];
         
-        levelCountDown = 60;//700;
+        levelCountDown = 700;
         level = 1;
         levelCountdownDisplayFilter = 50;
         
