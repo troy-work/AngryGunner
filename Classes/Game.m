@@ -703,13 +703,13 @@ int levelCountdownDisplayFilter;
 	    
     levelCountDown -= 10 * dt;
     if ((int)levelCountDown==levelCountdownDisplayFilter) {
-        if (levelCountDown<=0) {
-            [self unschedule:@selector(step:)];
-            [planes removeAllChildrenWithCleanup:FALSE];
-            [self levelUp];
-        }
         [self displayCountDown:levelCountdownDisplayFilter];
         levelCountdownDisplayFilter -= 1;
+    }
+    if (levelCountDown<=0) {
+        [self unschedule:@selector(step:)];
+        [planes removeAllChildrenWithCleanup:FALSE];
+        [self levelUp];
     }
 }
 
