@@ -700,7 +700,7 @@ int levelCountdownDisplayFilter;
                 
 		[blips addChild:sb];
 	}
-	
+	    
     levelCountDown -= 10 * dt;
     if ((int)levelCountDown==levelCountdownDisplayFilter) {
         if (levelCountDown<=0) {
@@ -814,7 +814,7 @@ int levelCountdownDisplayFilter;
 	[bullet setRotation:29];
 	[bullet startAtPosition:ccp(-x+205,-y+100) finishAtPosition:ccp(-x+238,-y+155)];
 	[friendsLayer addChild:bullet];
-	
+    
 	flash = [CCSprite spriteWithFile:@"flash.png"];
 	[flash setAnchorPoint:ccp(.5,0)];
 	[flash setRotation:29];
