@@ -104,16 +104,16 @@ CCSprite *lock;
         [CCLabelTTF labelWithString:[NSString stringWithFormat:@"\nMISSION: %@",[AchievementManager getTitleByMultiplier:[[LevelData sharedLevelData]currentMultiplier]]] 
                          dimensions:CGSizeMake(385, 120) alignment:CCTextAlignmentLeft  fontName:@"321impact.ttf" fontSize:30.0f];
         [title setAnchorPoint:ccp(.5,.5)];
-        [title setPosition:ccp(225,220)];
+        [title setPosition:ccp(220,220)];
         [title setColor:ccc3(180,50,50)];
         [self addChild:title];
         
         
         achievement =
         [CCLabelTTF labelWithString:[AchievementManager getInstructionByMultiplier:[[LevelData sharedLevelData]currentMultiplier]]
-                         dimensions:CGSizeMake(385, 80) alignment:CCTextAlignmentLeft  fontName:@"321impact.ttf" fontSize:18.0f];
+                         dimensions:CGSizeMake(385, 120) alignment:CCTextAlignmentLeft  fontName:@"321impact.ttf" fontSize:18.0f];
         [achievement setAnchorPoint:ccp(.5,.5)];
-        [achievement setPosition:ccp(225,173)];
+        [achievement setPosition:ccp(220,153)];
         [achievement setColor:ccc3(180,160,50)];
         [self addChild:achievement];
         

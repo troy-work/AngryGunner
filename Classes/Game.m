@@ -992,6 +992,8 @@ CCSprite *topInfo;
 
 - (void)release {
 	//	NSLog(@"StartLayer retain count = %d", [self retainCount]);
+    [[CCTextureCache sharedTextureCache] removeTextureForKey:@"backgroundright.png"];
+
 	[super release];
 }
 
