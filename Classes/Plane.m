@@ -25,7 +25,7 @@ float shootTime;
 CCTexture2D *enemyBullet;
 float lastRotate;
 SimpleAudioEngine *se;
-
+int planeSoundId;
 
 @synthesize zIndex;
 @synthesize hitCount;
@@ -52,6 +52,7 @@ SimpleAudioEngine *se;
         se = [SimpleAudioEngine sharedEngine];
         [se preloadEffect:@"explosion.aiff"];
         [se preloadEffect:@"PlaneMachineGun.aiff"];
+        [se preloadEffect:@"p51fast.aiff"];
         [self setTag:kPlane];
 	}
 	return self;
@@ -117,6 +118,8 @@ SimpleAudioEngine *se;
     [self setState:@"fLeft"];
 	[self runAction:[CCRotateTo actionWithDuration:.2 angle:-40]];
 	[self runAction:[CCMoveBy actionWithDuration:.3 position:ccp(-50,-10)]];
+    planeSoundId = [se playEffect:@"p51fast.aiff" pitch:1 pan:0 gain:[self scaleX]];
+
 }
 
 -(void)turnRight
@@ -136,6 +139,7 @@ SimpleAudioEngine *se;
 
 -(void)die
 {
+    [se stopEffect:planeSoundId];
 	isDying=TRUE;
 	[self unschedule:@selector(step:)];
 

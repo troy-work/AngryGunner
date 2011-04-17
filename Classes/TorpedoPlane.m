@@ -26,6 +26,7 @@ CCTexture2D *smoke;
 CCTexture2D *enemyBullet;
 float lastRotate;
 SimpleAudioEngine *se;
+int planeSoundId;
 
 @synthesize zIndex;
 @synthesize hitCount;
@@ -49,7 +50,9 @@ SimpleAudioEngine *se;
 		tsideSprite = [[CCTextureCache sharedTextureCache] addImage:@"redplaneside.png"];
 		tturnSprite = [[CCTextureCache sharedTextureCache] addImage:@"redplaneturn.png"];
 		smoke = [[CCTextureCache sharedTextureCache] addImage:@"dpadburst.png"];
+        se = [SimpleAudioEngine sharedEngine];
         [se preloadEffect:@"explosion.aiff"];
+        [se preloadEffect:@"p51passby.aiff"];
         [self setTag:kTPlane];		
 	}
 	return self;
@@ -114,6 +117,7 @@ SimpleAudioEngine *se;
 
 -(void)front
 {
+    planeSoundId = [se playEffect:@"p51passby.aiff" pitch:1 pan:0 gain:[self scaleX]];
     [self setState:@"tFront"];
 	self.points = 25;
 	[self setScaleX:[self scaleY]];
@@ -148,6 +152,7 @@ SimpleAudioEngine *se;
 
 -(void)die
 {
+    [se stopEffect:planeSoundId];
 	isDying=TRUE;
 	[self unschedule:@selector(step:)];
 	
