@@ -77,7 +77,7 @@ bool isSimulator=FALSE;
 	    bg.position = ccp(0,0);
 		[self addChild:bg];
 		
-		CCMenuItem *home = [CCMenuItemFont itemFromString:@"HOME" target:self selector:@selector(goHome:)];
+		CCMenuItem *home = [CCMenuItemFont itemFromString:@"HOME" target:self selector:@selector(startHome:)];
 		
 		
 		home.position = ccp(10,295);
@@ -169,6 +169,32 @@ bool isSimulator=FALSE;
 	
 }
 
+-(void)flash:(CCMenuItem*)menuItem
+{
+    CCSprite *flash = [CCSprite spriteWithFile:@"dpadburst.png"];
+    [flash runAction:[CCSequence actions:[CCScaleBy actionWithDuration:.25 scale:2],
+                      [CCCallFuncN actionWithTarget:self selector:@selector(killSprite:)],nil]];
+    [flash setPosition:ccpAdd([menuItem position], [[menuItem parent] position])];
+    [self addChild:flash];
+}
+
+-(void)killSprite:(id)sender
+{
+	[[sender parent] removeChild:sender cleanup:FALSE];
+}
+
+-(void)startHome:(id)sender
+{	
+    [self flash:sender];
+    [self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.25],
+                     [CCCallFuncN actionWithTarget:self selector:@selector(goHome:)],nil]];
+}
+
+-(void)goHome:(id)sender
+{
+	[[CCDirector sharedDirector] replaceScene:[Start node]];	
+}
+
 -(void)playingItemChanged
 {
 	[self removeChild:playingLabel cleanup:TRUE];
@@ -183,11 +209,6 @@ bool isSimulator=FALSE;
 		
 	}				
 	
-}
-
--(void)goHome:(id)sender
-{	
-	[[CCDirector sharedDirector] replaceScene:[Start node]];	
 }
 
 -(void)release

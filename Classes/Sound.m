@@ -75,11 +75,11 @@ MPMusicPlayerController* appMusicPlayer;
 		[self addChild:greenSfxCheck];
 		
 		
-		CCMenuItem *home = [CCMenuItemFont itemFromString:@"HOME" target:self selector:@selector(goHome:)];
-		CCMenuItem *sfx = [CCMenuItemFont itemFromString:@"SOUNDFX" target:self selector:@selector(playSfx:)];
-		CCMenuItem *offSfx = [CCMenuItemFont itemFromString:@"OFFSFXX" target:self selector:@selector(stopSfx:)];
-		CCMenuItem *music = [CCMenuItemFont itemFromString:@"MUSICPLAY" target:self selector:@selector(playMusic:)];
-		CCMenuItem *offMusic = [CCMenuItemFont itemFromString:@"OFFMUSIC" target:self selector:@selector(stopMusic:)];
+		CCMenuItem *home = [CCMenuItemFont itemFromString:@"HOME" target:self selector:@selector(startHome:)];
+		CCMenuItem *sfx = [CCMenuItemFont itemFromString:@"SOUNDFX" target:self selector:@selector(startPlaySfx:)];
+		CCMenuItem *offSfx = [CCMenuItemFont itemFromString:@"OFFSFXX" target:self selector:@selector(startStopSfx:)];
+		CCMenuItem *music = [CCMenuItemFont itemFromString:@"MUSICPLAY" target:self selector:@selector(startPlayMusic:)];
+		CCMenuItem *offMusic = [CCMenuItemFont itemFromString:@"OFFMUSIC" target:self selector:@selector(startStopMusic:)];
 		
 		home.position = ccp(10,295);
 		sfx.position = ccp(160,120);
@@ -115,12 +115,26 @@ MPMusicPlayerController* appMusicPlayer;
 	}
 }
 
+-(void)startStopMusic:(id)sender
+{	
+    [self flash:sender];
+    [self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.25],
+                     [CCCallFuncN actionWithTarget:self selector:@selector(stopMusic:)],nil]];
+}
+
 -(void)stopMusic:(id)sender
 {
 	[appMusicPlayer stop];
 	
 	//	[[MPMusicPlayerController applicationMusicPlayer] stop];
 	
+}
+
+-(void)startStopSfx:(id)sender
+{	
+    [self flash:sender];
+    [self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.25],
+                     [CCCallFuncN actionWithTarget:self selector:@selector(stopSfx:)],nil]];
 }
 
 -(void)stopSfx:(id)sender
@@ -131,6 +145,13 @@ MPMusicPlayerController* appMusicPlayer;
 	[self placeChecks];
 }
 
+-(void)startPlaySfx:(id)sender
+{	
+    [self flash:sender];
+    [self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.25],
+                     [CCCallFuncN actionWithTarget:self selector:@selector(playSfx:)],nil]];
+}
+
 -(void)playSfx:(id)sender
 {
 	[[LevelData sharedLevelData] setShouldPlaySfx:TRUE ];
@@ -139,15 +160,42 @@ MPMusicPlayerController* appMusicPlayer;
 	[self placeChecks];
 }
 
+-(void)startPlayMusic:(id)sender
+{	
+    [self flash:sender];
+    [self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.25],
+                     [CCCallFuncN actionWithTarget:self selector:@selector(playMusic:)],nil]];
+}
+
 -(void)playMusic:(id)sender
 {
 	[[CCDirector sharedDirector] replaceScene:[Music scene]];
 }
 
+-(void)flash:(CCMenuItem*)menuItem
+{
+    CCSprite *flash = [CCSprite spriteWithFile:@"dpadburst.png"];
+    [flash runAction:[CCSequence actions:[CCScaleBy actionWithDuration:.25 scale:2],
+                      [CCCallFuncN actionWithTarget:self selector:@selector(killSprite:)],nil]];
+    [flash setPosition:ccpAdd([menuItem position], [[menuItem parent] position])];
+    [self addChild:flash];
+}
+
+-(void)killSprite:(id)sender
+{
+	[[sender parent] removeChild:sender cleanup:FALSE];
+}
+
+-(void)startHome:(id)sender
+{	
+    [self flash:sender];
+    [self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.25],
+                     [CCCallFuncN actionWithTarget:self selector:@selector(goHome:)],nil]];
+}
+
 -(void)goHome:(id)sender
 {
-	
-	[[CCDirector sharedDirector] replaceScene:[Start scene]];	
+	[[CCDirector sharedDirector] replaceScene:[Start node]];	
 }
 
 

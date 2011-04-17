@@ -79,7 +79,7 @@ CCSprite *gameCenterButton;
 			gameCenter.position = ccp(340,184);
 		}
 		
-		CCMenuItem *home = [CCMenuItemFont itemFromString:@"HOME" target:self selector:@selector(goHome:)];
+		CCMenuItem *home = [CCMenuItemFont itemFromString:@"HOME" target:self selector:@selector(startHome:)];
 		CCMenuItem *start = [CCMenuItemFont itemFromString:@"NEWGAME" target:self selector:@selector(startGame:)];
 		
 		home.position = ccp(10,295);
@@ -161,6 +161,13 @@ CCSprite *gameCenterButton;
 -(void)replaceGame
 {	
 	[[CCDirector sharedDirector] replaceScene:[Game scene]];	
+}
+
+-(void)startHome:(id)sender
+{	
+    [self flash:sender];
+    [self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.25],
+                     [CCCallFuncN actionWithTarget:self selector:@selector(goHome:)],nil]];
 }
 
 -(void)goHome:(id)sender
