@@ -281,6 +281,19 @@ int levelCountdownDisplayFilter;
 	return self;	
 }
 
+-(void)shake
+{
+    [self runAction:[CCSequence actions:
+                       [CCMoveBy actionWithDuration:.05 position:ccp(-10,0)],
+                       [CCMoveBy actionWithDuration:.05 position:ccp(0,10)],
+                       [CCMoveBy actionWithDuration:.05 position:ccp(10,0)],
+                       [CCMoveBy actionWithDuration:.05 position:ccp(0,-10)],
+                       [CCMoveBy actionWithDuration:.05 position:ccp(-10,0)],
+                       [CCMoveBy actionWithDuration:.05 position:ccp(0,10)],
+                       [CCMoveBy actionWithDuration:.05 position:ccp(10,0)],
+                       [CCMoveBy actionWithDuration:.05 position:ccp(0,-10)], nil]];
+}
+
 -(void)kill
 {
 	[[LevelData sharedLevelData] setScore:score];
@@ -444,7 +457,7 @@ int levelCountdownDisplayFilter;
             case 14:
                 if ([@"fLeft" isEqualToString:s]) {
                     didAchievement=TRUE;
-                    countDownAchievement-=1;
+                    countDownAchievement=1;
                 }                
                 if ([@"fMissed" isEqualToString:s]) {
                     countDownAchievement= -1;
@@ -641,7 +654,6 @@ int levelCountdownDisplayFilter;
 
 	if (staticX == 0) {
 		[gunner setPosition:ccp(0,0)];
-		//[waves setPosition:ccp(-x,0)];
 		[friendsLayer setPosition:ccp(x,y)];
 		[bgLayer setPosition:ccp(x,y)];		
 	}else {
@@ -652,7 +664,6 @@ int levelCountdownDisplayFilter;
 			x=-1024+280;
 		}
 		
-		//[waves setPosition:ccp(-x,0)];
 		[friendsLayer setPosition:ccp(staticX,y)];
 		[bgLayer setPosition:ccp(staticX,y)];
 		[gunner setPosition:ccp(-x+staticX,0)];
@@ -761,8 +772,6 @@ int levelCountdownDisplayFilter;
     
     level += 1;
 
-//    levelMessage =[CCLabelBMFont  labelWithString:levelUpMessage fntFile:@"321impact.fnt"]; 
-    
     messagBg = [CCSprite spriteWithFile:@"GunnerScreen.jpg"];
     [messagBg setAnchorPoint:ccp(0,0)];    
     [messagBg setPosition:ccp(0,0)];
@@ -798,8 +807,9 @@ int levelCountdownDisplayFilter;
     if (enemyCountDown<300){enemyCountDown=300;}
     planeCountDown = enemyCountDown/2;
     torpedoPlaneCountDown = 0;
- 
+    
     [self schedule:@selector(step:)];
+    [self checkAchievement:@"NeedToCheckAfterLevelStarts"];
 }
 
 -(void)fireBullets

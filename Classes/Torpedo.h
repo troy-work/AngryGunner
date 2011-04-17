@@ -25,5 +25,6 @@
 +(id)torpedoSprite;
 -(void)startAt:(CGPoint)pos scale:(float)scale;
 -(void)hit;
+-(void)explode;
 
 @end

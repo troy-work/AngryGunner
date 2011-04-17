@@ -23,6 +23,7 @@
 -(void)levelUp;
 -(void)restart;
 -(void)waitForClick;
+-(void)shake;
 
 @property (assign,nonatomic) CCLayer *planes;
 @property (assign,nonatomic) CCLayer *bullets;

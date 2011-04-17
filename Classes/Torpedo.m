@@ -43,6 +43,11 @@ SimpleAudioEngine *se;
 -(void)hitBoat
 {
     [se playEffect:@"explosion.aiff" pitch:1 pan:0 gain:[self scaleX]];
+    
+    [self setOpacity:0];
+    [self setScaleY:10];
+    [self explode];
+    [(Game *)[[self parent]parent]shake];
 
     [self setState:@"tHitBoat"];
     [(Game *)[[self parent]parent] setHealth:[(Game *)[[self parent]parent]health]-10];
