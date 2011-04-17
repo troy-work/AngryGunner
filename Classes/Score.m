@@ -135,7 +135,6 @@ CCSprite *gameCenterButton;
                       [CCCallFuncN actionWithTarget:self selector:@selector(killSprite:)],nil]];
     [flash setPosition:ccpAdd([menuItem position], [[menuItem parent] position])];
     [flash setColor:ccc3(255, 0, 0)];
-    [flash setOpacity:100];
     [self addChild:flash];
 }
 

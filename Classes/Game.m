@@ -969,6 +969,17 @@ int levelCountdownDisplayFilter;
     
 }
 
+-(void)quitAt:(CGPoint)pos
+{
+    CCSprite *flash = [CCSprite spriteWithFile:@"dpadburst.png"];
+    [flash runAction:[CCSequence actions:[CCScaleBy actionWithDuration:.25 scale:2],
+                      [CCCallFunc actionWithTarget:self selector:@selector(kill)],nil]];
+    [flash setPosition:pos];
+    [self addChild:flash];
+    
+}
+
+
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
 	CGSize cs = CGSizeMake(150, 150);
@@ -979,7 +990,7 @@ int levelCountdownDisplayFilter;
             CGPoint nodeTouchPoint = [self convertTouchToNodeSpace: touch];		
 
             if (nodeTouchPoint.y>290) {
-                [self kill];
+                [self quitAt:nodeTouchPoint];
             }
             
             if (nodeTouchPoint.x<tx+cs.width/2&&nodeTouchPoint.x>tx-cs.width/2) {
