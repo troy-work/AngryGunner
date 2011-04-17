@@ -574,8 +574,6 @@ int levelCountdownDisplayFilter;
 
 -(void)step:(ccTime)dt{
 	
-    [self checkAchievement:@"loop"];
-    
     [scoreDisplay setString:[NSString stringWithFormat:@"%i",score]];
     
 	[healthBar setScaleX:health/100];
