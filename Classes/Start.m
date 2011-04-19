@@ -15,6 +15,7 @@
 #import "LevelData.h"
 #import "AchievementManager.h"
 #import "SimpleAudioEngine.h"
+#import "Appirater.h"
 
 @implementation Start
 
@@ -67,6 +68,11 @@ CCSprite *lock;
         [down setPosition:ccp(440,140)];
         [down setOpacity:0];
         [self addChild:down];
+        
+        CCSprite *review = [CCSprite spriteWithFile:@"rateus.png"];
+        [review setScale:.6];
+        [review setPosition:ccp(240,15)];
+        [self addChild:review];
 
 		CCMenuItem *score = [CCMenuItemFont itemFromString:@"VIEWHIGHSCORE" target:self selector:@selector(viewHighScore:)];
 		CCMenuItem *start = [CCMenuItemFont itemFromString:@"|NEWGA|" target:self selector:@selector(startGame:)];
@@ -75,6 +81,7 @@ CCSprite *lock;
 		CCMenuItem *speaker1 = [CCMenuItemFont itemFromString:@"SPP" target:self selector:@selector(toggleSpeaker:)];
 		CCMenuItem *speaker2 = [CCMenuItemFont itemFromString:@"SPP" target:self selector:@selector(toggleSpeaker:)];
 		
+		CCMenuItem *reviewUS = [CCMenuItemFont itemFromString:@"REVIEWUS" target:self selector:@selector(startReview:)];
 		
 		
 		score.position = ccp(0,85);
@@ -83,9 +90,11 @@ CCSprite *lock;
 		info.position = ccp(310,26);
 		speaker1.position = ccp(360,36);
 		speaker2.position = ccp(360,16);
+        
+        reviewUS.position = ccp(160,15);
 		
 		
-		CCMenu *menu = [CCMenu menuWithItems: score,start,help,info,speaker1,speaker2,nil];
+		CCMenu *menu = [CCMenu menuWithItems: score,start,help,info,speaker1,speaker2,reviewUS,nil];
 		menu.position = ccp(90,0);
 		[menu setOpacity:0];
 		[self addChild:menu];
@@ -267,7 +276,19 @@ CCSprite *lock;
     [[CCDirector sharedDirector] replaceScene:[Help scene]];	
 }
 
-
+-(void)startReview:(id)sender
+{	
+    [self flash:sender];
+    [self runAction:[CCSequence actions:[CCDelayTime actionWithDuration:.25],
+                     [CCCallFunc actionWithTarget:self selector:@selector(replaceReview)],nil]];
+}
+-(void)replaceReview
+{
+	Appirater *rater = [Appirater sharedInstance];
+    if ([rater connectedToNetwork]) {
+        [rater doReview];
+    }
+}
 
 -(void)viewInfo:(id)sender
 {	

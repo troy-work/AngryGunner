@@ -99,6 +99,10 @@ extern NSString *const kAppiraterDeclinedToRate;
  */
 + (void)appLaunched;
 
+
++ (Appirater*)sharedInstance;
+- (BOOL)connectedToNetwork;
+
 /*
  Tells Appirater that the app has launched, and on devices that do NOT
  support multitasking, the 'uses' count will be incremented. You should
@@ -143,5 +147,7 @@ extern NSString *const kAppiraterDeclinedToRate;
  in those methods).
  */
 + (void)userDidSignificantEvent:(BOOL)canPromptForRating;
+
+- (void)doReview;
 
 @end
