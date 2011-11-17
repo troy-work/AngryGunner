@@ -11,7 +11,7 @@
 #import <GameKit/GameKit.h>
 #import <UIKit/UIKit.h>
 
-@interface Score : CCLayer<GKLeaderboardViewControllerDelegate>
+@interface Score : CCLayer<GKLeaderboardViewControllerDelegate,GKAchievementViewControllerDelegate>
 {
 }
 
