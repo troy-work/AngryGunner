@@ -11,8 +11,7 @@
 
 @interface CCSprite (Utility)
 
-int zIndex;
-
 -(bool)isCollidingWith:(CCSprite *)sprite atZIndex: (int) z;
 
 @end
+int zIndex;

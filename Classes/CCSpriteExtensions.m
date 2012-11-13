@@ -10,6 +10,8 @@
 
 @implementation CCSprite (Utility)
 
+int zIndex;
+
 -(int)zIndex
 {
 	return zIndex;
@@ -21,7 +23,7 @@
 }
 -(bool)isCollidingWith:(CCSprite *)sprite atZIndex: (int) z
 {
-	if ([sprite zIndex]==zIndex) {
+	if ([sprite zIndex]==self.zIndex) {
 		return TRUE;
 	}
 	return FALSE;

@@ -46,10 +46,13 @@
 	// You can change anytime.
 	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];	
 	
+    [director setProjection:(kCCDirectorProjection2D)];
+    
+    
 	[director setDeviceOrientation:CCDeviceOrientationLandscapeLeft];
 	[director setDisplayFPS:NO];
 	[director setAnimationInterval:1.0/60];
-
+    
 	
 	// Create an EAGLView with a RGB8 color buffer, and a depth buffer of 24-bits
 	EAGLView *glView = [EAGLView viewWithFrame:[window bounds]
@@ -60,7 +63,6 @@
 								 multiSampling:NO //YES to enable it
 							   numberOfSamples:0 //can be 1 - 4 if multiSampling=YES
 						];
-	
 	[glView setMultipleTouchEnabled:YES];
 	// attach the openglView to the director
 	[director setOpenGLView:glView];
